@@ -2,7 +2,7 @@ const HtmlAttrs = require("html-attributes");
 
 const reactVersions = {
   allowTransparency: "allowtransparency",
-  charset: "charset",
+  charset: "charSet",
   class: "className",
   for: "htmlFor",
   isMap: "ismap",
