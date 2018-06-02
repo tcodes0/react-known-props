@@ -21,7 +21,7 @@
     "node": ">=6"
   },
   "files": [
-    "src/index.js"
+    "src"
   ],
   "scripts": {
     "lint": "eslint src",
