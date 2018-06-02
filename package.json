@@ -1,0 +1,37 @@
+{
+  "name": "react-known-props",
+  "version": "1.0.0",
+  "description": "A list of props know to React",
+  "license": "BSD-3-Clause",
+  "main": "src/index.js",
+  "homepage": "https://github.com/thomazella/react-known-props#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomazella/react-known-props.git"
+  },
+  "author": {
+    "name": "Raphael Thomazella",
+    "email": "thomazella9@gmail.com",
+    "url": "https://github.com/thomazella"
+  },
+  "bugs": {
+    "url": "https://github.com/thomazella/react-known-props/issues"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "files": ["src/index.js"],
+  "scripts": {
+    "lint": "eslint src",
+    "patch": "npm version patch && npm publish",
+    "minor": "npm version minor && npm publish",
+    "major": "npm version major && npm publish",
+    "prepublishOnly": "npm run lint",
+    "postpublish": "git push origin master --follow-tags"
+  },
+  "keywords": ["react", "props", "events", "known", "html"],
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  }
+}
