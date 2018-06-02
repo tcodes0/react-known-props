@@ -1,7 +1,21 @@
 const HtmlAttrs = require("html-attributes");
 
+const reactVersions = {
+  allowTransparency: "allowtransparency",
+  charset: "charset",
+  class: "className",
+  for: "htmlFor",
+  isMap: "ismap",
+  itemId: "itemID",
+  typeMustMatch: "typemustmatch"
+};
+
+const reactSafeHtmlProps = Object.keys(HtmlAttrs).map(
+  prop => (reactVersions[prop] ? reactVersions[prop] : prop)
+);
+
 const props = [
-  ...Object.keys(HtmlAttrs),
+  ...reactSafeHtmlProps,
 
   // extra
   "about",
