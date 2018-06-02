@@ -1,6 +1,6 @@
 {
   "name": "react-known-props",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A list of props know to React",
   "license": "BSD-3-Clause",
   "main": "src/index.js",
