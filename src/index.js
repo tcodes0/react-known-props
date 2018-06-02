@@ -1,3 +1,1 @@
-import knownProps from "./knownProps";
-
-export default knownProps;
+module.exports = require("./knownProps")
