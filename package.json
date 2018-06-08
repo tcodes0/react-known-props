@@ -1,6 +1,6 @@
 {
   "name": "react-known-props",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "Props from React and html, renamed when appropriate (class => className)",
   "license": "BSD-3-Clause",
   "main": "src/index.js",
