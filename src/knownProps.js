@@ -34,6 +34,8 @@ const parseOptionsObject = (obj, defaultFn) => {
   }
 
   if (obj.legacy === true) return defaultFn();
+
+  console.error(`[react-known-props] Invalid options object: ${obj}`);
 };
 
 const getElementProps = (element, opts) => {
@@ -41,8 +43,6 @@ const getElementProps = (element, opts) => {
     ...getElementSpecificProps(element),
     ...propsGlobalReact
   ]);
-
-  console.error(`invalid options object passed to getAllProps: ${opts}`);
 };
 
 const getAllProps = opts => {

@@ -17,6 +17,7 @@ assert(getAllProps().includes("height"), false, "no legacy in default call");
 
 assert(
   getAllProps({}).includes("height"),
+  getAllProps({}).includes("height"),
   false,
   "no legacy in empty obj call"
 );
