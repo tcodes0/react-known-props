@@ -1,11 +1,13 @@
+const { propsGlobal, mapPropsToElements } = require("./htmlProps");
+
 const mapHtmlToReact = {
-  allowTransparency: "allowtransparency",
+  allowtransparency: "allowTransparency",
   charset: "charSet",
   class: "className",
   for: "htmlFor",
-  isMap: "ismap",
-  itemId: "itemID",
-  typeMustMatch: "typemustmatch"
+  ismap: "isMap",
+  itemid: "itemID",
+  typemustmatch: "typeMustMatch"
 };
 
 const propsEvents = [
@@ -91,5 +93,21 @@ const propsEvents = [
   "onToggle"
 ];
 
-module.exports.mapHtmlToReact = mapHtmlToReact;
+const propsGlobalReact = propsGlobal.map(
+  prop => (mapHtmlToReact[prop] ? mapHtmlToReact[prop] : prop)
+);
+
+const mapReactPropsToElements = Object.keys(mapPropsToElements).reduce(
+  (acc, prop) => {
+    return mapHtmlToReact[prop]
+      ? Object.assign(acc, { [mapHtmlToReact[prop]]: mapPropsToElements[prop] })
+      : Object.assign(acc, {
+          [prop]: mapPropsToElements[prop]
+        });
+  },
+  {}
+);
+
 module.exports.propsEvents = propsEvents;
+module.exports.propsGlobalReact = propsGlobalReact;
+module.exports.mapReactPropsToElements = mapReactPropsToElements;

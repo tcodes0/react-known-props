@@ -1,7 +1,9 @@
-const { propsEvents, mapHtmlToReact } = require("./reactProps");
 const {
-  propsGlobal,
-  mapPropsToElements,
+  propsEvents,
+  propsGlobalReact,
+  mapReactPropsToElements
+} = require("./reactProps");
+const {
   propsLegacy,
   elements,
   elementsObsolete,
@@ -10,22 +12,48 @@ const {
   elementsExperimental
 } = require("./htmlProps");
 
-const propsReact = Object.keys(propsGlobal).map(
-  prop => (mapHtmlToReact[prop] ? mapHtmlToReact[prop] : prop)
-);
+const getGlobalProps = () => propsGlobalReact;
+const getEventProps = () => propsEvents;
 
-const getAllProps = () => {
-  let allProps = [...propsGlobal, ...propsEvents];
-  let elementProps = Object.keys(mapPropsToElements).reduce((acc, prop) => {
-    return mapPropsToElements[prop].length === 0 ? [...acc, prop] : acc;
+const getElementSpecificProps = element =>
+  Object.keys(mapReactPropsToElements).reduce((acc, prop) => {
+    return mapReactPropsToElements[prop].includes(element)
+      ? [...acc, prop]
+      : acc;
   }, []);
-  return elementProps;
+
+const removeLegacy = arr => arr.filter(prop => !propsLegacy.includes(prop));
+
+const parseOptionsObject = (obj, defaultFn) => {
+  if (
+    obj === undefined ||
+    (typeof obj === "object" && Object.keys(obj).length === 0) ||
+    obj.legacy === false
+  ) {
+    return removeLegacy(defaultFn());
+  }
+
+  if (obj.legacy === true) return defaultFn();
 };
 
-console.log(getAllProps());
+const getElementProps = (element, opts) => {
+  return parseOptionsObject(opts, () => [
+    ...getElementSpecificProps(element),
+    ...propsGlobalReact
+  ]);
 
-const getGlobalProps = () => true;
-const getElementProps = () => true;
-const getEventProps = () => true;
+  console.error(`invalid options object passed to getAllProps: ${opts}`);
+};
 
-// module.exports = props;
+const getAllProps = opts => {
+  return parseOptionsObject(opts, () => [
+    ...propsGlobalReact,
+    ...propsEvents,
+    ...Object.keys(mapReactPropsToElements)
+  ]);
+};
+
+module.exports.getAllProps = getAllProps;
+module.exports.getElementProps = getElementProps;
+module.exports.getEventProps = getEventProps;
+module.exports.getGlobalProps = getGlobalProps;
