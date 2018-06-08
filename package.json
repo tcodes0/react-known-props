@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "lint": "eslint src",
+    "test": "node src/test.js",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
