@@ -1,6 +1,6 @@
 # React Known Props
 
-Simple functions to get arrays of props, both from React and html, renamed for React when appropriate (class => className).
+Simple functions to get arrays of props, both from React and html, renamed when appropriate (class => className).
 Because you may want to test props against it.
 
 ### v2 update:
@@ -74,7 +74,7 @@ Wether or not to return deprecated html props.
 {legacy: false}
 ```
 
-## Need more props?
+#### Need more props?
 
 I'd use these packages:
 
@@ -82,3 +82,10 @@ I'd use these packages:
 - svg props: `yarn add svg-tag-names`
 - void html elements (\<img\/\>): `yarn add void-elements`
 - css props: `yarn add known-css-properties`
+
+### Contributing
+
+All data pulled from MDN web docs and official React docs.
+MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
+
+⚛️ React is awesome 💫
