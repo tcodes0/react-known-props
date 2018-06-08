@@ -1,7 +1,7 @@
 const {
   propsEvents,
   propsGlobalReact,
-  mapReactPropsToElements
+  mapPropsToElementsReact
 } = require("./reactProps");
 const {
   propsLegacy,
@@ -12,12 +12,9 @@ const {
   elementsExperimental
 } = require("./htmlProps");
 
-const getGlobalProps = () => propsGlobalReact;
-const getEventProps = () => propsEvents;
-
 const getElementSpecificProps = element =>
-  Object.keys(mapReactPropsToElements).reduce((acc, prop) => {
-    return mapReactPropsToElements[prop].includes(element)
+  Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
+    return mapPropsToElementsReact[prop].includes(element)
       ? [...acc, prop]
       : acc;
   }, []);
@@ -38,20 +35,23 @@ const parseOptionsObject = (obj, defaultFn) => {
   console.error(`[react-known-props] Invalid options object: ${obj}`);
 };
 
-const getElementProps = (element, opts) => {
-  return parseOptionsObject(opts, () => [
+const getElementProps = (element, options) => {
+  return parseOptionsObject(options, () => [
     ...getElementSpecificProps(element),
     ...propsGlobalReact
   ]);
 };
 
-const getAllProps = opts => {
-  return parseOptionsObject(opts, () => [
+const getAllProps = options => {
+  return parseOptionsObject(options, () => [
     ...propsGlobalReact,
     ...propsEvents,
-    ...Object.keys(mapReactPropsToElements)
+    ...Object.keys(mapPropsToElementsReact)
   ]);
 };
+
+const getGlobalProps = () => propsGlobalReact;
+const getEventProps = () => propsEvents;
 
 module.exports.getAllProps = getAllProps;
 module.exports.getElementProps = getElementProps;

@@ -61,3 +61,21 @@ assert(
   false,
   "no legacy when options are false"
 );
+
+assert(
+  getGlobalProps().includes("dangerouslySetInnerHTML"),
+  true,
+  "react extras appear on getGlobal"
+);
+
+assert(
+  getGlobalProps().includes("frameBorder"),
+  false,
+  "react element extras dont appear on getGlobal"
+);
+
+assert(
+  getElementProps("frame").includes("allowFullScreen"),
+  true,
+  "react extras appear on element props"
+);

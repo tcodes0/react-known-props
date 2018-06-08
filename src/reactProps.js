@@ -1,13 +1,47 @@
 const { propsGlobal, mapPropsToElements } = require("./htmlProps");
 
-const mapHtmlToReact = {
+const mapHtmlPropToReactProp = {
   allowtransparency: "allowTransparency",
   charset: "charSet",
   class: "className",
   for: "htmlFor",
   ismap: "isMap",
   itemid: "itemID",
-  typemustmatch: "typeMustMatch"
+  typemustmatch: "typeMustMatch",
+  autocapitalize: "autoCapitalize",
+  itemprop: "itemProp",
+  itemref: "itemRef",
+  itemscope: "itemScope",
+  itemtype: "itemType",
+  accesskey: "accessKey",
+  contenteditable: "contentEditable",
+  contextmenu: "contextMenu",
+  spellcheck: "spellCheck",
+  tabindex: "tabIndex",
+  autocomplete: "autoComplete",
+  autofocus: "autoFocus",
+  autoplay: "autoPlay",
+  colspan: "colSpan",
+  crossorigin: "crossOrigin",
+  datetime: "dateTime",
+  formaction: "formAction",
+  hreflang: "hrefLang",
+  keytype: "keyType",
+  maxlength: "maxLength",
+  minlength: "minLength",
+  radiogroup: "radioGroup",
+  readonly: "readOnly",
+  rowspan: "rowSpan",
+  srcdoc: "srcDoc",
+  srclang: "srcLang",
+  srcset: "srcSet",
+  usemap: "useMap",
+  enctype: "formEncType",
+  method: "formMethod",
+  novalidate: "formNoValidate",
+  target: "formTarget",
+  "accept-charset": "acceptCharset",
+  "http-equiv": "httpEquiv"
 };
 
 const propsEvents = [
@@ -93,14 +127,42 @@ const propsEvents = [
   "onToggle"
 ];
 
-const propsGlobalReact = propsGlobal.map(
-  prop => (mapHtmlToReact[prop] ? mapHtmlToReact[prop] : prop)
-);
+const propsGlobalReactExtras = [
+  "dangerouslySetInnerHTML",
+  "suppressContentEditableWarning",
+  "suppressHydrationWarning",
+  "classID",
+  "keyParams",
+  "autoSave"
+];
 
-const mapReactPropsToElements = Object.keys(mapPropsToElements).reduce(
+const mapPropsToElementsReactExtras = {
+  defaultChecked: ["input"],
+  autoCorrect: ["input"],
+  defaultValue: ["input", "textarea"],
+  allowFullScreen: ["frame"],
+  cellPadding: ["table"],
+  cellSpacing: ["table"],
+  controlsList: ["audio", "video"],
+  frameBorder: ["frame"],
+  inputMode: ["input"],
+  marginHeight: ["iframe"],
+  marginWidth: ["iframe"],
+  mediaGroup: ["audio", "video"]
+};
+
+const propsGlobalReact = propsGlobal
+  .map(
+    prop => (mapHtmlPropToReactProp[prop] ? mapHtmlPropToReactProp[prop] : prop)
+  )
+  .concat(propsGlobalReactExtras);
+
+const mapPropsReactNames = Object.keys(mapPropsToElements).reduce(
   (acc, prop) => {
-    return mapHtmlToReact[prop]
-      ? Object.assign(acc, { [mapHtmlToReact[prop]]: mapPropsToElements[prop] })
+    return mapHtmlPropToReactProp[prop]
+      ? Object.assign(acc, {
+          [mapHtmlPropToReactProp[prop]]: mapPropsToElements[prop]
+        })
       : Object.assign(acc, {
           [prop]: mapPropsToElements[prop]
         });
@@ -108,6 +170,11 @@ const mapReactPropsToElements = Object.keys(mapPropsToElements).reduce(
   {}
 );
 
+const mapPropsToElementsReact = Object.assign(
+  mapPropsReactNames,
+  mapPropsToElementsReactExtras
+);
+
 module.exports.propsEvents = propsEvents;
 module.exports.propsGlobalReact = propsGlobalReact;
-module.exports.mapReactPropsToElements = mapReactPropsToElements;
+module.exports.mapPropsToElementsReact = mapPropsToElementsReact;
