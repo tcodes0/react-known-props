@@ -1,6 +1,6 @@
 # React Known Props
 
-Simple functions to get arrays of props, both from React and html, renamed when appropriate (class => className).
+Props from React and html, renamed when appropriate (class => className).
 Because you may want to test props against it.
 
 ### v2 update:

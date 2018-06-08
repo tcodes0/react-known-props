@@ -3,14 +3,7 @@ const {
   propsGlobalReact,
   mapPropsToElementsReact
 } = require("./reactProps");
-const {
-  propsLegacy,
-  elements,
-  elementsObsolete,
-  elementsDeprecated,
-  elementsNonStandard,
-  elementsExperimental
-} = require("./htmlProps");
+const { propsLegacy } = require("./htmlProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {

@@ -1,7 +1,7 @@
 {
   "name": "react-known-props",
   "version": "1.2.2",
-  "description": "A list of props know to React",
+  "description": "Props from React and html, renamed when appropriate (class => className)",
   "license": "BSD-3-Clause",
   "main": "src/index.js",
   "homepage": "https://github.com/thomazella/react-known-props#readme",
@@ -40,8 +40,7 @@
     "legacy",
     "html"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "lodash": "^4.17.10",
     "eslint": "^4.19.1",
