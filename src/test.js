@@ -13,37 +13,32 @@ const assert = (a, b, name) => {
   console.error(`❌ ${name}`);
 };
 
-assert(getAllProps().includes("height"), false, "no legacy in default call");
+assert(getAllProps().includes("color"), false, "no legacy in default call");
 
-assert(
-  getAllProps({}).includes("height"),
-  getAllProps({}).includes("height"),
-  false,
-  "no legacy in empty obj call"
-);
+assert(getAllProps({}).includes("color"), false, "no legacy in empty obj call");
 
 assert(getAllProps(66), undefined, "invalid input return undefined");
 
 assert(
-  getAllProps({ legacy: true }).includes("height"),
+  getAllProps({ legacy: true }).includes("color"),
   true,
   "legacy when options are true"
 );
 
 assert(
-  getAllProps({ legacy: false }).includes("height"),
+  getAllProps({ legacy: false }).includes("color"),
   false,
   "no legacy when options are false"
 );
 
 assert(
-  getElementProps("img").includes("height"),
+  getElementProps("img").includes("color"),
   false,
   "no legacy in default call"
 );
 
 assert(
-  getElementProps("img", {}).includes("height"),
+  getElementProps("img", {}).includes("color"),
   false,
   "no legacy in empty obj call"
 );
@@ -51,13 +46,13 @@ assert(
 assert(getElementProps("img", 66), undefined, "invalid input return undefined");
 
 assert(
-  getElementProps("img", { legacy: true }).includes("height"),
+  getElementProps("table", { legacy: true }).includes("bgcolor"),
   true,
   "legacy when options are true"
 );
 
 assert(
-  getElementProps("img", { legacy: false }).includes("height"),
+  getElementProps("img", { legacy: false }).includes("color"),
   false,
   "no legacy when options are false"
 );
@@ -143,14 +138,3 @@ assert(
   true,
   "input, checked and defaultChecked, legacy true"
 );
-
-try {
-  ["input", "textarea"].forEach(tag => {
-    assert(
-      getElementProps(tag).includes("value") &&
-        getElementProps(tag, { onlyReact: true }).includes("defaultValue"),
-      true,
-      `${tag}, value and defaultValue, only react true`
-    );
-  });
-} catch (e) {}

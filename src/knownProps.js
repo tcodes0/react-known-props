@@ -3,7 +3,7 @@ const {
   propsGlobalReact,
   mapPropsToElementsReact
 } = require("./reactProps");
-const { propsLegacy } = require("./htmlProps");
+const { propsLegacyGlobal } = require("./htmlProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
@@ -12,7 +12,8 @@ const getElementSpecificProps = element =>
       : acc;
   }, []);
 
-const removeLegacy = arr => arr.filter(prop => !propsLegacy.includes(prop));
+const removeLegacy = arr =>
+  arr.filter(prop => !propsLegacyGlobal.includes(prop));
 
 const parseOptionsObject = (obj, defaultFn) => {
   if (
@@ -26,7 +27,9 @@ const parseOptionsObject = (obj, defaultFn) => {
   if (obj.legacy === true) return defaultFn();
 
   console.error(
-    `[react-known-props] Invalid options object: ${Object.keys(obj)}`
+    `[react-known-props] Invalid options object: ${
+      Object.keys(obj).length ? Object.keys(obj) : obj
+    }`
   );
 };
 
@@ -54,6 +57,6 @@ module.exports.getEventProps = getEventProps;
 module.exports.getGlobalProps = getGlobalProps;
 
 let lo = getElementProps("input").includes("defaultChecked");
-console.log(lo);
+// console.log(lo);
 // getElementProps("input", { legacy: true }).includes("checked") &&
 //   getElementProps("input").includes("defaultChecked"),

@@ -218,7 +218,7 @@ const mapPropsToElements = {
   wrap: ["textarea"]
 };
 
-const propsLegacy = ["bgcolor", "border", "color", "height", "width"];
+const propsLegacyGlobal = ["bgcolor", "border", "color"];
 
 const elements = [
   "a",
@@ -405,7 +405,7 @@ const elementsExperimental = ["dialog", "hgroup"];
 
 module.exports.mapPropsToElements = mapPropsToElements;
 module.exports.propsGlobal = propsGlobal;
-module.exports.propsLegacy = propsLegacy;
+module.exports.propsLegacyGlobal = propsLegacyGlobal;
 module.exports.elements = elements;
 module.exports.elementsObsolete = elementsObsolete;
 module.exports.elementsDeprecated = elementsDeprecated;
