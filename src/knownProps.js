@@ -8,13 +8,13 @@ const { propsLegacyGlobal } = require("./htmlProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
-    return mapPropsToElementsReact[prop].includes(element)
+    return mapPropsToElementsReact[prop].indexOf(element) >= 0
       ? [...acc, prop]
       : acc;
   }, []);
 
 const removeLegacy = arr =>
-  arr.filter(prop => !propsLegacyGlobal.includes(prop));
+  arr.filter(prop => propsLegacyGlobal.indexOf(prop) === -1);
 
 const removeNonReactProps = arr =>
   arr.map(
