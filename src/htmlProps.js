@@ -204,16 +204,7 @@ const mapPropsToElements = {
     "menu"
   ],
   usemap: ["img", "input", "object"],
-  value: [
-    "button",
-    "option",
-    "input",
-    "li",
-    "meter",
-    "progress",
-    "param",
-    "textarea"
-  ],
+  value: ["button", "option", "input", "li", "meter", "progress", "param"],
   width: ["canvas", "embed", "iframe", "img", "input", "object", "video"],
   wrap: ["textarea"]
 };

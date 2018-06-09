@@ -140,6 +140,7 @@ const mapPropsToElementsReactExtras = {
   defaultChecked: ["input"],
   autoCorrect: ["input"],
   defaultValue: ["input", "textarea"],
+  value: ["textarea", "input"],
   allowFullScreen: ["frame"],
   cellPadding: ["table"],
   cellSpacing: ["table"],
