@@ -96,8 +96,17 @@ assert(
   getElementProps("label").includes("for") &&
     getElementProps("label").includes("htmlFor"),
   true,
-  "return both classic and react names by default (no flag)"
+  "return both classic and react names by default (no flag) element prop"
 );
+
+assert(
+  getElementProps("div").includes("class") &&
+    getElementProps("div").includes("className"),
+  true,
+  "return both classic and react names by default (no flag) global prop"
+);
+
+// console.log(getElementProps("div"));
 
 try {
   assert(

@@ -3,7 +3,7 @@ const {
   propsGlobalReact,
   mapPropsToElementsReact
 } = require("./reactProps");
-const { propsLegacyGlobal } = require("./htmlProps");
+const { propsLegacyGlobal, mapHtmlPropToReactProp } = require("./htmlProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
@@ -14,6 +14,22 @@ const getElementSpecificProps = element =>
 
 const removeLegacy = arr =>
   arr.filter(prop => !propsLegacyGlobal.includes(prop));
+
+const removeNonReactPropsFromArray = arr =>
+  arr.map(
+    prop => (mapHtmlPropToReactProp[prop] ? mapHtmlPropToReactProp[prop] : prop)
+  );
+
+const removeNonReactPropsFromObject = obj =>
+  Object.keys(obj).reduce((acc, prop) => {
+    return mapHtmlPropToReactProp[prop]
+      ? Object.assign(acc, {
+          [mapHtmlPropToReactProp[prop]]: obj[prop]
+        })
+      : Object.assign(acc, {
+          [prop]: obj[prop]
+        });
+  }, {});
 
 const parseOptionsObject = (obj, defaultFn) => {
   if (
