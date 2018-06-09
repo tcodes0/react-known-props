@@ -10,7 +10,7 @@ const assert = (a, b, name) => {
     return;
   }
 
-  console.warn(`failed assertion for ${name}`);
+  console.error(`❌ ${name}`);
 };
 
 assert(getAllProps().includes("height"), false, "no legacy in default call");
@@ -79,3 +79,78 @@ assert(
   true,
   "react extras appear on element props"
 );
+
+// issue #4
+["canvas", "embed", "iframe", "img", "input", "object", "video"].forEach(
+  tag => {
+    assert(
+      getElementProps(tag).includes("height"),
+      true,
+      `return height as non legacy on ${tag}`
+    );
+    assert(
+      getElementProps(tag).includes("width"),
+      true,
+      `return width as non legacy on ${tag}`
+    );
+  }
+);
+
+// issue #3
+assert(
+  getElementProps("label").includes("for") &&
+    getElementProps("label").includes("htmlFor"),
+  true,
+  "return both classic and react names by default (no flag)"
+);
+
+try {
+  assert(
+    getElementProps("label", { onlyReact: true }).includes("for"),
+    false,
+    "onlyReact flag set to true omits classic names"
+  );
+} catch (e) {}
+
+try {
+  assert(
+    getElementProps("label", { onlyReact: false }).includes("for"),
+    true,
+    "onlyReact flag set to false returns classic names"
+  );
+} catch (e) {}
+
+// issue #2
+assert(
+  getElementProps("input").includes("checked") &&
+    getElementProps("input").includes("defaultChecked"),
+  true,
+  "input, return checked and defaultChecked"
+);
+
+["input", "textarea"].forEach(tag => {
+  assert(
+    getElementProps(tag).includes("value") &&
+      getElementProps(tag).includes("defaultValue"),
+    true,
+    `${tag}, return value and defaultValue`
+  );
+});
+
+assert(
+  getElementProps("input", { legacy: true }).includes("checked") &&
+    getElementProps("input").includes("defaultChecked"),
+  true,
+  "input, checked and defaultChecked, legacy true"
+);
+
+try {
+  ["input", "textarea"].forEach(tag => {
+    assert(
+      getElementProps(tag).includes("value") &&
+        getElementProps(tag, { onlyReact: true }).includes("defaultValue"),
+      true,
+      `${tag}, value and defaultValue, only react true`
+    );
+  });
+} catch (e) {}

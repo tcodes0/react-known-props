@@ -25,7 +25,9 @@ const parseOptionsObject = (obj, defaultFn) => {
 
   if (obj.legacy === true) return defaultFn();
 
-  console.error(`[react-known-props] Invalid options object: ${obj}`);
+  console.error(
+    `[react-known-props] Invalid options object: ${Object.keys(obj)}`
+  );
 };
 
 const getElementProps = (element, options) => {
@@ -50,3 +52,8 @@ module.exports.getAllProps = getAllProps;
 module.exports.getElementProps = getElementProps;
 module.exports.getEventProps = getEventProps;
 module.exports.getGlobalProps = getGlobalProps;
+
+let lo = getElementProps("input").includes("defaultChecked");
+console.log(lo);
+// getElementProps("input", { legacy: true }).includes("checked") &&
+//   getElementProps("input").includes("defaultChecked"),
