@@ -1,9 +1,10 @@
 const {
   propsEvents,
   propsGlobalReact,
-  mapPropsToElementsReact
+  mapPropsToElementsReact,
+  mapHtmlPropToReactProp
 } = require("./reactProps");
-const { propsLegacyGlobal, mapHtmlPropToReactProp } = require("./htmlProps");
+const { propsLegacyGlobal } = require("./htmlProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
@@ -21,24 +22,33 @@ const removeNonReactProps = arr =>
   );
 
 const parseOptionsObject = (obj, defaultFn) => {
+  let out = undefined;
+
+  if (obj !== undefined && typeof obj !== "object") {
+    console.error(
+      `[react-known-props] Invalid options object: ${
+        Object.keys(obj).length ? Object.keys(obj) : obj
+      }`
+    );
+    return out;
+  }
+
   if (
     obj === undefined ||
-    (typeof obj === "object" && Object.keys(obj).length === 0) ||
-    obj.legacy === false ||
-    obj.onlyReact === false
+    Object.keys(obj).length === 0 ||
+    (obj.legacy === false && obj.onlyReact === false)
   ) {
     return removeLegacy(defaultFn());
   }
 
-  if (obj.legacy === true) return defaultFn();
+  if (obj.legacy === true) out = defaultFn();
+  if (obj.legacy === false) out = removeLegacy(defaultFn());
 
-  if (obj.onlyReact === true) return removeNonReactProps(defaultFn());
+  if (obj.onlyReact === true)
+    out = out ? removeNonReactProps(out) : removeNonReactProps(defaultFn());
+  if (obj.onlyReact === false) out = out ? out : defaultFn();
 
-  console.error(
-    `[react-known-props] Invalid options object: ${
-      Object.keys(obj).length ? Object.keys(obj) : obj
-    }`
-  );
+  return out;
 };
 
 const getElementProps = (element, options) => {
@@ -63,8 +73,3 @@ module.exports.getAllProps = getAllProps;
 module.exports.getElementProps = getElementProps;
 module.exports.getEventProps = getEventProps;
 module.exports.getGlobalProps = getGlobalProps;
-
-let lo = getElementProps("input").includes("defaultChecked");
-// console.log(lo);
-// getElementProps("input", { legacy: true }).includes("checked") &&
-//   getElementProps("input").includes("defaultChecked"),

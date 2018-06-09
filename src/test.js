@@ -106,21 +106,17 @@ assert(
   "return both classic and react names by default (no flag) global prop"
 );
 
-try {
-  assert(
-    getElementProps("label", { onlyReact: true }).includes("for"),
-    false,
-    "onlyReact flag set to true omits classic names"
-  );
-} catch (e) {}
+assert(
+  getElementProps("label", { onlyReact: true }).includes("for"),
+  false,
+  "onlyReact flag set to true omits classic names"
+);
 
-try {
-  assert(
-    getElementProps("label", { onlyReact: false }).includes("for"),
-    true,
-    "onlyReact flag set to false returns classic names"
-  );
-} catch (e) {}
+assert(
+  getElementProps("label", { onlyReact: false }).includes("for"),
+  true,
+  "onlyReact flag set to false returns classic names"
+);
 
 // issue #2
 assert(
@@ -144,4 +140,18 @@ assert(
     getElementProps("input").includes("defaultChecked"),
   true,
   "input, checked and defaultChecked, legacy true"
+);
+
+assert(
+  getElementProps("table", { onlyReact: true, legacy: true }).includes(
+    "bgcolor"
+  ),
+  true,
+  "object with two options supported legacy"
+);
+
+assert(
+  getElementProps("table", { onlyReact: true, legacy: true }).includes("class"),
+  false,
+  "object with two options supported onlyReact"
 );

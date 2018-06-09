@@ -1,13 +1,17 @@
 # React Known Props
 
-Props from React and html, renamed when appropriate (class => className).
-Because you may want to test props against it.
+A list of all props React groks.
+- Html attribute props.
+- React event props.
+- React specific props.
+- a few options.
 
 ### v2 update:
  - Now exposing functions! _⒡ ↬_ ✨
- - Find props per html element.
+ - Find props for a certain html element.
  - Many React specific props covered.
- - Options to include legacy props. _(default off)_
+ - Option to include legacy props. _(default off)_
+ - Option to return only React (JSX) props. _(default off)_
 
 ## Usage
 
@@ -27,7 +31,7 @@ import { getAllProps, getElementProps, getEventProps, getGlobalProps } from 'rea
 
 > getAllProps
 
-Gets all possible props including all global props, all element specific props and all event props.
+Gets all possible props, including all global props, all element specific props and all event props.
 ```js
 // argument 1 (optional): an options object.
 
@@ -44,7 +48,7 @@ Gets all html props valid on the element provided as argument. Doesn't include e
 getElementProps("img")
 getElementProps("iframe")
 getElementProps("table", {legacy: true})
-getElementProps("audio", {}) //same as {legacy: false}
+getElementProps("audio", {onlyReact: true})
 ```
 > getEventProps
 
@@ -61,17 +65,40 @@ Gets all html props valid on any element.
 // argument 1 (optional): an options object.
 
 getGlobalProps()
-getGlobalProps({legacy: true})
+getGlobalProps({onlyReact: true})
 ```
 
 #### Options supported in an object:
--  legacy: _boolean_
+- **legacy**: _boolean_. Default: false.
 
-Wether or not to return deprecated html props.
+Wether or not to return deprecated html props _bgcolor_, _border_ and _color_ for the elements that use them.
 ```js
-//defaults to false
-{legacy: true}
-{legacy: false}
+// examples:
+
+// will include bgcolor in the props
+getAllProps({legacy: true})
+
+// will omit legacy props
+getAllProps({legacy: false})
+
+// same as {legacy: false}
+getAllProps()
+```
+
+-  **onlyReact**: _boolean_. Default: false.
+
+Wether to return only the React version of a prop, or both versions. Some props changed to camelCase and using the classic lowercase name will show a warning. Since the warning can be educational this option is off by default.
+```js
+// examples:
+
+// will include class and className, for and htmlFor, etc...
+getElementProps("label")
+
+// same as above
+getElementProps("label", {onlyReact: false})
+
+// returns only the React name of the props (itemID, tabIndex, autoCapitalize, etc...)
+getGlobalProps({onlyReact: true})
 ```
 
 #### Need more props?

@@ -182,3 +182,4 @@ const mapPropsToElementsReact = Object.assign(
 module.exports.propsEvents = propsEvents;
 module.exports.propsGlobalReact = propsGlobalReact;
 module.exports.mapPropsToElementsReact = mapPropsToElementsReact;
+module.exports.mapHtmlPropToReactProp = mapHtmlPropToReactProp;
