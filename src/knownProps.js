@@ -15,32 +15,24 @@ const getElementSpecificProps = element =>
 const removeLegacy = arr =>
   arr.filter(prop => !propsLegacyGlobal.includes(prop));
 
-const removeNonReactPropsFromArray = arr =>
+const removeNonReactProps = arr =>
   arr.map(
     prop => (mapHtmlPropToReactProp[prop] ? mapHtmlPropToReactProp[prop] : prop)
   );
-
-const removeNonReactPropsFromObject = obj =>
-  Object.keys(obj).reduce((acc, prop) => {
-    return mapHtmlPropToReactProp[prop]
-      ? Object.assign(acc, {
-          [mapHtmlPropToReactProp[prop]]: obj[prop]
-        })
-      : Object.assign(acc, {
-          [prop]: obj[prop]
-        });
-  }, {});
 
 const parseOptionsObject = (obj, defaultFn) => {
   if (
     obj === undefined ||
     (typeof obj === "object" && Object.keys(obj).length === 0) ||
-    obj.legacy === false
+    obj.legacy === false ||
+    obj.onlyReact === false
   ) {
     return removeLegacy(defaultFn());
   }
 
   if (obj.legacy === true) return defaultFn();
+
+  if (obj.onlyReact === true) return removeNonReactProps(defaultFn());
 
   console.error(
     `[react-known-props] Invalid options object: ${

@@ -106,8 +106,6 @@ assert(
   "return both classic and react names by default (no flag) global prop"
 );
 
-// console.log(getElementProps("div"));
-
 try {
   assert(
     getElementProps("label", { onlyReact: true }).includes("for"),
