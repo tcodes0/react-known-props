@@ -4,14 +4,7 @@ A list of all props React groks.
 - Html attribute props.
 - React event props.
 - React specific props.
-- a few options.
-
-### v2 update:
- - Now exposing functions! _⒡ ↬_ ✨
- - Find props for a certain html element.
- - Many React specific props covered.
- - Option to include legacy props. _(default off)_
- - Option to return only React (JSX) props. _(default off)_
+- Options to control output.
 
 ## Usage
 

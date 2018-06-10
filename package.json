@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "lint": "eslint src",
-    "test": "node src/test.js",
+    "test": "yarn jest",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
@@ -40,12 +40,14 @@
     "legacy",
     "html"
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
-    "lodash": "^4.17.10",
+    "jest": "^23.1.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "lodash": "^4.17.10",
     "prettier": "^1.13.4"
   }
 }

@@ -26,9 +26,7 @@ const parseOptionsObject = (obj, defaultFn) => {
 
   if (obj !== undefined && typeof obj !== "object") {
     console.error(
-      `[react-known-props] Invalid options object: ${
-        Object.keys(obj).length ? Object.keys(obj) : obj
-      }`
+      `[react-known-props] Invalid options object: ${obj.toString()}`
     );
     return out;
   }

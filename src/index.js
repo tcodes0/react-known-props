@@ -1,1 +1,1 @@
-module.exports = require("./knownProps");
+module.exports = require("./reactKnownProps");

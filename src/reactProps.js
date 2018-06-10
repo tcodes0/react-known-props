@@ -160,22 +160,19 @@ const propsGlobalReact = propsGlobal
   }, [])
   .concat(propsGlobalReactExtras);
 
-const propsElementsWithReact = Object.keys(mapPropsToElements).reduce(
-  (acc, prop) => {
-    return mapHtmlPropToReactProp[prop]
-      ? Object.assign(acc, {
-          [mapHtmlPropToReactProp[prop]]: mapPropsToElements[prop],
-          [prop]: mapPropsToElements[prop]
-        })
-      : Object.assign(acc, {
-          [prop]: mapPropsToElements[prop]
-        });
-  },
-  {}
-);
+const mapHtmlPlusReact = Object.keys(mapPropsToElements).reduce((acc, prop) => {
+  return mapHtmlPropToReactProp[prop]
+    ? Object.assign(acc, {
+        [mapHtmlPropToReactProp[prop]]: mapPropsToElements[prop],
+        [prop]: mapPropsToElements[prop]
+      })
+    : Object.assign(acc, {
+        [prop]: mapPropsToElements[prop]
+      });
+}, {});
 
 const mapPropsToElementsReact = Object.assign(
-  propsElementsWithReact,
+  mapHtmlPlusReact,
   mapPropsToElementsReactExtras
 );
 
