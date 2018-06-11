@@ -5,6 +5,7 @@ const {
   mapHtmlPropToReactProp
 } = require("./reactProps");
 const { propsLegacyGlobal } = require("./htmlProps");
+const { propsAria } = require("./ariaProps");
 
 const getElementSpecificProps = element =>
   Object.keys(mapPropsToElementsReact).reduce((acc, prop) => {
@@ -52,7 +53,8 @@ const parseOptionsObject = (obj, defaultFn) => {
 const getElementProps = (element, options) => {
   return parseOptionsObject(options, () => [
     ...getElementSpecificProps(element),
-    ...propsGlobalReact
+    ...propsGlobalReact,
+    ...propsAria
   ]);
 };
 
@@ -60,14 +62,12 @@ const getAllProps = options => {
   return parseOptionsObject(options, () => [
     ...propsGlobalReact,
     ...propsEvents,
+    ...propsAria,
     ...Object.keys(mapPropsToElementsReact)
   ]);
 };
 
-const getGlobalProps = () => propsGlobalReact;
-const getEventProps = () => propsEvents;
-
 module.exports.getAllProps = getAllProps;
 module.exports.getElementProps = getElementProps;
-module.exports.getEventProps = getEventProps;
-module.exports.getGlobalProps = getGlobalProps;
+module.exports.getEventProps = () => propsEvents;
+module.exports.getGlobalProps = () => [...propsGlobalReact, ...propsAria];

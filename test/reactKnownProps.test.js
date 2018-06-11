@@ -3,7 +3,7 @@ const {
   getElementProps,
   getEventProps,
   getGlobalProps
-} = require("./index.js");
+} = require("../src/index.js");
 
 const forEachLegacyProp = fn => propsLegacyGlobal.forEach(p => fn(p));
 
@@ -157,7 +157,7 @@ describe("issue 2, checked defaultChecked", () => {
   });
 });
 
-describe("multiple options in an object}", () => {
+describe("multiple options in an object", () => {
   test("object with two options supports legacy", () => {
     expect(
       getElementProps("table", { onlyReact: true, legacy: true }).includes(
@@ -171,6 +171,18 @@ describe("multiple options in an object}", () => {
         "class"
       )
     ).toBe(false);
+  });
+});
+
+describe.only("issue 5, add aria", () => {
+  test("aria prop in getGlobal, default options", () => {
+    expect(getGlobalProps().includes("aria-expanded")).toBe(true);
+  });
+  test("aria prop in getElement, default options", () => {
+    expect(getElementProps("dt").includes("aria-expanded")).toBe(true);
+  });
+  test("aria prop in getAll, default options", () => {
+    expect(getAllProps().includes("aria-expanded")).toBe(true);
   });
 });
 
