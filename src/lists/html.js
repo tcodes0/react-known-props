@@ -1,5 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
-const propsGlobal = [
+module.exports.propsGlobal = [
   "accesskey",
   "autocapitalize",
   "class",
@@ -26,7 +26,7 @@ const propsGlobal = [
   "translate"
 ];
 
-const mapPropsToElements = {
+module.exports.mapPropsToElements = {
   accept: ["form", "input"],
   "accept-charset": ["form"],
   action: ["form"],
@@ -209,9 +209,9 @@ const mapPropsToElements = {
   wrap: ["textarea"]
 };
 
-const propsLegacyGlobal = ["bgcolor", "border", "color"];
+module.exports.propsLegacyGlobal = ["bgcolor", "border", "color"];
 
-const elements = [
+module.exports.elements = [
   "a",
   "abbr",
   "acronym",
@@ -353,7 +353,7 @@ const elements = [
   "xmp"
 ];
 
-const elementsObsolete = [
+module.exports.elementsObsolete = [
   "acronym",
   "applet",
   "basefont",
@@ -380,7 +380,7 @@ const elementsObsolete = [
   "xmp"
 ];
 
-const elementsDeprecated = [
+module.exports.elementsDeprecated = [
   "content",
   "frame",
   "frameset",
@@ -390,15 +390,12 @@ const elementsDeprecated = [
   "shadow"
 ];
 
-const elementsNonStandard = ["bgsound", "image", "multicol", "nobr", "noembed"];
+module.exports.elementsNonStandard = [
+  "bgsound",
+  "image",
+  "multicol",
+  "nobr",
+  "noembed"
+];
 
-const elementsExperimental = ["dialog", "hgroup"];
-
-module.exports.mapPropsToElements = mapPropsToElements;
-module.exports.propsGlobal = propsGlobal;
-module.exports.propsLegacyGlobal = propsLegacyGlobal;
-module.exports.elements = elements;
-module.exports.elementsObsolete = elementsObsolete;
-module.exports.elementsDeprecated = elementsDeprecated;
-module.exports.elementsNonStandard = elementsNonStandard;
-module.exports.elementsExperimental = elementsExperimental;
+module.exports.elementsExperimental = ["dialog", "hgroup"];

@@ -1,6 +1,4 @@
-const { propsGlobal, mapPropsToElements } = require("./htmlProps");
-
-const mapHtmlPropToReactProp = {
+module.exports.mapHtmlPropToReactProp = {
   allowtransparency: "allowTransparency",
   charset: "charSet",
   class: "className",
@@ -44,7 +42,7 @@ const mapHtmlPropToReactProp = {
   "http-equiv": "httpEquiv"
 };
 
-const propsEvents = [
+module.exports.propsEvents = [
   "onBlur",
   "onChange",
   "onClick",
@@ -127,7 +125,7 @@ const propsEvents = [
   "onToggle"
 ];
 
-const propsGlobalReactExtras = [
+module.exports.propsGlobalReactExtras = [
   "dangerouslySetInnerHTML",
   "suppressContentEditableWarning",
   "suppressHydrationWarning",
@@ -136,7 +134,7 @@ const propsGlobalReactExtras = [
   "autoSave"
 ];
 
-const mapPropsToElementsReactExtras = {
+module.exports.mapPropsToElementsReactExtras = {
   defaultChecked: ["input"],
   autoCorrect: ["input"],
   defaultValue: ["input", "textarea"],
@@ -151,32 +149,3 @@ const mapPropsToElementsReactExtras = {
   marginWidth: ["iframe"],
   mediaGroup: ["audio", "video"]
 };
-
-const propsGlobalReact = propsGlobal
-  .reduce((acc, prop) => {
-    return mapHtmlPropToReactProp[prop]
-      ? [...acc, mapHtmlPropToReactProp[prop], prop]
-      : [...acc, prop];
-  }, [])
-  .concat(propsGlobalReactExtras);
-
-const mapHtmlPlusReact = Object.keys(mapPropsToElements).reduce((acc, prop) => {
-  return mapHtmlPropToReactProp[prop]
-    ? Object.assign(acc, {
-        [mapHtmlPropToReactProp[prop]]: mapPropsToElements[prop],
-        [prop]: mapPropsToElements[prop]
-      })
-    : Object.assign(acc, {
-        [prop]: mapPropsToElements[prop]
-      });
-}, {});
-
-const mapPropsToElementsReact = Object.assign(
-  mapHtmlPlusReact,
-  mapPropsToElementsReactExtras
-);
-
-module.exports.propsEvents = propsEvents;
-module.exports.propsGlobalReact = propsGlobalReact;
-module.exports.mapPropsToElementsReact = mapPropsToElementsReact;
-module.exports.mapHtmlPropToReactProp = mapHtmlPropToReactProp;

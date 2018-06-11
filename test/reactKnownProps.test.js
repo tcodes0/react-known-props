@@ -174,7 +174,7 @@ describe("multiple options in an object", () => {
   });
 });
 
-describe.only("issue 5, add aria", () => {
+describe("issue 5, add aria", () => {
   test("aria prop in getGlobal, default options", () => {
     expect(getGlobalProps().includes("aria-expanded")).toBe(true);
   });
