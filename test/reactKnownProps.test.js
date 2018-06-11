@@ -5,8 +5,6 @@ const {
   getGlobalProps
 } = require("../src/index.js");
 
-const forEachLegacyProp = fn => propsLegacyGlobal.forEach(p => fn(p));
-
 describe("getAllProps", () => {
   describe("invalid input", () => {
     test("int", () => {

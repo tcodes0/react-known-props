@@ -6,11 +6,10 @@ const {
   getMapReactAndHtmlPropsToElements
 } = require("./utils/getMapReactAndHtmlPropsToElements");
 
-module.exports.getAllProps = options => {
-  return parseOptionsObject(options, () => [
+module.exports.getAllProps = options =>
+  parseOptionsObject(options, () => [
     ...getReactGlobalProps(),
     ...propsEvents,
     ...propsAria,
     ...Object.keys(getMapReactAndHtmlPropsToElements)
   ]);
-};

@@ -1,7 +1,9 @@
 # React Known Props
 
 A list of all props React groks.
-- Html attribute props.
+- Html props valid on any element (I call them global).
+- Html element specific props.
+- Aria props (includes `role`).
 - React event props.
 - React specific props.
 - Options to control output.
@@ -24,16 +26,22 @@ import { getAllProps, getElementProps, getEventProps, getGlobalProps } from 'rea
 
 > getAllProps
 
-Gets all possible props, including all global props, all element specific props and all event props.
+Gets all possible props: global props, element specific props, event props and aria props including `role`.
 ```js
 // argument 1 (optional): an options object.
 
 getAllProps()
 getAllProps({legacy: true})
+
+//this
+getAllProps().length
+
+//returns
+304
 ```
 > getElementProps
 
-Gets all html props valid on the element provided as argument. Doesn't include event props.
+Gets all props valid on the element provided as argument, plus all aria props, including `role`. Doesn't include event props.
 ```js
 // argument 1: string. Html element to get props for.
 // argument 2: (optional) an options object.
@@ -42,29 +50,70 @@ getElementProps("img")
 getElementProps("iframe")
 getElementProps("table", {legacy: true})
 getElementProps("audio", {onlyReact: true})
+
+//this
+getElementProps("img")
+
+//returns
+[ 'align',
+      'alt',
+      'crossOrigin',
+      'crossorigin',
+      'height',
+      'isMap',
+      'ismap',
+      'sizes',
+      (...)
+]
 ```
 > getEventProps
 
-Gets all React's event props.
+Gets all React's event props only.
 ```js
 // arguments: none.
 
+//this
 getEventProps()
+
+//returns
+[ 'onBlur',
+      'onChange',
+      'onClick',
+      'onContextMenu',
+      'onCopy',
+      'onCut',
+      (...)
+]
 ```
 > getGlobalProps
 
-Gets all html props valid on any element.
+Gets all html props valid on any element, plus all aria props including `role`.
 ```js
 // argument 1 (optional): an options object.
 
 getGlobalProps()
 getGlobalProps({onlyReact: true})
+
+//this
+getGlobalProps()
+
+//returns
+[ 'accessKey',
+      'accesskey',
+      'autoCapitalize',
+      'autocapitalize',
+      'className',
+      'class',
+      'contentEditable',
+      'contenteditable',
+      (...)
+]
 ```
 
 #### Options supported in an object:
 - **legacy**: _boolean_. Default: false.
 
-Wether or not to return deprecated html props _bgcolor_, _border_ and _color_ for the elements that use them.
+Whether or not to return deprecated html props _bgcolor_, _border_ and _color_ for the elements that use them.
 ```js
 // examples:
 
@@ -80,7 +129,7 @@ getAllProps()
 
 -  **onlyReact**: _boolean_. Default: false.
 
-Wether to return only the React version of a prop, or both versions. Some props changed to camelCase and using the classic lowercase name will show a warning. Since the warning can be educational this option is off by default.
+Whether to return only the React version of a prop, or both versions. In React, some props are used in camelCase and using the classic lowercase name will show a warning. Since the warning can be educational this option is off by default.
 ```js
 // examples:
 
@@ -90,7 +139,7 @@ getElementProps("label")
 // same as above
 getElementProps("label", {onlyReact: false})
 
-// returns only the React name of the props (itemID, tabIndex, autoCapitalize, etc...)
+// no duplication, only React names are returned (itemID, tabIndex, autoCapitalize, className, htmlFor, etc...)
 getGlobalProps({onlyReact: true})
 ```
 
@@ -98,14 +147,13 @@ getGlobalProps({onlyReact: true})
 
 I'd use these packages:
 
-- aria props: `yarn add aria-attributes`
 - svg props: `yarn add svg-tag-names`
 - void html elements (\<img\/\>): `yarn add void-elements`
 - css props: `yarn add known-css-properties`
 
 ### Contributing
 
-All data pulled from MDN web docs and official React docs.
+All data pulled from MDN web docs, official React docs and the aria specification.
 MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
 
 ⚛️ React is awesome 💫
