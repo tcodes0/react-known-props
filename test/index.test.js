@@ -37,6 +37,22 @@ describe("getAllProps", () => {
   });
 });
 
+describe("getEventProps", () => {
+  describe("invalid input", () => {
+    test("int", () => {
+      expect(getEventProps(66)).toBe(getEventProps());
+    });
+  });
+  test("{} returns default", () => {
+    expect(getEventProps()).toEqual(getEventProps({}));
+  });
+  test("all props match /^on[A-Z]/", () => {
+    expect(getEventProps().filter(p => /^on[A-Z]/.test(p))).toEqual(
+      getEventProps()
+    );
+  });
+});
+
 describe("getElementProps", () => {
   describe("invalid input", () => {
     test("int", () => {
