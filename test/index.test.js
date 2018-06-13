@@ -216,7 +216,7 @@ describe("add aria #5", () => {
   });
 });
 
-describe("Include svg elements and props #6", () => {
+describe.only("Include svg elements and props #6", () => {
   test("getAll returns global svg props", () =>
     expect(getAllProps().includes("typeof")).toBe(true));
 

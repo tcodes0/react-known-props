@@ -25,7 +25,8 @@
   ],
   "scripts": {
     "lint": "eslint src",
-    "test": "yarn jest",
+    "test": "yarn jest --useStderr 2>&1 | grep '✕'",
+    "test:verbose": "yarn jest",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",

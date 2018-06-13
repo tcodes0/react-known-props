@@ -17,8 +17,8 @@ module.exports.propsGlobalSvg = [
   "typeof"
 ];
 
-const mapSvgPropsToElements = convertMap(mapSvgElementsToProps);
+const mapPropsToElementsSvg = convertMap(mapSvgElementsToProps);
 
-module.exports.mapSvgPropsToElements = mapSvgPropsToElements;
+module.exports.mapPropsToElementsSvg = mapPropsToElementsSvg;
 
-module.exports.mapSvgToReactProps = makeMapToReact(mapSvgPropsToElements);
+module.exports.mapSvgPropToReactProp = makeMapToReact(mapPropsToElementsSvg);

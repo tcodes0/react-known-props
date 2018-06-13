@@ -1,8 +1,5 @@
 const { propsGlobal } = require("../lists/html");
-const {
-  mapHtmlPropToReactProp,
-  propsGlobalReactExtras
-} = require("../lists/react");
+const { mapHtmlPropToReactProp, propsGlobalReact } = require("../lists/react");
 
 module.exports.getReactGlobalProps = () =>
   propsGlobal
@@ -11,4 +8,4 @@ module.exports.getReactGlobalProps = () =>
         ? [...acc, mapHtmlPropToReactProp[prop], prop]
         : [...acc, prop];
     }, [])
-    .concat(propsGlobalReactExtras);
+    .concat(propsGlobalReact);

@@ -124,7 +124,7 @@ module.exports.propsEvents = [
   "onToggle"
 ];
 
-module.exports.propsGlobalReactExtras = [
+module.exports.propsGlobalReact = [
   "dangerouslySetInnerHTML",
   "suppressContentEditableWarning",
   "suppressHydrationWarning",

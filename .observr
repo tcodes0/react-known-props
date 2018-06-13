@@ -1,3 +1,3 @@
-watch( '.*\.js' ) do
-  system "clear; node src/knownProps.js"
+watch( '\.*.js' ) do
+  system "clear && yarn test"
 end
