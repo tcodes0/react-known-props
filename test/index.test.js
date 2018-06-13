@@ -4,9 +4,20 @@ const {
   getEventProps,
   getGlobalProps
 } = require("../src/index.js");
+const { uniq } = require("lodash");
+
+describe("all react known props methods...", () => {
+  [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
+    method => {
+      test("no duplicated props", () => {
+        expect(method().length).toEqual(uniq(method()).length);
+      });
+    }
+  );
+});
 
 describe("getAllProps", () => {
-  describe("invalid input", () => {
+  describe("behavior on invalid input", () => {
     test("int", () => {
       expect(getAllProps(66)).toBe(undefined);
     });
@@ -51,6 +62,11 @@ describe("getEventProps", () => {
       getEventProps()
     );
   });
+});
+
+describe("getGlobalProps", () => {
+  test("getGlobalProps with onlyReact is default", () =>
+    expect(getGlobalProps()).toEqual(getGlobalProps({ onlyReact: true })));
 });
 
 describe("getElementProps", () => {
@@ -123,7 +139,7 @@ describe("issue 4, height width ", () => {
   );
 });
 
-describe("issue 3, return both names", () => {
+describe("return both names #3", () => {
   test("return both names by default, getElement", () => {
     expect(
       getElementProps("label").includes("for") &&
@@ -148,7 +164,7 @@ describe("issue 3, return both names", () => {
   });
 });
 
-describe("issue 2, checked defaultChecked", () => {
+describe("checked defaultChecked #2", () => {
   test("input, return checked and defaultChecked", () => {
     expect(
       getElementProps("input").includes("checked") &&
@@ -188,7 +204,7 @@ describe("multiple options in an object", () => {
   });
 });
 
-describe("issue 5, add aria", () => {
+describe("add aria #5", () => {
   test("aria prop in getGlobal, default options", () => {
     expect(getGlobalProps().includes("aria-expanded")).toBe(true);
   });
@@ -200,6 +216,40 @@ describe("issue 5, add aria", () => {
   });
 });
 
+describe("Include svg elements and props #6", () => {
+  test("getAll returns global svg props", () =>
+    expect(getAllProps().includes("typeof")).toBe(true));
+
+  test("getAll returns element svg props", () =>
+    expect(getAllProps().includes("focusable")).toBe(true));
+
+  test("getAll returns react version svg props with flag", () =>
+    expect(getAllProps({ onlyReact: true }).includes("alignmentBaseline")).toBe(
+      true
+    ));
+
+  test("getElement(<svg element>) returns element svg props", () =>
+    expect(getElementProps("ellipse").includes("cx")).toBe(true));
+
+  test("getElement(<svg element>) returns global svg props", () =>
+    expect(getElementProps("ellipse").includes("typeof")).toBe(true));
+
+  test("getElement(<svg element>) returns react version svg props with flag", () =>
+    expect(
+      getElementProps("ellipse", { onlyReact: true }).includes(
+        "alignmentBaseline"
+      )
+    ).toBe(true));
+
+  test("getEventProps returns NO svg props", () =>
+    expect(getEventProps().includes("cx")).toBe(false));
+
+  test("getGlobalProps returns svg global props", () =>
+    expect(getGlobalProps().includes("typeof")).toBe(true));
+});
+
+// test("foo", () => expect(true).toBe(true));
+// test("foo", () => expect(false).toBe(true));
 // describe("bar", () => {
 //   test("foo", () => {
 //     expect(true).toBe(true);

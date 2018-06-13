@@ -1,6 +1,89 @@
 const { camelCase } = require("lodash");
 const { lowerCaseSpaceless } = require("../utils/lowerCaseSpaceless");
 
+const camelcaseNoConvert = [
+  "externalResourcesRequired",
+  "hrefLang",
+  "requiredExtensions",
+  "requiredFeatures",
+  "systemLanguage",
+  "glyphRef",
+  "attributeName",
+  "attributeType",
+  "calcMode",
+  "keySplines",
+  "keyTimes",
+  "repeatCount",
+  "repeatDur",
+  "keyPoints",
+  "preserveAspectRatio",
+  "pathLength",
+  "clipPathUnits",
+  "edgeMode",
+  "kernelMatrix",
+  "kernelUnitLength",
+  "preserveAlpha",
+  "targetX",
+  "targetY",
+  "diffuseConstant",
+  "surfaceScale",
+  "xChannelSelector",
+  "yChannelSelector",
+  "stdDeviation",
+  "tableValues",
+  "crossOrigin",
+  "specularConstant",
+  "specularExponent",
+  "limitingConeAngle",
+  "pointsAtX",
+  "pointsAtY",
+  "pointsAtZ",
+  "baseFrequency",
+  "numOctaves",
+  "stitchTiles",
+  "filterRes",
+  "filterUnits",
+  "primitiveUnits",
+  "gradientTransform",
+  "gradientUnits",
+  "spreadMethod",
+  "markerHeight",
+  "markerUnits",
+  "markerWidth",
+  "refX",
+  "refY",
+  "viewBox",
+  "maskContentUnits",
+  "maskUnits",
+  "patternContentUnits",
+  "patternTransform",
+  "patternUnits",
+  "baseProfile",
+  "contentScriptType",
+  "contentStyleType",
+  "zoomAndPan",
+  "lengthAdjust",
+  "textLength",
+  "startOffset",
+  "viewTarget"
+];
+
+const edgeCases = {
+  hreflang: "hrefLang",
+  crossorigin: "crossOrigin",
+  "nav-down": "navdown",
+  "nav-down-left": "navdownleft",
+  "nav-down-right": "navdownright",
+  "nav-left": "navleft",
+  "nav-next": "navnext",
+  "nav-prev": "navprev",
+  "nav-right": "navright",
+  "nav-up": "navup",
+  "nav-up-left": "navupleft",
+  "nav-up-right": "navupright",
+  "horiz-origin-y": "horizoriginy"
+};
+
 module.exports.makeMapToReact = mapPropsToElements => {
   //remove lowercase props, they are passed as-is to React
   const noLower = Object.keys(mapPropsToElements)
@@ -13,6 +96,7 @@ module.exports.makeMapToReact = mapPropsToElements => {
   //only keep camelCase props, convert to lowercase without spaces.
   const camelToLower = Object.keys(noLower)
     .filter(prop => /[a-z][A-Z]/.test(prop))
+    .filter(prop => !camelcaseNoConvert.includes(prop))
     .reduce(
       (acc, prop) => Object.assign(acc, { [prop]: lowerCaseSpaceless(prop) }),
       {}
@@ -23,5 +107,5 @@ module.exports.makeMapToReact = mapPropsToElements => {
     .filter(prop => /[-]/.test(prop))
     .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
 
-  return Object.assign(dashToCamel, camelToLower);
+  return Object.assign(dashToCamel, camelToLower, edgeCases);
 };

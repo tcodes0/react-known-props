@@ -100,7 +100,6 @@ module.exports.propsEvents = [
   "onEmptied",
   "onEncrypted",
   "onEnded",
-  "onError",
   "onLoadedData",
   "onLoadedMetadata",
   "onLoadStart",
