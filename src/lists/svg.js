@@ -1,6 +1,3 @@
-const { mapSvgElementsToProps } = require("./svgprops");
-const { makeMapToReact } = require("../utils/makeMapReact");
-
 const dupElements = [
   "a",
   "audio",
@@ -38,7 +35,7 @@ const dupProps = [
   "rel"
 ];
 
-const mapPropsToElementsSvg = {
+module.exports.mapPropsToElementsSvg = {
   "alignment-baseline": [
     "a",
     "altGlyph",
@@ -4298,7 +4295,3 @@ module.exports.propsGlobalSvg = [
   // "tabindex",
   "typeof"
 ];
-
-module.exports.mapPropsToElementsSvg = mapPropsToElementsSvg;
-
-module.exports.mapSvgPropToReactProp = makeMapToReact(mapPropsToElementsSvg);

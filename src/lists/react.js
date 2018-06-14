@@ -1,3 +1,5 @@
+const { makeMapReact } = require("../utils/makeMapSvgToReact");
+
 module.exports.mapHtmlPropToReactProp = {
   allowtransparency: "allowTransparency",
   charset: "charSet",
@@ -148,3 +150,5 @@ module.exports.mapPropsToElementsReactExtras = {
   marginWidth: ["iframe"],
   mediaGroup: ["audio", "video"]
 };
+
+module.exports.mapSvgPropToReactProp = makeMapReact();
