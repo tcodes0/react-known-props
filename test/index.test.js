@@ -7,7 +7,8 @@ const {
 const { uniq } = require("lodash");
 
 describe("all react known props methods...", () => {
-  [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
+  [getAllProps].forEach(
+    // [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
     method => {
       test(`no duplicated props`, () => {
         expect(method().length).toEqual(uniq(method()).length);
@@ -282,5 +283,3 @@ describe("Include svg elements and props #6", () => {
   test("getGlobalProps returns svg global props", () =>
     expect(getGlobalProps().includes("typeof")).toBe(true));
 });
-
-// console.table(getElementProps("video"));

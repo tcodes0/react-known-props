@@ -3,15 +3,15 @@ const { propsAria } = require("./lists/aria");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
 const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
 const { propsGlobalSvg } = require("./lists/svg");
-const { propsSvgAndReact } = require("./utils/mapSvgToReact");
+const { mapSvgReactProps } = require("./utils/mapSvgToReact");
 const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
+const { getGlobalProps } = require("./getGlobalProps");
+
+const noDups = Object.assign(mapSvgReactProps, mapReactHtmlProps);
 
 module.exports.getAllProps = options =>
   parseOptionsObject(options, () => [
-    ...getReactGlobalProps(),
-    ...propsSvgAndReact,
-    ...propsGlobalSvg,
+    ...getGlobalProps(),
     ...propsEvents,
-    ...propsAria,
-    ...Object.keys(mapReactHtmlProps)
+    ...Object.keys(noDups)
   ]);

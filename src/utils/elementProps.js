@@ -1,6 +1,7 @@
 const { getReactGlobalProps } = require("./getReactGlobalProps");
 const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
+const { arrayToMap } = require("../utils/arrayToMap");
 const { mapReactHtmlProps } = require("./mapReactHtmlProps");
 const { mapSvgReactProps } = require("./mapSvgToReact");
 
@@ -18,12 +19,8 @@ const commonElements = [
   "video"
 ];
 
-// make object to remove duplicated keys
-const arrayToMap = arr =>
-  arr.reduce((acc, p) => Object.assign(acc, { [p]: p }), {});
-
 const ifSvg = (tag, svgFn, htmlFn) =>
-  elements.indexOf(element) === -1 ? svgFn() : htmlFn();
+  elements.indexOf(tag) === -1 ? svgFn() : htmlFn();
 
 const getElementPropsFromMap = (map, element) =>
   Object.keys(map).reduce(
@@ -34,21 +31,32 @@ const getElementPropsFromMap = (map, element) =>
     {}
   );
 
-const mapElementSpecificProps = element =>
-  Object.assign(
-    getElementPropsFromMap(mapReactHtmlProps, element),
-    getElementPropsFromMap(mapSvgReactProps, element)
+const mapElementSpecificProps = element => {
+  if (commonElements.indexOf(element) > -1) {
+    return Object.assign(
+      getElementPropsFromMap(mapReactHtmlProps, element),
+      getElementPropsFromMap(mapSvgReactProps, element)
+    );
+  }
+
+  return ifSvg(
+    element,
+    () => getElementPropsFromMap(mapSvgReactProps, element),
+    () => getElementPropsFromMap(mapReactHtmlProps, element)
   );
+};
 
 const mapElementGlobalProps = element => {
-  if (commonElements.indexOf(element > -1)) {
+  if (commonElements.indexOf(element) > -1) {
     return arrayToMap([...propsGlobalSvg, ...getReactGlobalProps()]);
   }
 
   //return globalSvg or globalHTML props accordingly
-  return elements.indexOf(element) === -1
-    ? arrayToMap(propsGlobalSvg)
-    : arrayToMap(getReactGlobalProps());
+  return ifSvg(
+    element,
+    () => arrayToMap(propsGlobalSvg),
+    () => arrayToMap(getReactGlobalProps())
+  );
 };
 
 module.exports.elementProps = element =>

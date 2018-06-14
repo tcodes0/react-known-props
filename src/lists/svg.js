@@ -24,16 +24,16 @@ const dupProps = [
 
 module.exports.propsGlobalSvg = [
   "about",
-  // "class",
+  "class",
   "content",
   "datatype",
-  // "id",
-  // "lang",
+  "id",
+  "lang",
   "property",
   "rel",
   "resource",
   "rev",
-  // "tabindex",
+  "tabindex",
   "typeof"
 ];
 

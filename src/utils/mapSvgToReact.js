@@ -117,14 +117,6 @@ const mapSvgPropToReactProp = Object.assign(
 
 module.exports.mapSvgPropToReactProp = mapSvgPropToReactProp;
 
-module.exports.propsSvgAndReact = Object.keys(mapPropsToElementsSvg).reduce(
-  (acc, prop) =>
-    mapSvgPropToReactProp[prop]
-      ? [...acc, mapSvgPropToReactProp[prop], prop]
-      : [...acc, prop],
-  []
-);
-
 module.exports.mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
   (acc, prop) =>
     mapSvgPropToReactProp[prop]

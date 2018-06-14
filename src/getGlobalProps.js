@@ -1,9 +1,14 @@
 const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
 const { propsAria } = require("./lists/aria");
 const { propsGlobalSvg } = require("./lists/svg");
+const { arrayToMap } = require("./utils/arrayToMap");
+
+const noDupsGlobal = Object.assign(
+  arrayToMap(getReactGlobalProps()),
+  arrayToMap(propsGlobalSvg)
+);
 
 module.exports.getGlobalProps = () => [
-  ...getReactGlobalProps(),
   ...propsAria,
-  ...propsGlobalSvg
+  ...Object.keys(noDupsGlobal)
 ];
