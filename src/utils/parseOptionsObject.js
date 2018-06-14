@@ -1,5 +1,19 @@
-const { removeLegacy } = require("./removeLegacy");
-const { removeNonReactProps } = require("./removeNonReactProps");
+const { propsLegacyGlobal } = require("../lists/html");
+const { mapHtmlPropToReactProp } = require("../lists/react");
+const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
+
+const removeNonReactProps = arr =>
+  arr
+    .map(
+      prop =>
+        mapHtmlPropToReactProp[prop] ? mapHtmlPropToReactProp[prop] : prop
+    )
+    .map(
+      prop => (mapSvgPropToReactProp[prop] ? mapSvgPropToReactProp[prop] : prop)
+    );
+
+const removeLegacy = arr =>
+  arr.filter(prop => propsLegacyGlobal.indexOf(prop) === -1);
 
 module.exports.parseOptionsObject = (input, func) => {
   let out = undefined;

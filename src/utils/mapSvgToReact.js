@@ -109,8 +109,18 @@ const dashToCamel = Object.keys(noLower)
   .filter(prop => /[-]/.test(prop))
   .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
 
-module.exports.mapSvgPropToReactProp = Object.assign(
+const mapSvgPropToReactProp = Object.assign(
   dashToCamel,
   camelToLower,
   edgeCases
+);
+
+module.exports.mapSvgPropToReactProp = mapSvgPropToReactProp;
+
+module.exports.propsSvgAndReact = Object.keys(mapPropsToElementsSvg).reduce(
+  (acc, prop) =>
+    mapSvgPropToReactProp[prop]
+      ? [...acc, mapSvgPropToReactProp[prop], prop]
+      : [...acc, prop],
+  []
 );
