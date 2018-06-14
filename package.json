@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "Props from React and html, renamed when appropriate (class => className)",
   "license": "BSD-3-Clause",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "homepage": "https://github.com/thomazella/react-known-props#readme",
   "repository": {
     "type": "git",
