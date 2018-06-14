@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "Props from React and html, renamed when appropriate (class => className)",
   "license": "BSD-3-Clause",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "homepage": "https://github.com/thomazella/react-known-props#readme",
   "repository": {
     "type": "git",
@@ -21,15 +21,17 @@
     "node": ">=6"
   },
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
+    "build": "babel src -d dist",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
     "prepublishOnly": "npm run lint",
+    "prepublish": "npm test && npm run build",
     "postpublish": "git push origin master --follow-tags"
   },
   "keywords": [
@@ -42,6 +44,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
