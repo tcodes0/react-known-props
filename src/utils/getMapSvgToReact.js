@@ -1,9 +1,7 @@
 const { camelCase } = require("lodash");
 const { lowerCaseSpaceless } = require("../utils/lowerCaseSpaceless");
-const foo = require("../lists/svg");
 const { mapPropsToElementsSvg } = require("../lists/svg");
 
-// camelcase props that don't get converted
 const camelcaseNoConvert = [
   "externalResourcesRequired",
   "hrefLang",
@@ -71,7 +69,6 @@ const camelcaseNoConvert = [
   "viewTarget"
 ];
 
-// props that don't follow different rules
 const edgeCases = {
   hreflang: "hrefLang",
   crossorigin: "crossOrigin",
@@ -88,12 +85,13 @@ const edgeCases = {
   "horiz-origin-y": "horizoriginy"
 };
 
-module.exports.makeMapToReact = mapPropsToElements => {
+module.exports.getMapSvgToReact = () => {
   //remove lowercase props, they are passed as-is to React
-  const noLower = Object.keys(mapPropsToElements)
+  const noLower = Object.keys(mapPropsToElementsSvg)
     .filter(prop => !/^[a-z0-9]+$/.test(prop))
     .reduce(
-      (acc, prop) => Object.assign(acc, { [prop]: mapPropsToElements[prop] }),
+      (acc, prop) =>
+        Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
       {}
     );
 
