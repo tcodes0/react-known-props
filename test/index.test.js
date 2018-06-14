@@ -283,12 +283,4 @@ describe("Include svg elements and props #6", () => {
     expect(getGlobalProps().includes("typeof")).toBe(true));
 });
 
-// console.table(getElementProps("ellipse", { onlyReact: false }));
-
-// test("foo", () => expect(true).toBe(true));
-// test("foo", () => expect(false).toBe(true));
-// describe("bar", () => {
-//   test("foo", () => {
-//     expect(true).toBe(true);
-//   });
-// });
+// console.table(getElementProps("video"));

@@ -1,16 +1,3 @@
-const dupElements = [
-  "a",
-  "audio",
-  "canvas",
-  "font",
-  "iframe",
-  "image",
-  "script",
-  "style",
-  "title",
-  "video"
-];
-
 const dupProps = [
   "style",
   "title",
@@ -33,6 +20,21 @@ const dupProps = [
   "method",
   "content",
   "rel"
+];
+
+module.exports.propsGlobalSvg = [
+  "about",
+  // "class",
+  "content",
+  "datatype",
+  // "id",
+  // "lang",
+  "property",
+  "rel",
+  "resource",
+  "rev",
+  // "tabindex",
+  "typeof"
 ];
 
 module.exports.mapPropsToElementsSvg = {
@@ -4280,18 +4282,3 @@ module.exports.mapPropsToElementsSvg = {
   transformBehavior: ["video"],
   viewTarget: ["view"]
 };
-
-module.exports.propsGlobalSvg = [
-  "about",
-  // "class",
-  "content",
-  "datatype",
-  // "id",
-  // "lang",
-  "property",
-  "rel",
-  "resource",
-  "rev",
-  // "tabindex",
-  "typeof"
-];
