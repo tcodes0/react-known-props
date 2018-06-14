@@ -1,17 +1,21 @@
-const { propsEvents } = require("./lists/react");
-const { propsAria } = require("./lists/aria");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
-const { propsGlobalSvg } = require("./lists/svg");
 const { mapSvgReactProps } = require("./utils/mapSvgToReact");
 const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
+const { duplicateReducer } = require("./utils/duplicateReducer");
 const { getGlobalProps } = require("./getGlobalProps");
+const { getEventProps } = require("./getEventProps");
 
-const noDups = Object.assign(mapSvgReactProps, mapReactHtmlProps);
+const svgHtml = Object.assign(mapSvgReactProps, mapReactHtmlProps);
+console.table(
+  [...getGlobalProps(), ...getEventProps(), ...Object.keys(svgHtml)].reduce(
+    duplicateReducer,
+    []
+  )
+);
 
 module.exports.getAllProps = options =>
   parseOptionsObject(options, () => [
     ...getGlobalProps(),
-    ...propsEvents,
-    ...Object.keys(noDups)
+    ...getEventProps(),
+    ...Object.keys(svgHtml)
   ]);
