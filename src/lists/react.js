@@ -1,4 +1,4 @@
-const { makeMapReact } = require("../utils/makeMapSvgToReact");
+const { makeSvgMapToReact } = require("../utils/makeMapSvgToReact");
 
 module.exports.mapHtmlPropToReactProp = {
   allowtransparency: "allowTransparency",
@@ -151,4 +151,4 @@ module.exports.mapPropsToElementsReactExtras = {
   mediaGroup: ["audio", "video"]
 };
 
-module.exports.mapSvgPropToReactProp = makeMapReact();
+module.exports.mapSvgPropToReactProp = makeSvgMapToReact();

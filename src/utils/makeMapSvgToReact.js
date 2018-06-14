@@ -87,7 +87,7 @@ const edgeCases = {
   "horiz-origin-y": "horizoriginy"
 };
 
-module.exports.makeMapReact = () => {
+module.exports.makeSvgMapToReact = () => {
   //remove lowercase props, they are passed as-is to React
   const noLower = Object.keys(mapPropsToElementsSvg)
     .filter(prop => !/^[a-z0-9]+$/.test(prop))
