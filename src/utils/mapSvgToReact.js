@@ -1,6 +1,8 @@
 const { camelCase } = require("lodash");
-const { lowerCaseSpaceless } = require("../utils/lowerCaseSpaceless");
 const { mapPropsToElementsSvg } = require("../lists/svg");
+const { lowerCase } = require("lodash");
+
+const lowerCaseSpaceless = input => lowerCase(input).replace(/ /g, "");
 
 const camelcaseNoConvert = [
   "externalResourcesRequired",
@@ -85,29 +87,30 @@ const edgeCases = {
   "horiz-origin-y": "horizoriginy"
 };
 
-module.exports.getMapSvgToReact = () => {
-  //remove lowercase props, they are passed as-is to React
-  const noLower = Object.keys(mapPropsToElementsSvg)
-    .filter(prop => !/^[a-z0-9]+$/.test(prop))
-    .reduce(
-      (acc, prop) =>
-        Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
-      {}
-    );
+//remove lowercase props, they are passed as-is to React
+const noLower = Object.keys(mapPropsToElementsSvg)
+  .filter(prop => !/^[a-z0-9]+$/.test(prop))
+  .reduce(
+    (acc, prop) => Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
+    {}
+  );
 
-  //only keep camelCase props, convert to lowercase without spaces.
-  const camelToLower = Object.keys(noLower)
-    .filter(prop => /[a-z][A-Z]/.test(prop))
-    .filter(prop => !camelcaseNoConvert.includes(prop))
-    .reduce(
-      (acc, prop) => Object.assign(acc, { [prop]: lowerCaseSpaceless(prop) }),
-      {}
-    );
+//only keep camelCase props, convert to lowercase without spaces.
+const camelToLower = Object.keys(noLower)
+  .filter(prop => /[a-z][A-Z]/.test(prop))
+  .filter(prop => !camelcaseNoConvert.includes(prop))
+  .reduce(
+    (acc, prop) => Object.assign(acc, { [prop]: lowerCaseSpaceless(prop) }),
+    {}
+  );
 
-  //only keep dashCase props, convert to camelCase.
-  const dashToCamel = Object.keys(noLower)
-    .filter(prop => /[-]/.test(prop))
-    .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
+//only keep dashCase props, convert to camelCase.
+const dashToCamel = Object.keys(noLower)
+  .filter(prop => /[-]/.test(prop))
+  .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
 
-  return Object.assign(dashToCamel, camelToLower, edgeCases);
-};
+module.exports.mapSvgPropToReactProp = Object.assign(
+  dashToCamel,
+  camelToLower,
+  edgeCases
+);

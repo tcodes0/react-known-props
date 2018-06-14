@@ -1,11 +1,10 @@
 const { mapPropsToElementsSvg } = require("../lists/svg");
-const { mapSvgPropToReactProp } = require("../lists/react");
+const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
 
 module.exports.propsSvgAndReact = Object.keys(mapPropsToElementsSvg).reduce(
-  (acc, prop) => {
-    return mapSvgPropToReactProp[prop]
+  (acc, prop) =>
+    mapSvgPropToReactProp[prop]
       ? [...acc, mapSvgPropToReactProp[prop], prop]
-      : [...acc, prop];
-  },
+      : [...acc, prop],
   []
 );

@@ -15,7 +15,7 @@ const mapHtmlPlusReact = Object.keys(mapPropsToElements).reduce((acc, prop) => {
       });
 }, {});
 
-module.exports.getMapReactAndHtmlPropsToElements = Object.assign(
+module.exports.mapReactHtmlProps = Object.assign(
   mapHtmlPlusReact,
   mapPropsToElementsReactExtras
 );

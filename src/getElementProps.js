@@ -1,12 +1,27 @@
 const { propsAria } = require("./lists/aria");
 const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
-const { getElementSpecificProps } = require("./utils/getElementSpecificProps");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { propsGlobalSvg } = require("./lists/svg");
+const { propsGlobalSvg, mapPropsToElementsSvg } = require("./lists/svg");
+const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
+
+const elementProps = (map, element) =>
+  Object.keys(map).reduce(
+    (acc, prop) =>
+      map[prop].indexOf(element) >= 0
+        ? Object.assign(acc, { [prop]: prop })
+        : acc,
+    {}
+  );
+
+const mapElementSpecificProps = element =>
+  Object.assign(
+    elementProps(mapReactHtmlProps, element),
+    elementProps(mapPropsToElementsSvg, element)
+  );
 
 module.exports.getElementProps = (element, options) =>
   parseOptionsObject(options, () => [
-    ...getElementSpecificProps(element),
+    ...Object.keys(mapElementSpecificProps(element)),
     ...getReactGlobalProps(),
     ...propsAria,
     ...propsGlobalSvg

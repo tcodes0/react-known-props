@@ -5,7 +5,6 @@ const {
   getGlobalProps
 } = require("../src/index.js");
 const { uniq } = require("lodash");
-const { duplicateReducer } = require("../src/utils/duplicateReducer");
 
 describe("all react known props methods...", () => {
   [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
@@ -218,16 +217,29 @@ describe("add aria #5", () => {
 });
 
 describe("Include svg elements and props #6", () => {
-  test("getAll returns global svg props", () =>
+  test("getAll() returns global svg props", () =>
     expect(getAllProps().includes("typeof")).toBe(true));
 
-  test("getAll returns element svg props", () =>
+  test("getAll() returns element svg props", () =>
     expect(getAllProps().includes("focusable")).toBe(true));
 
-  test("getAll returns only react version svg props with flag", () =>
+  test("getAll() {onlyreact: true} returns only react", () =>
     expect(
-      getAllProps({ onlyReact: true }).includes("alignment-baseline")
-    ).toBe(false));
+      getAllProps({ onlyReact: true }).includes("alignmentBaseline") &&
+        !getAllProps({ onlyReact: true }).includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getAll() {onlyreact: false} returns react and svg", () =>
+    expect(
+      getAllProps({ onlyReact: false }).includes("alignmentBaseline") &&
+        getAllProps({ onlyReact: false }).includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getAll() {} returns react and svg", () =>
+    expect(
+      getAllProps({ onlyReact: false }).includes("alignmentBaseline") &&
+        getAllProps({ onlyReact: false }).includes("alignment-baseline")
+    ).toBe(true));
 
   test("getElement(<svg>) returns element svg props", () =>
     expect(getElementProps("ellipse").includes("cx")).toBe(true));
@@ -238,12 +250,31 @@ describe("Include svg elements and props #6", () => {
   test("getElement for elements both in html and svg has no duplicate props", () =>
     expect(getElementProps("video")).toEqual(uniq(getElementProps("video"))));
 
-  test("getElement(<svg>) returns only react version svg props with flag", () =>
+  test("getElement(<svg>) {onlyreact: true} returns only react", () =>
     expect(
       getElementProps("ellipse", { onlyReact: true }).includes(
-        "alignment-baseline"
-      )
-    ).toBe(false));
+        "alignmentBaseline"
+      ) &&
+        !getElementProps("ellipse", { onlyReact: true }).includes(
+          "alignment-baseline"
+        )
+    ).toBe(true));
+
+  test("getElement(<svg>) {onlyreact: false} returns react and svg", () =>
+    expect(
+      getElementProps("ellipse", { onlyReact: false }).includes(
+        "alignmentBaseline"
+      ) &&
+        getElementProps("ellipse", { onlyReact: false }).includes(
+          "alignment-baseline"
+        )
+    ).toBe(true));
+
+  test("getElement(<svg>) {} returns react and svg", () =>
+    expect(
+      getElementProps("ellipse").includes("alignmentBaseline") &&
+        getElementProps("ellipse").includes("alignment-baseline")
+    ).toBe(true));
 
   test("getEventProps returns NO svg props", () =>
     expect(getEventProps().includes("cx")).toBe(false));
@@ -251,6 +282,8 @@ describe("Include svg elements and props #6", () => {
   test("getGlobalProps returns svg global props", () =>
     expect(getGlobalProps().includes("typeof")).toBe(true));
 });
+
+// console.table(getAllProps({ onlyReact: false }));
 
 // test("foo", () => expect(true).toBe(true));
 // test("foo", () => expect(false).toBe(true));

@@ -1,7 +1,5 @@
-const {
-  mapHtmlPropToReactProp,
-  mapSvgPropToReactProp
-} = require("../lists/react");
+const { mapHtmlPropToReactProp } = require("../lists/react");
+const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
 
 module.exports.removeNonReactProps = arr =>
   arr
