@@ -3,6 +3,7 @@ const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
 const { propsGlobalSvg, mapPropsToElementsSvg } = require("./lists/svg");
 const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
+const { mapSvgReactProps } = require("./utils/mapSvgToReact");
 
 const elementProps = (map, element) =>
   Object.keys(map).reduce(
@@ -16,7 +17,7 @@ const elementProps = (map, element) =>
 const mapElementSpecificProps = element =>
   Object.assign(
     elementProps(mapReactHtmlProps, element),
-    elementProps(mapPropsToElementsSvg, element)
+    elementProps(mapSvgReactProps, element)
   );
 
 module.exports.getElementProps = (element, options) =>

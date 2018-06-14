@@ -124,3 +124,15 @@ module.exports.propsSvgAndReact = Object.keys(mapPropsToElementsSvg).reduce(
       : [...acc, prop],
   []
 );
+
+module.exports.mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
+  (acc, prop) =>
+    mapSvgPropToReactProp[prop]
+      ? Object.assign(
+          acc,
+          { [mapSvgPropToReactProp[prop]]: mapPropsToElementsSvg[prop] },
+          { [prop]: mapPropsToElementsSvg[prop] }
+        )
+      : Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
+  {}
+);
