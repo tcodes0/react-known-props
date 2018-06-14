@@ -7,5 +7,3 @@ module.exports.getAllProps = getAllProps;
 module.exports.getEventProps = getEventProps;
 module.exports.getElementProps = getElementProps;
 module.exports.getGlobalProps = getGlobalProps;
-
-// console.table(getElementProps("form"));

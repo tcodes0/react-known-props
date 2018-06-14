@@ -7,7 +7,6 @@ const {
 const { uniq } = require("lodash");
 
 describe("all react known props methods...", () => {
-  // [getAllProps].forEach(
   [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
     method => {
       test(`no duplicated props`, () => {

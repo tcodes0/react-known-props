@@ -11,13 +11,6 @@ const { style, title, rel, content, ...svgHtml } = Object.assign(
   mapReactHtmlProps
 );
 
-// console.table(
-//   [...getGlobalProps(), ...getEventProps(), ...Object.keys(svgHtml)].reduce(
-//     duplicateReducer,
-//     []
-//   )
-// );
-
 module.exports.getAllProps = options =>
   parseOptionsObject(options, () => [
     ...getGlobalProps(),
