@@ -66,18 +66,3 @@ module.exports.elementProps = element =>
       mapElementSpecificProps(element)
     )
   );
-
-// module.exports.elementProps = element => {
-//   if (commonElements.indexOf(element > -1)) {
-//     // make object to remove duplicated keys
-//     return Object.keys(
-//       [...propsGlobalSvg, ...getReactGlobalProps()].reduce(
-//         (acc, p) => Object.assign(acc, { [p]: p }),
-//         {}
-//       )
-//     );
-//   }
-//   return elements.indexOf(element) === -1
-//     ? propsGlobalSvg
-//     : getReactGlobalProps();
-// };
