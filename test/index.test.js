@@ -5,11 +5,12 @@ const {
   getGlobalProps
 } = require("../src/index.js");
 const { uniq } = require("lodash");
+const { duplicateReducer } = require("../src/utils/duplicateReducer");
 
 describe("all react known props methods...", () => {
   [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
     method => {
-      test("no duplicated props", () => {
+      test(`no duplicated props`, () => {
         expect(method().length).toEqual(uniq(method()).length);
       });
     }
@@ -216,30 +217,33 @@ describe("add aria #5", () => {
   });
 });
 
-describe.only("Include svg elements and props #6", () => {
+describe("Include svg elements and props #6", () => {
   test("getAll returns global svg props", () =>
     expect(getAllProps().includes("typeof")).toBe(true));
 
   test("getAll returns element svg props", () =>
     expect(getAllProps().includes("focusable")).toBe(true));
 
-  test("getAll returns react version svg props with flag", () =>
-    expect(getAllProps({ onlyReact: true }).includes("alignmentBaseline")).toBe(
-      true
-    ));
+  test("getAll returns only react version svg props with flag", () =>
+    expect(
+      getAllProps({ onlyReact: true }).includes("alignment-baseline")
+    ).toBe(false));
 
-  test("getElement(<svg element>) returns element svg props", () =>
+  test("getElement(<svg>) returns element svg props", () =>
     expect(getElementProps("ellipse").includes("cx")).toBe(true));
 
-  test("getElement(<svg element>) returns global svg props", () =>
+  test("getElement(<svg>) returns global svg props", () =>
     expect(getElementProps("ellipse").includes("typeof")).toBe(true));
 
-  test("getElement(<svg element>) returns react version svg props with flag", () =>
+  test("getElement for elements both in html and svg has no duplicate props", () =>
+    expect(getElementProps("video")).toEqual(uniq(getElementProps("video"))));
+
+  test("getElement(<svg>) returns only react version svg props with flag", () =>
     expect(
       getElementProps("ellipse", { onlyReact: true }).includes(
-        "alignmentBaseline"
+        "alignment-baseline"
       )
-    ).toBe(true));
+    ).toBe(false));
 
   test("getEventProps returns NO svg props", () =>
     expect(getEventProps().includes("cx")).toBe(false));
