@@ -17,19 +17,23 @@ describe("no duplicated props returned", () => {
     expect(getGlobalProps().length).toEqual(uniq(getGlobalProps()).length);
   });
   test(`getElementProps(<html>)`, () => {
-    expect(getElementProps("div").length).toEqual(uniq(method()).length);
+    expect(getElementProps("div").length).toEqual(
+      uniq(getElementProps("div")).length
+    );
   });
   test(`getElementProps(<svg>)`, () => {
-    expect(getElementProps("polygon").length).toEqual(uniq(method()).length);
+    expect(getElementProps("polygon").length).toEqual(
+      uniq(getElementProps("polygon")).length
+    );
   });
   test(`getElementProps(<html>) {only: react}`, () => {
     expect(getElementProps("div", { onlyReact: true }).length).toEqual(
-      uniq(method()).length
+      uniq(getElementProps("div", { onlyReact: true })).length
     );
   });
   test(`getElementProps(<svg>) {only: react}`, () => {
     expect(getElementProps("polygon", { onlyReact: true }).length).toEqual(
-      uniq(method()).length
+      uniq(getElementProps("polygon", { onlyReact: true })).length
     );
   });
 });

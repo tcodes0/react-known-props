@@ -3,14 +3,13 @@ const { mapHtmlPropToReactProp } = require("../lists/react");
 const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
 
 const removeNonReactProps = arr =>
-  arr
-    .map(
-      prop =>
-        mapHtmlPropToReactProp[prop] ? mapHtmlPropToReactProp[prop] : prop
-    )
-    .map(
-      prop => (mapSvgPropToReactProp[prop] ? mapSvgPropToReactProp[prop] : prop)
-    );
+  arr.reduce(
+    (acc, prop) =>
+      mapHtmlPropToReactProp[prop] || mapSvgPropToReactProp[prop]
+        ? acc
+        : [...acc, prop],
+    []
+  );
 
 const removeLegacy = arr =>
   arr.filter(prop => propsLegacyGlobal.indexOf(prop) === -1);
