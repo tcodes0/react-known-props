@@ -1,8 +1,8 @@
 # React Known Props
 
 A list of all props React groks.
-- Html props valid on any element (I call them global).
-- Html element specific props.
+- Html & svg props valid on any element (I call them global).
+- Html & svg element specific props.
 - Aria props (includes `role`).
 - React event props.
 - React specific props.
@@ -37,7 +37,7 @@ getAllProps({legacy: true})
 getAllProps().length
 
 //returns
-304
+674
 ```
 > getElementProps
 
@@ -48,8 +48,10 @@ Gets all props valid on the element provided as argument, plus all aria props, i
 
 getElementProps("img")
 getElementProps("iframe")
+getElementProps("ellipse")
 getElementProps("table", {legacy: true})
 getElementProps("audio", {onlyReact: true})
+getElementProps("polygon", {onlyReact: true})
 
 //this
 getElementProps("img")
@@ -87,7 +89,7 @@ getEventProps()
 ```
 > getGlobalProps
 
-Gets all html props valid on any element, plus all aria props including `role`.
+Gets all html and svg props valid on any element, plus all aria props including `role`.
 ```js
 // argument 1 (optional): an options object.
 
@@ -129,7 +131,7 @@ getAllProps()
 
 -  **onlyReact**: _boolean_. Default: false.
 
-Whether to return only the React version of a prop, or both versions. In React, some props are used in camelCase and using the classic lowercase name will show a warning. Since the warning can be educational this option is off by default.
+Whether to return only the React version of a prop, or both versions. In React, some html props are used in camelCase and using the classic lowercase name will show a warning. Same with svg. Since the warning can be educational this option is off by default.
 ```js
 // examples:
 
@@ -143,17 +145,24 @@ getElementProps("label", {onlyReact: false})
 getGlobalProps({onlyReact: true})
 ```
 
+#### Some svg props not included
+
+React doesn't like all svg props, some prevent it from compiling and print an error to console. They are:
+ - All prefixed by xml:*
+ - All prefixed by xlink:*
+ - All prefixed by on* (events)
+ - ev:event.
+
 #### Need more props?
 
 I'd use these packages:
 
-- svg props: `yarn add svg-tag-names`
 - void html elements (\<img\/\>): `yarn add void-elements`
 - css props: `yarn add known-css-properties`
 
 ### Contributing
 
-All data pulled from MDN web docs, official React docs and the aria specification.
+All data pulled from MDN web docs, official React docs, the aria specification and svg specification.
 MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
 
 ⚛️ React is awesome 💫

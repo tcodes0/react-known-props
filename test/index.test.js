@@ -6,14 +6,32 @@ const {
 } = require("../src/index.js");
 const { uniq } = require("lodash");
 
-describe("all react known props methods...", () => {
-  [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
-    method => {
-      test(`no duplicated props`, () => {
-        expect(method().length).toEqual(uniq(method()).length);
-      });
-    }
-  );
+describe("no duplicated props returned", () => {
+  test(`getAllProps()`, () => {
+    expect(getAllProps().length).toEqual(uniq(getAllProps()).length);
+  });
+  test(`getEventProps()`, () => {
+    expect(getEventProps().length).toEqual(uniq(getEventProps()).length);
+  });
+  test(`getGlobalProps()`, () => {
+    expect(getGlobalProps().length).toEqual(uniq(getGlobalProps()).length);
+  });
+  test(`getElementProps(<html>)`, () => {
+    expect(getElementProps("div").length).toEqual(uniq(method()).length);
+  });
+  test(`getElementProps(<svg>)`, () => {
+    expect(getElementProps("polygon").length).toEqual(uniq(method()).length);
+  });
+  test(`getElementProps(<html>) {only: react}`, () => {
+    expect(getElementProps("div", { onlyReact: true }).length).toEqual(
+      uniq(method()).length
+    );
+  });
+  test(`getElementProps(<svg>) {only: react}`, () => {
+    expect(getElementProps("polygon", { onlyReact: true }).length).toEqual(
+      uniq(method()).length
+    );
+  });
 });
 
 describe("getAllProps", () => {
