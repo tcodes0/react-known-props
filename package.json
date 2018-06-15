@@ -26,6 +26,7 @@
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
+    "test:quiet": "jest --useStderr 2>&1 | grep '✕' || echo ",
     "build": "babel src -d dist",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",

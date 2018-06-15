@@ -4,9 +4,20 @@ const {
   getEventProps,
   getGlobalProps
 } = require("../src/index.js");
+const { uniq } = require("lodash");
+
+describe("all react known props methods...", () => {
+  [getAllProps, getElementProps, getEventProps, getGlobalProps].forEach(
+    method => {
+      test(`no duplicated props`, () => {
+        expect(method().length).toEqual(uniq(method()).length);
+      });
+    }
+  );
+});
 
 describe("getAllProps", () => {
-  describe("invalid input", () => {
+  describe("behavior on invalid input", () => {
     test("int", () => {
       expect(getAllProps(66)).toBe(undefined);
     });
@@ -35,6 +46,27 @@ describe("getAllProps", () => {
     expect(getAllProps({ legacy: true }).includes("bgcolor")).toBe(true);
     expect(getAllProps({ legacy: true }).includes("border")).toBe(true);
   });
+});
+
+describe("getEventProps", () => {
+  describe("invalid input", () => {
+    test("int", () => {
+      expect(getEventProps(66)).toBe(getEventProps());
+    });
+  });
+  test("{} returns default", () => {
+    expect(getEventProps()).toEqual(getEventProps({}));
+  });
+  test("all props match /^on[A-Z]/", () => {
+    expect(getEventProps().filter(p => /^on[A-Z]/.test(p))).toEqual(
+      getEventProps()
+    );
+  });
+});
+
+describe("getGlobalProps", () => {
+  test("getGlobalProps with onlyReact is default", () =>
+    expect(getGlobalProps()).toEqual(getGlobalProps({ onlyReact: true })));
 });
 
 describe("getElementProps", () => {
@@ -107,7 +139,7 @@ describe("issue 4, height width ", () => {
   );
 });
 
-describe("issue 3, return both names", () => {
+describe("return both names #3", () => {
   test("return both names by default, getElement", () => {
     expect(
       getElementProps("label").includes("for") &&
@@ -132,7 +164,7 @@ describe("issue 3, return both names", () => {
   });
 });
 
-describe("issue 2, checked defaultChecked", () => {
+describe("checked defaultChecked #2", () => {
   test("input, return checked and defaultChecked", () => {
     expect(
       getElementProps("input").includes("checked") &&
@@ -172,7 +204,7 @@ describe("multiple options in an object", () => {
   });
 });
 
-describe("issue 5, add aria", () => {
+describe("add aria #5", () => {
   test("aria prop in getGlobal, default options", () => {
     expect(getGlobalProps().includes("aria-expanded")).toBe(true);
   });
@@ -184,8 +216,69 @@ describe("issue 5, add aria", () => {
   });
 });
 
-// describe("bar", () => {
-//   test("foo", () => {
-//     expect(true).toBe(true);
-//   });
-// });
+describe("Include svg elements and props #6", () => {
+  test("getAll() returns global svg props", () =>
+    expect(getAllProps().includes("typeof")).toBe(true));
+
+  test("getAll() returns element svg props", () =>
+    expect(getAllProps().includes("focusable")).toBe(true));
+
+  test("getAll() {onlyreact: true} returns only react", () =>
+    expect(
+      getAllProps({ onlyReact: true }).includes("alignmentBaseline") &&
+        !getAllProps({ onlyReact: true }).includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getAll() {onlyreact: false} returns react and svg", () =>
+    expect(
+      getAllProps({ onlyReact: false }).includes("alignmentBaseline") &&
+        getAllProps({ onlyReact: false }).includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getAll() {} returns react and svg", () =>
+    expect(
+      getAllProps({ onlyReact: false }).includes("alignmentBaseline") &&
+        getAllProps({ onlyReact: false }).includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getElement(<svg>) returns element svg props", () =>
+    expect(getElementProps("ellipse").includes("cx")).toBe(true));
+
+  test("getElement(<svg>) returns global svg props", () =>
+    expect(getElementProps("ellipse").includes("typeof")).toBe(true));
+
+  test("getElement for elements both in html and svg has no duplicate props", () =>
+    expect(getElementProps("video")).toEqual(uniq(getElementProps("video"))));
+
+  test("getElement(<svg>) {onlyreact: true} returns only react", () =>
+    expect(
+      getElementProps("ellipse", { onlyReact: true }).includes(
+        "alignmentBaseline"
+      ) &&
+        !getElementProps("ellipse", { onlyReact: true }).includes(
+          "alignment-baseline"
+        )
+    ).toBe(true));
+
+  test("getElement(<svg>) {onlyreact: false} returns react and svg", () =>
+    expect(
+      getElementProps("ellipse", { onlyReact: false }).includes(
+        "alignmentBaseline"
+      ) &&
+        getElementProps("ellipse", { onlyReact: false }).includes(
+          "alignment-baseline"
+        )
+    ).toBe(true));
+
+  test("getElement(<svg>) {} returns react and svg", () =>
+    expect(
+      getElementProps("ellipse").includes("alignmentBaseline") &&
+        getElementProps("ellipse").includes("alignment-baseline")
+    ).toBe(true));
+
+  test("getEventProps returns NO svg props", () =>
+    expect(getEventProps().includes("cx")).toBe(false));
+
+  test("getGlobalProps returns svg global props", () =>
+    expect(getGlobalProps().includes("typeof")).toBe(true));
+});

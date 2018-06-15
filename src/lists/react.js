@@ -100,7 +100,6 @@ module.exports.propsEvents = [
   "onEmptied",
   "onEncrypted",
   "onEnded",
-  "onError",
   "onLoadedData",
   "onLoadedMetadata",
   "onLoadStart",
@@ -125,7 +124,7 @@ module.exports.propsEvents = [
   "onToggle"
 ];
 
-module.exports.propsGlobalReactExtras = [
+module.exports.propsGlobalReact = [
   "dangerouslySetInnerHTML",
   "suppressContentEditableWarning",
   "suppressHydrationWarning",

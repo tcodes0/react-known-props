@@ -1,15 +1,19 @@
-const { propsEvents } = require("./lists/react");
-const { propsAria } = require("./lists/aria");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
-const {
-  getMapReactAndHtmlPropsToElements
-} = require("./utils/getMapReactAndHtmlPropsToElements");
+const { mapSvgReactProps } = require("./utils/mapSvgToReact");
+const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
+const { duplicateReducer } = require("./utils/duplicateReducer");
+const { getGlobalProps } = require("./getGlobalProps");
+const { getEventProps } = require("./getEventProps");
+
+// removing 4 duplicated props here
+const { style, title, rel, content, ...svgHtml } = Object.assign(
+  mapSvgReactProps,
+  mapReactHtmlProps
+);
 
 module.exports.getAllProps = options =>
   parseOptionsObject(options, () => [
-    ...getReactGlobalProps(),
-    ...propsEvents,
-    ...propsAria,
-    ...Object.keys(getMapReactAndHtmlPropsToElements)
+    ...getGlobalProps(),
+    ...getEventProps(),
+    ...Object.keys(svgHtml)
   ]);

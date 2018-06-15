@@ -1,11 +1,6 @@
 const { propsAria } = require("./lists/aria");
-const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
-const { getElementSpecificProps } = require("./utils/getElementSpecificProps");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
+const { elementProps } = require("./utils/elementProps");
 
 module.exports.getElementProps = (element, options) =>
-  parseOptionsObject(options, () => [
-    ...getElementSpecificProps(element),
-    ...getReactGlobalProps(),
-    ...propsAria
-  ]);
+  parseOptionsObject(options, () => [...elementProps(element), ...propsAria]);
