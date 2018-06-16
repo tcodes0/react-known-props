@@ -3,7 +3,7 @@ const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
 const { arrayToMap } = require("../utils/arrayToMap");
 const { mapReactHtmlProps } = require("./mapReactHtmlProps");
-const mapSvgReactProps = require("../lists/mapSvgReactProps.json");
+const { mapSvgReactProps } = require("./mapSvgToReact");
 
 // html and svg share these elements
 const commonElements = [

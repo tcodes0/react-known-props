@@ -1,6 +1,6 @@
 const { propsLegacyGlobal } = require("../lists/html");
 const { mapHtmlPropToReactProp } = require("../lists/react");
-const mapSvgPropToReactProp = require("../lists/mapSvgPropToReactProp.json");
+const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
 
 const removeNonReactProps = arr =>
   arr.reduce(
