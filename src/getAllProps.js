@@ -1,5 +1,5 @@
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { mapSvgReactProps } = require("./utils/mapSvgToReact");
+const mapSvgReactProps = require("./lists/mapSvgReactProps.json");
 const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
 const { getGlobalProps } = require("./getGlobalProps");
 const { getEventProps } = require("./getEventProps");

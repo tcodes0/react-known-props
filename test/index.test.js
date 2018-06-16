@@ -38,7 +38,7 @@ describe("no duplicated props returned", () => {
   });
 });
 
-describe("getAllProps", () => {
+describe.only("getAllProps", () => {
   describe("behavior on invalid input", () => {
     test("int", () => {
       expect(getAllProps(66)).toBe(undefined);
@@ -49,6 +49,9 @@ describe("getAllProps", () => {
     test("bool", () => {
       expect(getAllProps(true)).toBe(undefined);
     });
+  });
+  test("no duplicated props returned", () => {
+    expect(getAllProps().length).toEqual(uniq(getAllProps()).length);
   });
   test("{} returns default", () => {
     expect(getAllProps()).toEqual(getAllProps({}));

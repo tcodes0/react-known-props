@@ -1,6 +1,7 @@
 const { camelCase } = require("lodash");
 const { mapPropsToElementsSvg } = require("../lists/svg");
 const { lowerCase } = require("lodash");
+const fs = require("fs");
 
 const lowerCaseSpaceless = input => lowerCase(input).replace(/ /g, "");
 
@@ -115,9 +116,7 @@ const mapSvgPropToReactProp = Object.assign(
   edgeCases
 );
 
-module.exports.mapSvgPropToReactProp = mapSvgPropToReactProp;
-
-module.exports.mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
+const mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
   (acc, prop) =>
     mapSvgPropToReactProp[prop]
       ? Object.assign(
@@ -127,4 +126,16 @@ module.exports.mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
         )
       : Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
   {}
+);
+
+fs.writeFile(
+  "./src/lists/mapSvgReactProps.json",
+  JSON.stringify(mapSvgReactProps, 0, 2) + "\n",
+  e => console.table(e) //eslint-disable-line no-console
+);
+
+fs.writeFile(
+  "./src/lists/mapSvgPropToReactProp.json",
+  JSON.stringify(mapSvgPropToReactProp, 0, 2) + "\n",
+  e => console.table(e) //eslint-disable-line no-console
 );

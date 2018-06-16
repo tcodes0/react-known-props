@@ -26,9 +26,10 @@
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
-    "benchmark": "node benchmark/index.js",
+    "benchmark": "yarn build 1>/dev/null && node benchmark/index.js",
     "test:quiet": "jest --useStderr 2>&1 | grep '✕' || echo ",
-    "build": "babel src -d dist",
+    "build": "yarn build:lists && babel src -d dist",
+    "build:lists": "node src/build/*.js && cp src/lists/*json dist/lists/",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
