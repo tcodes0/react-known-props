@@ -1,7 +1,7 @@
 {
   "name": "react-known-props",
   "version": "2.1.0",
-  "description": "Props from React and html, renamed when appropriate (class => className)",
+  "description": "About 700 props React recognizes",
   "license": "BSD-3-Clause",
   "main": "dist/index.js",
   "homepage": "https://github.com/thomazella/react-known-props#readme",
@@ -43,15 +43,19 @@
     "legacy",
     "html"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^23.1.0",
-    "lodash": "^4.17.10",
     "prettier": "^1.13.4"
   }
 }

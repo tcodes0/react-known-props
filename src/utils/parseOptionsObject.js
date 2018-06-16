@@ -19,8 +19,9 @@ module.exports.parseOptionsObject = (input, func) => {
 
   // catch invalid arguments
   if (input !== undefined && typeof input !== "object") {
+    //eslint-disable-next-line no-console
     console.error(
-      `[react-known-props] Invalid options obect: ${input.toString()}`
+      `[react-known-props] Invalid options object: ${input.toString()}`
     );
     return out;
   }

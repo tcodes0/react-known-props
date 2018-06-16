@@ -1,27 +1,3 @@
-const dupProps = [
-  "style",
-  "title",
-  "download",
-  "href",
-  "hrefLang",
-  "hreflang",
-  "target",
-  "type",
-  "max",
-  "min",
-  "height",
-  "width",
-  "name",
-  "crossOrigin",
-  "crossorigin",
-  "media",
-  "playbackorder",
-  "timelinebegin",
-  "method",
-  "content",
-  "rel"
-];
-
 module.exports.propsGlobalSvg = [
   "about",
   "class",

@@ -1,11 +1,11 @@
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
 const { mapSvgReactProps } = require("./utils/mapSvgToReact");
 const { mapReactHtmlProps } = require("./utils/mapReactHtmlProps");
-const { duplicateReducer } = require("./utils/duplicateReducer");
 const { getGlobalProps } = require("./getGlobalProps");
 const { getEventProps } = require("./getEventProps");
 
 // removing 4 duplicated props here
+// eslint-disable-next-line no-unused-vars
 const { style, title, rel, content, ...svgHtml } = Object.assign(
   mapSvgReactProps,
   mapReactHtmlProps
