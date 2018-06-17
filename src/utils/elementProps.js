@@ -1,4 +1,4 @@
-const { getReactGlobalProps } = require("./getReactGlobalProps");
+const { reactGlobalProps } = require("../lists/reactGlobalProps");
 const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
 const { arrayToMap } = require("../utils/arrayToMap");
@@ -40,14 +40,14 @@ const mapElementSpecificProps = element => {
 
 const mapElementGlobalProps = element => {
   if (commonElements.indexOf(element) > -1) {
-    return arrayToMap([...propsGlobalSvg, ...getReactGlobalProps()]);
+    return arrayToMap([...propsGlobalSvg, ...reactGlobalProps]);
   }
 
   //return globalSvg or globalHTML props accordingly
   return ifSvg(
     element,
     () => arrayToMap(propsGlobalSvg),
-    () => arrayToMap(getReactGlobalProps())
+    () => arrayToMap(reactGlobalProps)
   );
 };
 

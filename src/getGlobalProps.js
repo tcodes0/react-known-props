@@ -1,10 +1,10 @@
-const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
+const { reactGlobalProps } = require("./lists/reactGlobalProps");
 const { propsAria } = require("./lists/aria");
 const { propsGlobalSvg } = require("./lists/svg");
 const { arrayToMap } = require("./utils/arrayToMap");
 
 const svgHtmlGlobals = Object.assign(
-  arrayToMap(getReactGlobalProps()),
+  arrayToMap(reactGlobalProps),
   arrayToMap(propsGlobalSvg)
 );
 
