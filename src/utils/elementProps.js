@@ -2,6 +2,7 @@ const { getReactGlobalProps } = require("./getReactGlobalProps");
 const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
 const { arrayToMap } = require("../utils/arrayToMap");
+const { getElementPropsFromMap } = require("../utils/getElementPropsFromMap");
 const { mapReactHtmlProps } = require("./mapReactHtmlProps");
 const { mapSvgReactProps } = require("./mapSvgToReact");
 
@@ -21,15 +22,6 @@ const commonElements = [
 
 const ifSvg = (tag, svgFn, htmlFn) =>
   elements.indexOf(tag) === -1 ? svgFn() : htmlFn();
-
-const getElementPropsFromMap = (map, element) =>
-  Object.keys(map).reduce(
-    (acc, prop) =>
-      map[prop].indexOf(element) >= 0
-        ? Object.assign(acc, { [prop]: prop })
-        : acc,
-    {}
-  );
 
 const mapElementSpecificProps = element => {
   if (commonElements.indexOf(element) > -1) {

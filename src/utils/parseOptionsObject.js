@@ -1,6 +1,9 @@
-const { propsLegacyGlobal } = require("../lists/html");
 const { mapHtmlPropToReactProp } = require("../lists/react");
 const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
+const {
+  mapElementsToPropsLegacy,
+  propsLegacyHtmlSvg
+} = require("../lists/html");
 
 const removeNonReactProps = arr =>
   arr.reduce(
@@ -11,10 +14,7 @@ const removeNonReactProps = arr =>
     []
   );
 
-const removeLegacy = arr =>
-  arr.filter(prop => propsLegacyGlobal.indexOf(prop) === -1);
-
-module.exports.parseOptionsObject = (input, func) => {
+module.exports.parseOptionsObject = (input, func, element) => {
   let out = undefined;
 
   // catch invalid arguments
@@ -32,11 +32,18 @@ module.exports.parseOptionsObject = (input, func) => {
     Object.keys(input).length === 0 ||
     (input.legacy === false && input.onlyReact === false)
   ) {
-    return removeLegacy(func());
+    return func();
   }
 
-  if (input.legacy === true) out = func();
-  if (input.legacy === false) out = removeLegacy(func());
+  if (input.legacy === true) {
+    if (Object.keys(mapElementsToPropsLegacy).indexOf(element) !== -1) {
+      out = mapElementsToPropsLegacy[element].concat(func());
+    } else {
+      out = propsLegacyHtmlSvg.concat(func());
+    }
+  }
+
+  if (input.legacy === false) out = func();
 
   if (input.onlyReact === true)
     out = out ? removeNonReactProps(out) : removeNonReactProps(func());

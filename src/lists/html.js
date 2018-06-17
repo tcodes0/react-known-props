@@ -51,19 +51,6 @@ module.exports.mapPropsToElements = {
   autocomplete: ["form", "input", "textarea"],
   autofocus: ["button", "input", "keygen", "select", "textarea"],
   autoplay: ["audio", "video"],
-  bgcolor: [
-    "body",
-    "col",
-    "colgroup",
-    "marquee",
-    "table",
-    "tbody",
-    "tfoot",
-    "td",
-    "th",
-    "tr"
-  ],
-  border: ["img", "object", "table"],
   buffered: ["audio", "video"],
   challenge: ["keygen"],
   charset: ["meta", "script"],
@@ -71,7 +58,6 @@ module.exports.mapPropsToElements = {
   cite: ["blockquote", "del", "ins", "q"],
   code: ["applet"],
   codebase: ["applet"],
-  color: ["basefont", "font", "hr"],
   cols: ["textarea"],
   colspan: ["td", "th"],
   content: ["meta"],
@@ -209,7 +195,45 @@ module.exports.mapPropsToElements = {
   wrap: ["textarea"]
 };
 
-module.exports.propsLegacyGlobal = ["bgcolor", "border", "color"];
+module.exports.mapPropsToElementsLegacy = {
+  bgcolor: [
+    "body",
+    "col",
+    "colgroup",
+    "marquee",
+    "table",
+    "tbody",
+    "tfoot",
+    "td",
+    "th",
+    "tr"
+  ],
+  border: ["img", "object", "table"],
+  color: ["basefont", "font", "hr"]
+};
+
+module.exports.mapElementsToPropsLegacy = {
+  body: ["bgcolor"],
+  col: ["bgcolor"],
+  colgroup: ["bgcolor"],
+  marquee: ["bgcolor"],
+  table: ["bgcolor", "border"],
+  tbody: ["bgcolor"],
+  tfoot: ["bgcolor"],
+  td: ["bgcolor"],
+  th: ["bgcolor"],
+  tr: ["bgcolor"],
+  img: ["border"],
+  object: ["border"],
+  border: ["img", "object", "table"],
+  basefont: ["color"],
+  font: ["color"],
+  hr: ["color"]
+};
+
+module.exports.propsLegacyHtml = ["bgcolor", "border", "color"];
+
+module.exports.propsLegacyHtmlSvg = ["bgcolor", "border"];
 
 module.exports.elements = [
   "a",
