@@ -1,4 +1,5 @@
 const { camelCase } = require("lodash");
+//costs 145k
 const { mapPropsToElementsSvg } = require("../lists/svg");
 const { lowerCase } = require("lodash");
 
@@ -109,6 +110,7 @@ const dashToCamel = Object.keys(noLower)
   .filter(prop => /[-]/.test(prop))
   .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
 
+//costs 11k
 const mapSvgPropToReactProp = Object.assign(
   dashToCamel,
   camelToLower,
