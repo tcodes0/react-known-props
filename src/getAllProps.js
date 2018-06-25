@@ -15,5 +15,5 @@ module.exports.getAllProps = options =>
   parseOptionsObject(options, () => [
     ...getGlobalProps(),
     ...getEventProps(),
-    ...Object.keys(svgHtml)
+    ...Object.keys(svgHtml) //save static arrays with props only for getall
   ]);
