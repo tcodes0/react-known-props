@@ -37,9 +37,9 @@ module.exports.parseOptionsObject = (input, func, element) => {
 
   if (input.legacy === true) {
     if (Object.keys(mapElementsToPropsLegacy).indexOf(element) !== -1) {
-      out = mapElementsToPropsLegacy[element].concat(func());
+      out = [...mapElementsToPropsLegacy[element], ...func()];
     } else {
-      out = propsLegacyHtmlSvg.concat(func());
+      out = [...propsLegacyHtmlSvg, ...func()];
     }
   }
 

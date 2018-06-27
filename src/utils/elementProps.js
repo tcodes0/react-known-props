@@ -1,8 +1,6 @@
 const { reactGlobalProps } = require("../lists/reactGlobalProps");
 const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
-const { arrayToMap } = require("../utils/arrayToMap");
-const { getElementPropsFromMap } = require("../utils/getElementPropsFromMap");
 const { mapReactHtmlProps } = require("./mapReactHtmlProps");
 const { mapSvgReactProps } = require("./mapSvgToReact");
 
@@ -20,41 +18,32 @@ const commonElements = [
   "video"
 ];
 
-const ifSvg = (tag, svgFn, htmlFn) =>
-  elements.indexOf(tag) === -1 ? svgFn() : htmlFn();
+const getElementPropsFromMap = (map, element) =>
+  Object.keys(map).reduce(
+    (acc, prop) => (map[prop].indexOf(element) >= 0 ? [...acc, prop] : acc),
+    []
+  );
 
-const mapElementSpecificProps = element => {
+const isSvg = tag => elements.indexOf(tag) === -1;
+
+const dedupeFilter = (prop, index, array) => prop !== array[index + 1];
+
+module.exports.elementProps = element => {
   if (commonElements.indexOf(element) > -1) {
-    return Object.assign(
-      getElementPropsFromMap(mapReactHtmlProps, element),
-      getElementPropsFromMap(mapSvgReactProps, element)
-    );
+    return [
+      ...propsGlobalSvg,
+      ...reactGlobalProps,
+      ...getElementPropsFromMap(mapReactHtmlProps, element),
+      ...getElementPropsFromMap(mapSvgReactProps, element)
+    ]
+      .sort()
+      .filter(dedupeFilter);
   }
 
-  return ifSvg(
-    element,
-    () => getElementPropsFromMap(mapSvgReactProps, element),
-    () => getElementPropsFromMap(mapReactHtmlProps, element)
-  );
+  return isSvg(element)
+    ? [...getElementPropsFromMap(mapSvgReactProps, element), ...propsGlobalSvg]
+    : [
+        ...getElementPropsFromMap(mapReactHtmlProps, element),
+        ...reactGlobalProps
+      ];
 };
-
-const mapElementGlobalProps = element => {
-  if (commonElements.indexOf(element) > -1) {
-    return arrayToMap([...propsGlobalSvg, ...reactGlobalProps]);
-  }
-
-  //return globalSvg or globalHTML props accordingly
-  return ifSvg(
-    element,
-    () => arrayToMap(propsGlobalSvg),
-    () => arrayToMap(reactGlobalProps)
-  );
-};
-
-module.exports.elementProps = element =>
-  Object.keys(
-    Object.assign(
-      mapElementGlobalProps(element),
-      mapElementSpecificProps(element)
-    )
-  );

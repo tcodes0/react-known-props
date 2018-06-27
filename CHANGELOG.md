@@ -1,7 +1,7 @@
 ## during refactor
-- getElementProps('circle') x 7 thousand ops/sec
-- getElementProps('audio') x 11 thousand ops/sec
-- getElementProps('label') x 53 thousand ops/sec
+- getElementProps('circle') x 11 thousand ops/sec
+- getElementProps('audio') x 16 thousand ops/sec
+- getElementProps('label') x 146 thousand ops/sec
 - getAllProps x 326 thousand ops/sec
 - getGlobalProps() x 1,6 million ops/sec
 - getEventProps() x 973 million ops/sec

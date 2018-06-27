@@ -165,10 +165,16 @@ describe("issue 4, height width ", () => {
 });
 
 describe("return both names #3", () => {
-  test("return both names by default, getElement", () => {
+  test("return both names by default, getElementProps(label)", () => {
     expect(
       getElementProps("label").includes("for") &&
         getElementProps("label").includes("htmlFor")
+    ).toBe(true);
+  });
+  test("return both names by default, getElementProps(div)", () => {
+    expect(
+      getElementProps("div").includes("class") &&
+        getElementProps("div").includes("className")
     ).toBe(true);
   });
   test("onlyReact true omits classic names", () => {
@@ -183,8 +189,8 @@ describe("return both names #3", () => {
   });
   test("return both names by default, getGlobal", () => {
     expect(
-      getElementProps("div").includes("class") &&
-        getElementProps("div").includes("className")
+      getGlobalProps("div").includes("class") &&
+        getGlobalProps("div").includes("className")
     ).toBe(true);
   });
 });

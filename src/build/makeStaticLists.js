@@ -32,13 +32,14 @@ lists.push(
 
 lists.push(
   new staticList("reactGlobalProps", () => {
-    const getReactGlobalProps = propsGlobal
-      .reduce((acc, prop) => {
+    const getReactGlobalProps = [
+      ...propsGlobal.reduce((acc, prop) => {
         return mapHtmlPropToReactProp[prop]
           ? [...acc, mapHtmlPropToReactProp[prop], prop]
           : [...acc, prop];
-      }, [])
-      .concat(propsGlobalReact);
+      }, []),
+      ...propsGlobalReact
+    ];
 
     fs.writeFile(
       "./src/lists/reactGlobalProps.js",
