@@ -1,6 +1,6 @@
 const { mapSvgReactProps } = require("../utils/mapSvgToReact");
 const { mapReactHtmlProps } = require("../utils/mapReactHtmlProps");
-const { propsGlobal } = require("../lists/html");
+const { propsGlobal, elements } = require("../lists/html");
 const { mapHtmlPropToReactProp, propsGlobalReact } = require("../lists/react");
 const fs = require("fs");
 
@@ -10,6 +10,12 @@ class staticList {
     this.make = fn;
   }
 }
+
+const getElementPropsFromMap = (map, element) =>
+  Object.keys(map).reduce(
+    (acc, prop) => (map[prop].indexOf(element) >= 0 ? [...acc, prop] : acc),
+    []
+  );
 
 let lists = [];
 
@@ -44,6 +50,24 @@ lists.push(
     fs.writeFile(
       "./src/lists/reactGlobalProps.js",
       JSON.stringify(getReactGlobalProps, 0, 2) + "\n",
+      e => console.table(e) //eslint-disable-line no-console
+    );
+  })
+);
+
+lists.push(
+  new staticList("reactHtmlElementToPropsMap", () => {
+    const reactHtmlElementToPropsMap = elements.reduce(
+      (acc, el) =>
+        Object.assign(acc, {
+          [el]: getElementPropsFromMap(mapReactHtmlProps, el)
+        }),
+      {}
+    );
+
+    fs.writeFile(
+      "./src/lists/reactHtmlElementToPropsMap.js",
+      JSON.stringify(reactHtmlElementToPropsMap, 0, 2) + "\n",
       e => console.table(e) //eslint-disable-line no-console
     );
   })

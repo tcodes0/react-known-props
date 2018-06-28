@@ -1,8 +1,10 @@
 const { reactGlobalProps } = require("../lists/reactGlobalProps");
 const { propsGlobalSvg } = require("../lists/svg");
 const { elements } = require("../lists/html");
-const { mapReactHtmlProps } = require("./mapReactHtmlProps");
 const { mapSvgReactProps } = require("./mapSvgToReact");
+const {
+  reactHtmlElementToPropsMap
+} = require("../lists/reactHtmlElementToPropsMap");
 
 // html and svg share these elements
 const commonElements = [
@@ -33,7 +35,7 @@ module.exports.elementProps = element => {
     return [
       ...propsGlobalSvg,
       ...reactGlobalProps,
-      ...getElementPropsFromMap(mapReactHtmlProps, element),
+      ...reactHtmlElementToPropsMap[element],
       ...getElementPropsFromMap(mapSvgReactProps, element)
     ]
       .sort()
@@ -42,8 +44,5 @@ module.exports.elementProps = element => {
 
   return isSvg(element)
     ? [...getElementPropsFromMap(mapSvgReactProps, element), ...propsGlobalSvg]
-    : [
-        ...getElementPropsFromMap(mapReactHtmlProps, element),
-        ...reactGlobalProps
-      ];
+    : [...reactHtmlElementToPropsMap[element], ...reactGlobalProps];
 };
