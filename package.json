@@ -41,9 +41,9 @@
     "react",
     "props",
     "attributes",
-    "events",
-    "legacy",
-    "html"
+    "elements",
+    "svg",
+    "all"
   ],
   "dependencies": {
   },
