@@ -195,7 +195,7 @@ module.exports.htmlPropsToElementsMap = {
   wrap: ["textarea"]
 };
 
-module.exports.htmlPropsToLegacyElementsMap = {
+module.exports.legacyHTMLPropsToElementsMap = {
   bgcolor: [
     "body",
     "col",

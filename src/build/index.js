@@ -42,8 +42,8 @@ lists.push(
 );
 
 lists.push(
-  new propList("reactHtmlElementToPropsMap", () => {
-    const reactHtmlElementToPropsMap = htmlElements.reduce(
+  new propList("reactHtmlElementsToPropsMap", () => {
+    const reactHtmlElementsToPropsMap = htmlElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
           [el]: getElementPropsFromMap(reactExtraPropsMap, el)
@@ -52,8 +52,8 @@ lists.push(
     );
 
     fs.writeFile(
-      "./src/lists/reactHtmlElementToPropsMap.js",
-      JSON.stringify(reactHtmlElementToPropsMap, 0, 2) + "\n",
+      "./src/lists/reactHtmlElementsToPropsMap.js",
+      JSON.stringify(reactHtmlElementsToPropsMap, 0, 2) + "\n",
       e => console.table(e) //eslint-disable-line no-console
     );
   })
@@ -204,8 +204,8 @@ lists.push(
 );
 
 lists.push(
-  new propList("reactSvgElementToPropsMap", () => {
-    const reactSvgElementToPropsMap = svgElements.reduce(
+  new propList("reactSvgElementsToPropsMap", () => {
+    const reactSvgElementsToPropsMap = svgElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
           [el]: getElementPropsFromMap(svgReactPropsMap, el)
@@ -214,8 +214,8 @@ lists.push(
     );
 
     fs.writeFile(
-      "./src/lists/reactSvgElementToPropsMap.js",
-      JSON.stringify(reactSvgElementToPropsMap, 0, 2) + "\n",
+      "./src/lists/reactSvgElementsToPropsMap.js",
+      JSON.stringify(reactSvgElementsToPropsMap, 0, 2) + "\n",
       e => console.table(e) //eslint-disable-line no-console
     );
   })

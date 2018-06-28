@@ -1,4 +1,4 @@
-module.exports.reactSvgElementToPropsMap = {
+module.exports.reactSvgElementsToPropsMap = {
   a: [
     "alignmentBaseline",
     "alignment-baseline",

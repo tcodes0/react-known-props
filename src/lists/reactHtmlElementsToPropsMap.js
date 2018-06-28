@@ -1,4 +1,4 @@
-module.exports.reactHtmlElementToPropsMap = {
+module.exports.reactHtmlElementsToPropsMap = {
   a: [
     "download",
     "href",
