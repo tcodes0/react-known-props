@@ -14,40 +14,40 @@ const removeNonReactProps = arr =>
     []
   );
 
-module.exports.parseOptionsObject = (input, func, element) => {
+module.exports.parseOptionsObject = (optionObj, props, element) => {
   let out = undefined;
 
   // catch invalid arguments
-  if (input !== undefined && typeof input !== "object") {
+  if (optionObj !== undefined && typeof optionObj !== "object") {
     //eslint-disable-next-line no-console
     console.error(
-      `[react-known-props] Invalid options object: ${input.toString()}`
+      `[react-known-props] Invalid options object: ${optionObj.toString()}`
     );
     return out;
   }
 
   // default, no options action
   if (
-    input === undefined ||
-    Object.keys(input).length === 0 ||
-    (input.legacy === false && input.onlyReact === false)
+    optionObj === undefined ||
+    Object.keys(optionObj).length === 0 ||
+    (optionObj.legacy === false && optionObj.onlyReact === false)
   ) {
-    return func();
+    return props;
   }
 
-  if (input.legacy === true) {
+  if (optionObj.legacy === true) {
     if (Object.keys(htmlElementsToLegacyPropsMap).indexOf(element) !== -1) {
-      out = [...htmlElementsToLegacyPropsMap[element], ...func()];
+      out = [...htmlElementsToLegacyPropsMap[element], ...props];
     } else {
-      out = [...htmlSvgLegacyProps, ...func()];
+      out = [...htmlSvgLegacyProps, ...props];
     }
   }
 
-  if (input.legacy === false) out = func();
+  if (optionObj.legacy === false) out = props;
 
-  if (input.onlyReact === true)
-    out = out ? removeNonReactProps(out) : removeNonReactProps(func());
-  if (input.onlyReact === false) out = out ? out : func();
+  if (optionObj.onlyReact === true)
+    out = out ? removeNonReactProps(out) : removeNonReactProps(props);
+  if (optionObj.onlyReact === false) out = out ? out : props;
 
   return out;
 };

@@ -48,6 +48,6 @@ const elementProps = element => {
 module.exports.getElementProps = (element, options) =>
   parseOptionsObject(
     options,
-    () => [...elementProps(element), ...ariaProps],
+    [...elementProps(element), ...ariaProps],
     element
   );
