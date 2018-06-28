@@ -124,7 +124,7 @@ module.exports.reactEventprops = [
   "onToggle"
 ];
 
-module.exports.propsGlobalReact = [
+module.exports.reactGlobalProps = [
   "dangerouslySetInnerHTML",
   "suppressContentEditableWarning",
   "suppressHydrationWarning",
@@ -133,7 +133,7 @@ module.exports.propsGlobalReact = [
   "autoSave"
 ];
 
-module.exports.mapPropsToElementsReactExtras = {
+module.exports.reactExtraPropsMap = {
   defaultChecked: ["input"],
   autoCorrect: ["input"],
   defaultValue: ["input", "textarea"],

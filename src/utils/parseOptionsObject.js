@@ -1,5 +1,5 @@
 const { htmlPropToReactPropMap } = require("../lists/react");
-const { svgPropToReactPropMap } = require("../build/reactSvgPropsMap");
+const { svgPropToReactPropMap } = require("../lists/svgPropToReactPropMap");
 const {
   htmlElementsToLegacyPropsMap,
   htmlSvgLegacyProps
