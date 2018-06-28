@@ -1,8 +1,8 @@
-const { htmlPropsToElementsMap } = require("../lists/html");
+const { htmlPropsToElementsMap } = require("../lists/base/html");
 const {
   htmlPropToReactPropMap,
   reactExtraPropsMap
-} = require("../lists/react");
+} = require("../lists/base/react");
 
 const htmlPlusReactMap = Object.keys(htmlPropsToElementsMap).reduce(
   (acc, prop) => {

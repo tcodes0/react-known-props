@@ -1,6 +1,6 @@
 const { reactGlobalProps } = require("./lists/reactGlobalProps");
-const { ariaProps } = require("./lists/aria");
-const { svgGlobalProps } = require("./lists/svg");
+const { ariaProps } = require("./lists/base/aria");
+const { svgGlobalProps } = require("./lists/base/svg");
 
 const arrayToMap = arr =>
   arr.reduce((acc, p) => Object.assign(acc, { [p]: p }), {});

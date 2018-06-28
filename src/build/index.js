@@ -1,11 +1,14 @@
 const { svgReactPropsMap } = require("../build/reactSvgPropsMap");
 const { reactExtraPropsMap } = require("../build/reactHtmlPropsMap");
-const { htmlGlobalProps, htmlElements } = require("../lists/html");
-const { svgElements, svgPropsToElementsMap } = require("../lists/svg");
-const { htmlPropToReactPropMap, reactGlobalProps } = require("../lists/react");
+const { htmlGlobalProps, htmlElements } = require("../lists/base/html");
+const { svgElements, svgPropsToElementsMap } = require("../lists/base/svg");
 const { camelCase } = require("lodash");
 const { lowerCase } = require("lodash");
 const fs = require("fs");
+const {
+  htmlPropToReactPropMap,
+  reactGlobalProps
+} = require("../lists/base/react");
 
 class propList {
   constructor(name, fn) {

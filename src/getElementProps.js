@@ -1,8 +1,8 @@
-const { ariaProps } = require("./lists/aria");
+const { ariaProps } = require("./lists/base/aria");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
 const { reactGlobalProps } = require("./lists/reactGlobalProps");
-const { svgGlobalProps } = require("./lists/svg");
-const { htmlElements } = require("./lists/html");
+const { svgGlobalProps } = require("./lists/base/svg");
+const { htmlElements } = require("./lists/base/html");
 const {
   reactHtmlElementsToPropsMap
 } = require("./lists/reactHtmlElementsToPropsMap");
