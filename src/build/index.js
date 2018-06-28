@@ -2,9 +2,8 @@ const fs = require("fs");
 const { camelCase, lowerCase } = require("lodash");
 const { svgElements, svgPropsToElementsMap } = require("./svgProps");
 const { htmlGlobalProps } = require("./htmlProps");
-const { reactGlobalProps } = require("./reactProps");
+const { reactGlobalProps, reactExtraPropsMap } = require("./reactProps");
 const { svgReactPropsMap } = require("../build/reactSvgPropsMap");
-const { reactExtraPropsMap } = require("../build/reactHtmlPropsMap");
 const { htmlElements } = require("../lists/base/html");
 const { htmlPropToReactPropMap } = require("../lists/base/react");
 
