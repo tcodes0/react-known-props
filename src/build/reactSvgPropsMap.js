@@ -1,4 +1,4 @@
-const { svgPropsToElementsMap } = require("../lists/base/svg");
+const { svgPropsToElementsMap } = require("./svgProps");
 const { svgPropToReactPropMap } = require("../lists/svgPropToReactPropMap");
 
 module.exports.svgReactPropsMap = Object.keys(svgPropsToElementsMap).reduce(
