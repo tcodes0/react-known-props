@@ -1,6 +1,5 @@
 const { camelCase } = require("lodash");
-//costs 145k
-const { mapPropsToElementsSvg } = require("../lists/svg");
+const { svgPropsToElementsMap } = require("../lists/svg");
 const { lowerCase } = require("lodash");
 
 const lowerCaseSpaceless = input => lowerCase(input).replace(/ /g, "");
@@ -89,10 +88,10 @@ const edgeCases = {
 };
 
 //remove lowercase props, they are passed as-is to React
-const noLower = Object.keys(mapPropsToElementsSvg)
+const noLower = Object.keys(svgPropsToElementsMap)
   .filter(prop => !/^[a-z0-9]+$/.test(prop))
   .reduce(
-    (acc, prop) => Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
+    (acc, prop) => Object.assign(acc, { [prop]: svgPropsToElementsMap[prop] }),
     {}
   );
 
@@ -111,22 +110,22 @@ const dashToCamel = Object.keys(noLower)
   .reduce((acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }), {});
 
 //costs 11k
-const mapSvgPropToReactProp = Object.assign(
+const svgPropToReactPropMap = Object.assign(
   dashToCamel,
   camelToLower,
   edgeCases
 );
 
-module.exports.mapSvgPropToReactProp = mapSvgPropToReactProp;
+module.exports.svgPropToReactPropMap = svgPropToReactPropMap;
 
-module.exports.mapSvgReactProps = Object.keys(mapPropsToElementsSvg).reduce(
+module.exports.svgReactPropsMap = Object.keys(svgPropsToElementsMap).reduce(
   (acc, prop) =>
-    mapSvgPropToReactProp[prop]
+    svgPropToReactPropMap[prop]
       ? Object.assign(
           acc,
-          { [mapSvgPropToReactProp[prop]]: mapPropsToElementsSvg[prop] },
-          { [prop]: mapPropsToElementsSvg[prop] }
+          { [svgPropToReactPropMap[prop]]: svgPropsToElementsMap[prop] },
+          { [prop]: svgPropsToElementsMap[prop] }
         )
-      : Object.assign(acc, { [prop]: mapPropsToElementsSvg[prop] }),
+      : Object.assign(acc, { [prop]: svgPropsToElementsMap[prop] }),
   {}
 );

@@ -1,14 +1,14 @@
-const { mapHtmlPropToReactProp } = require("../lists/react");
-const { mapSvgPropToReactProp } = require("../utils/mapSvgToReact");
+const { htmlPropToReactPropMap } = require("../lists/react");
+const { svgPropToReactPropMap } = require("../build/reactSvgPropsMap");
 const {
-  mapElementsToPropsLegacy,
-  propsLegacyHtmlSvg
+  htmlElementsToLegacyPropsMap,
+  htmlSvgLegacyProps
 } = require("../lists/html");
 
 const removeNonReactProps = arr =>
   arr.reduce(
     (acc, prop) =>
-      mapHtmlPropToReactProp[prop] || mapSvgPropToReactProp[prop]
+      htmlPropToReactPropMap[prop] || svgPropToReactPropMap[prop]
         ? acc
         : [...acc, prop],
     []
@@ -36,10 +36,10 @@ module.exports.parseOptionsObject = (input, func, element) => {
   }
 
   if (input.legacy === true) {
-    if (Object.keys(mapElementsToPropsLegacy).indexOf(element) !== -1) {
-      out = [...mapElementsToPropsLegacy[element], ...func()];
+    if (Object.keys(htmlElementsToLegacyPropsMap).indexOf(element) !== -1) {
+      out = [...htmlElementsToLegacyPropsMap[element], ...func()];
     } else {
-      out = [...propsLegacyHtmlSvg, ...func()];
+      out = [...htmlSvgLegacyProps, ...func()];
     }
   }
 

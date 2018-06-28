@@ -1,5 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
-module.exports.propsGlobal = [
+module.exports.htmlGlobalProps = [
   "accesskey",
   "autocapitalize",
   "class",
@@ -26,7 +26,7 @@ module.exports.propsGlobal = [
   "translate"
 ];
 
-module.exports.mapPropsToElements = {
+module.exports.htmlPropsToElementsMap = {
   accept: ["form", "input"],
   "accept-charset": ["form"],
   action: ["form"],
@@ -195,7 +195,7 @@ module.exports.mapPropsToElements = {
   wrap: ["textarea"]
 };
 
-module.exports.mapPropsToElementsLegacy = {
+module.exports.htmlPropsToLegacyElementsMap = {
   bgcolor: [
     "body",
     "col",
@@ -212,7 +212,7 @@ module.exports.mapPropsToElementsLegacy = {
   color: ["basefont", "font", "hr"]
 };
 
-module.exports.mapElementsToPropsLegacy = {
+module.exports.htmlElementsToLegacyPropsMap = {
   body: ["bgcolor"],
   col: ["bgcolor"],
   colgroup: ["bgcolor"],
@@ -231,11 +231,11 @@ module.exports.mapElementsToPropsLegacy = {
   hr: ["color"]
 };
 
-module.exports.propsLegacyHtml = ["bgcolor", "border", "color"];
+module.exports.htmlLegacyProps = ["bgcolor", "border", "color"];
 
-module.exports.propsLegacyHtmlSvg = ["bgcolor", "border"];
+module.exports.htmlSvgLegacyProps = ["bgcolor", "border"];
 
-module.exports.elements = [
+module.exports.htmlElements = [
   "a",
   "abbr",
   "acronym",
@@ -377,7 +377,7 @@ module.exports.elements = [
   "xmp"
 ];
 
-module.exports.elementsObsolete = [
+module.exports.htmlObsoleteElements = [
   "acronym",
   "applet",
   "basefont",
@@ -404,7 +404,7 @@ module.exports.elementsObsolete = [
   "xmp"
 ];
 
-module.exports.elementsDeprecated = [
+module.exports.htmlDeprecatedElements = [
   "content",
   "frame",
   "frameset",
@@ -414,7 +414,7 @@ module.exports.elementsDeprecated = [
   "shadow"
 ];
 
-module.exports.elementsNonStandard = [
+module.exports.htmlNonStandardElements = [
   "bgsound",
   "image",
   "multicol",
@@ -422,4 +422,4 @@ module.exports.elementsNonStandard = [
   "noembed"
 ];
 
-module.exports.elementsExperimental = ["dialog", "hgroup"];
+module.exports.htmlExperimentalElements = ["dialog", "hgroup"];

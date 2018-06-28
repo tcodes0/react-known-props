@@ -1,4 +1,4 @@
-module.exports.mapHtmlPropToReactProp = {
+module.exports.htmlPropToReactPropMap = {
   allowtransparency: "allowTransparency",
   charset: "charSet",
   class: "className",
@@ -42,7 +42,7 @@ module.exports.mapHtmlPropToReactProp = {
   "http-equiv": "httpEquiv"
 };
 
-module.exports.propsEvents = [
+module.exports.reactEventprops = [
   "onBlur",
   "onChange",
   "onClick",

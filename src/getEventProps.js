@@ -1,3 +1,3 @@
-const { propsEvents } = require("./lists/react");
+const { reactEventprops } = require("./lists/react");
 
-module.exports.getEventProps = () => propsEvents;
+module.exports.getEventProps = () => reactEventprops;

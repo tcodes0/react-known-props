@@ -1,4 +1,4 @@
-module.exports.propsAria = [
+module.exports.ariaProps = [
   "aria-activedescendant",
   "aria-atomic",
   "aria-autocomplete",

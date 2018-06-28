@@ -1,8 +1,8 @@
-const { mapSvgReactProps } = require("../utils/mapSvgToReact");
-const { mapReactHtmlProps } = require("../utils/mapReactHtmlProps");
-const { propsGlobal, elements } = require("../lists/html");
+const { svgReactPropsMap } = require("../build/reactSvgPropsMap");
+const { reactHtmlPropsMap } = require("../build/reactHtmlPropsMap");
+const { htmlGlobalProps, htmlElements } = require("../lists/html");
 const { svgElements } = require("../lists/svg");
-const { mapHtmlPropToReactProp, propsGlobalReact } = require("../lists/react");
+const { htmlPropToReactPropMap, propsGlobalReact } = require("../lists/react");
 const fs = require("fs");
 
 class staticList {
@@ -25,8 +25,8 @@ lists.push(
     // removing 4 duplicated props here
     // eslint-disable-next-line
     const { style, title, rel, content, ...svgHtml } = Object.assign(
-      mapSvgReactProps,
-      mapReactHtmlProps
+      svgReactPropsMap,
+      reactHtmlPropsMap
     );
 
     fs.writeFile(
@@ -40,9 +40,9 @@ lists.push(
 lists.push(
   new staticList("reactGlobalProps", () => {
     const getReactGlobalProps = [
-      ...propsGlobal.reduce((acc, prop) => {
-        return mapHtmlPropToReactProp[prop]
-          ? [...acc, mapHtmlPropToReactProp[prop], prop]
+      ...htmlGlobalProps.reduce((acc, prop) => {
+        return htmlPropToReactPropMap[prop]
+          ? [...acc, htmlPropToReactPropMap[prop], prop]
           : [...acc, prop];
       }, []),
       ...propsGlobalReact
@@ -58,10 +58,10 @@ lists.push(
 
 lists.push(
   new staticList("reactHtmlElementToPropsMap", () => {
-    const reactHtmlElementToPropsMap = elements.reduce(
+    const reactHtmlElementToPropsMap = htmlElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(mapReactHtmlProps, el)
+          [el]: getElementPropsFromMap(reactHtmlPropsMap, el)
         }),
       {}
     );
@@ -79,7 +79,7 @@ lists.push(
     const reactSvgElementToPropsMap = svgElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(mapSvgReactProps, el)
+          [el]: getElementPropsFromMap(svgReactPropsMap, el)
         }),
       {}
     );
