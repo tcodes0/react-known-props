@@ -4,7 +4,6 @@ const {
   mapPropsToElementsReactExtras
 } = require("../lists/react");
 
-// reduce costs 11k
 const mapHtmlPlusReact = Object.keys(mapPropsToElements).reduce((acc, prop) => {
   return mapHtmlPropToReactProp[prop]
     ? Object.assign(acc, {

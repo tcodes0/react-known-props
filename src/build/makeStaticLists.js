@@ -1,6 +1,7 @@
 const { mapSvgReactProps } = require("../utils/mapSvgToReact");
 const { mapReactHtmlProps } = require("../utils/mapReactHtmlProps");
 const { propsGlobal, elements } = require("../lists/html");
+const { svgElements } = require("../lists/svg");
 const { mapHtmlPropToReactProp, propsGlobalReact } = require("../lists/react");
 const fs = require("fs");
 
@@ -68,6 +69,24 @@ lists.push(
     fs.writeFile(
       "./src/lists/reactHtmlElementToPropsMap.js",
       JSON.stringify(reactHtmlElementToPropsMap, 0, 2) + "\n",
+      e => console.table(e) //eslint-disable-line no-console
+    );
+  })
+);
+
+lists.push(
+  new staticList("reactSvgElementToPropsMap", () => {
+    const reactSvgElementToPropsMap = svgElements.reduce(
+      (acc, el) =>
+        Object.assign(acc, {
+          [el]: getElementPropsFromMap(mapSvgReactProps, el)
+        }),
+      {}
+    );
+
+    fs.writeFile(
+      "./src/lists/reactSvgElementToPropsMap.js",
+      JSON.stringify(reactSvgElementToPropsMap, 0, 2) + "\n",
       e => console.table(e) //eslint-disable-line no-console
     );
   })

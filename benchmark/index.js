@@ -79,10 +79,10 @@ getevent
   });
 
 const suites = [];
-// suites.push(getall);
+suites.push(getall);
 suites.push(getelement);
 suites.push(getelementcommon);
 suites.push(getelementsvg);
-// suites.push(getglobal);
-// suites.push(getevent);
+suites.push(getglobal);
+suites.push(getevent);
 suites.forEach(su => su.run({ async: true }));
