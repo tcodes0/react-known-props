@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { execSync } = require("child_process");
 const { camelCase, lowerCase } = require("lodash");
 const { svgElements, svgPropsToElementsMap } = require("./svgProps");
 const { htmlGlobalProps } = require("./htmlProps");
@@ -190,12 +191,13 @@ lists.push(
 );
 
 lists.forEach(list => {
+  const filePath = `./src/lists/${list.name}.js`;
   const buffer = `module.exports.${list.name} = ${JSON.stringify(
     list.data(),
     0,
     2
   )};\n`;
 
-  // eslint-disable-next-line no-console
-  fs.writeFile(`./src/lists/${list.name}.js`, buffer, e => console.log(e));
+  fs.writeFileSync(filePath, buffer);
+  execSync(`yarn prettier --write ${filePath}`);
 });
