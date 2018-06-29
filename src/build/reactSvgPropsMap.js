@@ -1,7 +1,7 @@
 const { svgPropsToElementsMap } = require("./svgProps");
 const { svgPropToReactPropMap } = require("../lists/svgPropToReactPropMap");
 
-module.exports.svgReactPropsMap = Object.keys(svgPropsToElementsMap).reduce(
+module.exports.reactSvgPropsMap = Object.keys(svgPropsToElementsMap).reduce(
   (acc, prop) =>
     svgPropToReactPropMap[prop]
       ? Object.assign(

@@ -4,7 +4,7 @@ const { svgElements, svgPropsToElementsMap } = require("./svgProps");
 const { htmlGlobalProps } = require("./htmlProps");
 const { reactGlobalProps, reactExtraPropsMap } = require("./reactProps");
 const { reactHtmlPropsMap } = require("./reactHtmlPropsMap");
-const { svgReactPropsMap } = require("../build/reactSvgPropsMap");
+const { reactSvgPropsMap } = require("./reactSvgPropsMap");
 const { htmlElements } = require("../lists/base/html");
 const { htmlPropToReactPropMap } = require("../lists/base/react");
 
@@ -163,30 +163,30 @@ lists.push(
   })
 );
 
-// lists.push(
-//   new propList("allSvgHtmlReactProps", () => {
-//     // removing 4 duplicated props here
-//     // eslint-disable-next-line
-//     const { style, title, rel, content, ...svgHtml } = Object.assign(
-//       svgReactPropsMap,
-//       reactExtraPropsMap,
-//       reactHtmlPropsMap
-//     );
-
-//     return Object.keys(svgHtml);
-//   })
-// );
-
 lists.push(
   new propList("reactSvgElementsToPropsMap", () =>
     svgElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(svgReactPropsMap, el)
+          [el]: getElementPropsFromMap(reactSvgPropsMap, el)
         }),
       {}
     )
   )
+);
+
+lists.push(
+  new propList("allSvgHtmlReactProps", () => {
+    // removing 4 duplicated props here
+    // eslint-disable-next-line
+    const { style, title, rel, content, ...svgHtml } = Object.assign(
+      reactSvgPropsMap,
+      reactHtmlPropsMap,
+      reactExtraPropsMap
+    );
+
+    return Object.keys(svgHtml);
+  })
 );
 
 lists.forEach(list => {
