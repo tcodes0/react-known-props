@@ -3,6 +3,7 @@ const { camelCase, lowerCase } = require("lodash");
 const { svgElements, svgPropsToElementsMap } = require("./svgProps");
 const { htmlGlobalProps } = require("./htmlProps");
 const { reactGlobalProps, reactExtraPropsMap } = require("./reactProps");
+const { reactHtmlPropsMap } = require("./reactHtmlPropsMap");
 const { svgReactPropsMap } = require("../build/reactSvgPropsMap");
 const { htmlElements } = require("../lists/base/html");
 const { htmlPropToReactPropMap } = require("../lists/base/react");
@@ -10,7 +11,7 @@ const { htmlPropToReactPropMap } = require("../lists/base/react");
 class propList {
   constructor(name, fn) {
     this.name = name;
-    this.make = fn;
+    this.data = fn;
   }
 }
 
@@ -23,40 +24,26 @@ const getElementPropsFromMap = (map, element) =>
 let lists = [];
 
 lists.push(
-  new propList("reactGlobalProps", () => {
-    const getReactGlobalProps = [
-      ...htmlGlobalProps.reduce((acc, prop) => {
-        return htmlPropToReactPropMap[prop]
-          ? [...acc, htmlPropToReactPropMap[prop], prop]
-          : [...acc, prop];
-      }, []),
-      ...reactGlobalProps
-    ];
-
-    fs.writeFile(
-      "./src/lists/reactGlobalProps.js",
-      JSON.stringify(getReactGlobalProps, 0, 2) + "\n",
-      e => console.table(e) //eslint-disable-line no-console
-    );
-  })
+  new propList("reactGlobalProps", () => [
+    ...htmlGlobalProps.reduce((acc, prop) => {
+      return htmlPropToReactPropMap[prop]
+        ? [...acc, htmlPropToReactPropMap[prop], prop]
+        : [...acc, prop];
+    }, []),
+    ...reactGlobalProps
+  ])
 );
 
 lists.push(
-  new propList("reactHtmlElementsToPropsMap", () => {
-    const reactHtmlElementsToPropsMap = htmlElements.reduce(
+  new propList("reactHtmlElementsToPropsMap", () =>
+    htmlElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(reactExtraPropsMap, el)
+          [el]: getElementPropsFromMap(reactHtmlPropsMap, el)
         }),
       {}
-    );
-
-    fs.writeFile(
-      "./src/lists/reactHtmlElementsToPropsMap.js",
-      JSON.stringify(reactHtmlElementsToPropsMap, 0, 2) + "\n",
-      e => console.table(e) //eslint-disable-line no-console
-    );
-  })
+    )
+  )
 );
 
 lists.push(
@@ -172,59 +159,43 @@ lists.push(
         {}
       );
 
-    const svgPropToReactPropMap = Object.assign(
-      dashToCamel,
-      camelToLower,
-      edgeCases
-    );
-
-    fs.writeFile(
-      "./src/lists/svgPropToReactPropMap.js",
-      JSON.stringify(svgPropToReactPropMap, 0, 2) + "\n",
-      e => console.table(e) //eslint-disable-line no-console
-    );
+    return Object.assign(dashToCamel, camelToLower, edgeCases);
   })
 );
 
-lists.push(
-  new propList("allSvgHtmlReactProps", () => {
-    // removing 4 duplicated props here
-    // eslint-disable-next-line
-    const { style, title, rel, content, ...svgHtml } = Object.assign(
-      svgReactPropsMap,
-      reactExtraPropsMap
-    );
+// lists.push(
+//   new propList("allSvgHtmlReactProps", () => {
+//     // removing 4 duplicated props here
+//     // eslint-disable-next-line
+//     const { style, title, rel, content, ...svgHtml } = Object.assign(
+//       svgReactPropsMap,
+//       reactExtraPropsMap,
+//       reactHtmlPropsMap
+//     );
 
-    fs.writeFile(
-      "./src/lists/allSvgHtmlReactProps.js",
-      JSON.stringify(Object.keys(svgHtml), 0, 2) + "\n",
-      e => console.table(e) //eslint-disable-line no-console
-    );
-  })
-);
+//     return Object.keys(svgHtml);
+//   })
+// );
 
 lists.push(
-  new propList("reactSvgElementsToPropsMap", () => {
-    const reactSvgElementsToPropsMap = svgElements.reduce(
+  new propList("reactSvgElementsToPropsMap", () =>
+    svgElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
           [el]: getElementPropsFromMap(svgReactPropsMap, el)
         }),
       {}
-    );
-
-    fs.writeFile(
-      "./src/lists/reactSvgElementsToPropsMap.js",
-      JSON.stringify(reactSvgElementsToPropsMap, 0, 2) + "\n",
-      e => console.table(e) //eslint-disable-line no-console
-    );
-  })
+    )
+  )
 );
 
 lists.forEach(list => {
-  list.make();
-  //eslint-disable-next-line no-console
-  console.warn(
-    `manually add 'module.exports.${list.name}' to src/lists/${list.name}.js`
-  );
+  const buffer = `module.exports.${list.name} = ${JSON.stringify(
+    list.data(),
+    0,
+    2
+  )};\n`;
+
+  // eslint-disable-next-line no-console
+  fs.writeFile(`./src/lists/${list.name}.js`, buffer, e => console.log(e));
 });
