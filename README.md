@@ -1,32 +1,47 @@
 # React Known Props
 
-A list of all props React groks.
-- Html & svg props valid on any element (I call them global).
-- Html & svg element specific props.
-- Aria props (includes `role`).
+About 700 props React recognizes.
+- HTML & SVG props valid on any element (global props).
+- HTML & SVG element specific props.
+- ARIA props (includes `role`).
 - React event props.
 - React specific props.
 - Options to control output.
 
-## Usage
+## Install
 
 install with
 ```sh
 yarn add react-known-props
+
+npm i react-known-props
 ```
 
 then use with
 ```js
 import { getAllProps, getElementProps, getEventProps, getGlobalProps } from 'react-known-props'
+
+const { getAllProps, getElementProps, getEventProps, getGlobalProps } = require('react-known-props')
 ```
 
-### API
+## API
 
-**All functions return props as strings in an array.**
+### Functions provided
+- getAllProps
+- getElementProps
+- getEventProps
+- getGlobalProps
 
-> getAllProps
+**All functions return the props as strings in an array.**
 
-Gets all possible props: global props, element specific props, event props and aria props including `role`.
+**Element name are case-sensitive always.**
+
+**See options object below.**
+
+
+### getAllProps
+
+Gets all possible props: Global props, element specific props, event props and ARIA props including `role`.
 ```js
 // argument 1 (optional): an options object.
 
@@ -39,11 +54,11 @@ getAllProps().length
 //returns
 674
 ```
-> getElementProps
+### getElementProps
 
-Gets all props valid on the element provided as argument, plus all aria props, including `role`. Doesn't include event props.
+Gets all props valid on the HTML/SVG element provided as argument, plus all ARIA props, including `role`. Doesn't include event props.
 ```js
-// argument 1: string. Html element to get props for.
+// argument 1: string. Element to get props for.
 // argument 2: (optional) an options object.
 
 getElementProps("img")
@@ -68,9 +83,9 @@ getElementProps("img")
       (...)
 ]
 ```
-> getEventProps
+### getEventProps
 
-Gets all React's event props only.
+Gets React's event props only.
 ```js
 // arguments: none.
 
@@ -87,9 +102,9 @@ getEventProps()
       (...)
 ]
 ```
-> getGlobalProps
+### getGlobalProps
 
-Gets all html and svg props valid on any element, plus all aria props including `role`.
+Gets all HTML and SVG props valid on any element, plus all ARIA props including `role`.
 ```js
 // argument 1 (optional): an options object.
 
@@ -112,10 +127,15 @@ getGlobalProps()
 ]
 ```
 
-#### Options supported in an object:
-- **legacy**: _boolean_. Default: false.
+### Options object
+- **legacy**: boolean.
+- **onlyReact**: boolean.
 
-Whether or not to return deprecated html props _bgcolor_, _border_ and _color_ for the elements that use them.
+#### legacy
+
+_Default: false._
+
+Whether or not to return deprecated HTML props `bgcolor`, `border` and `color` for the elements that still use them.
 ```js
 // examples:
 
@@ -129,9 +149,14 @@ getAllProps({legacy: false})
 getAllProps()
 ```
 
--  **onlyReact**: _boolean_. Default: false.
+#### onlyReact
 
-Whether to return only the React version of a prop, or both versions. In React, some html props are used in camelCase and using the classic lowercase name will show a warning. Same with svg. Since the warning can be educational this option is off by default.
+_Default: false._
+
+Whether to return only the React name of a prop, or the HTML name and the React name.
+In React, some HTML props are renamed to camelCase (e.g. `class` -> `className`) and using the HTML lowercase name will show a warning.
+The same happens with SVG.
+Since the warning can be educational this option is off by default.
 ```js
 // examples:
 
@@ -145,24 +170,27 @@ getElementProps("label", {onlyReact: false})
 getGlobalProps({onlyReact: true})
 ```
 
-#### Some svg props not included
+*Incompatible SVG props not included.*
 
-React doesn't like all svg props, some prevent it from compiling and print an error to console. They are:
- - All prefixed by xml:*
- - All prefixed by xlink:*
- - All prefixed by on* (events)
- - ev:event.
+React doesn't like all SVG props, some prevent it from compiling and print an error to the console.
+They are:
+ - Props prefixed by `xml:`
+ - Props prefixed by `xlink:`
+ - Props prefixed by `on` (events)
+ - `ev:event`
 
-#### Need more props?
+*Need more props?*
 
 I'd use these packages:
 
-- void html elements (\<img\/\>): `yarn add void-elements`
-- css props: `yarn add known-css-properties`
+- Void HTML elements (self closing, e.g. \<img\/\>): `yarn add void-elements`
+- Css props: `yarn add known-css-properties`
 
 ### Contributing
 
-All data pulled from MDN web docs, official React docs, the aria specification and svg specification.
+All data pulled from MDN web docs, official React docs, the ARIA specification and SVG specification.
 MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
+
+Just send PR's.
 
 ⚛️ React is awesome 💫

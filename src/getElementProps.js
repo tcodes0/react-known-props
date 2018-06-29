@@ -45,9 +45,22 @@ const elementProps = element => {
     : [...reactHtmlElementsToPropsMap[element], ...reactGlobalProps];
 };
 
-module.exports.getElementProps = (element, options) =>
-  parseOptionsObject(
-    options,
-    [...elementProps(element), ...ariaProps],
-    element
-  );
+module.exports.getElementProps = (element, options) => {
+  if (!element || typeof element !== "string") {
+    throw new Error(
+      "[react-known-props] getElementProps(element, options): element argument must not be undefined or non-string."
+    );
+  }
+
+  let props;
+
+  try {
+    props = elementProps(element);
+  } catch (error) {
+    throw new Error(
+      `[react-known-props] getElementProps(element, options): Please ensure '${element}' is a valid HTML or SVG element.\n`
+    );
+  }
+
+  return parseOptionsObject(options, [...props, ...ariaProps], element);
+};
