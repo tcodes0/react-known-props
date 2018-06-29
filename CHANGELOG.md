@@ -1,4 +1,4 @@
-# 2.1.0 - Performance refactor.
+# 2.2.0 - Performance refactor.
 
 ## Before refactor
 - getAllProps() x 31 thousand ops/sec
