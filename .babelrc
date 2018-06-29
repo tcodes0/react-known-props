@@ -1,9 +1,16 @@
 {
   "presets": [
-    ["env", {
-      "targets": { 
-        "browsers": "last 2 versions"
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": "defaults"
+        }
       }
-    }]
+    ],
+    "stage-2"
+  ],
+  "ignore": [
+    "src/build/*"
   ]
 }

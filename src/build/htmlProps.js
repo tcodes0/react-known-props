@@ -1,5 +1,4 @@
-//https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
-module.exports.propsGlobal = [
+module.exports.htmlGlobalProps = [
   "accesskey",
   "autocapitalize",
   "class",
@@ -26,7 +25,7 @@ module.exports.propsGlobal = [
   "translate"
 ];
 
-module.exports.mapPropsToElements = {
+module.exports.htmlPropsToElementsMap = {
   accept: ["form", "input"],
   "accept-charset": ["form"],
   action: ["form"],
@@ -51,19 +50,6 @@ module.exports.mapPropsToElements = {
   autocomplete: ["form", "input", "textarea"],
   autofocus: ["button", "input", "keygen", "select", "textarea"],
   autoplay: ["audio", "video"],
-  bgcolor: [
-    "body",
-    "col",
-    "colgroup",
-    "marquee",
-    "table",
-    "tbody",
-    "tfoot",
-    "td",
-    "th",
-    "tr"
-  ],
-  border: ["img", "object", "table"],
   buffered: ["audio", "video"],
   challenge: ["keygen"],
   charset: ["meta", "script"],
@@ -71,7 +57,6 @@ module.exports.mapPropsToElements = {
   cite: ["blockquote", "del", "ins", "q"],
   code: ["applet"],
   codebase: ["applet"],
-  color: ["basefont", "font", "hr"],
   cols: ["textarea"],
   colspan: ["td", "th"],
   content: ["meta"],
@@ -209,151 +194,26 @@ module.exports.mapPropsToElements = {
   wrap: ["textarea"]
 };
 
-module.exports.propsLegacyGlobal = ["bgcolor", "border", "color"];
+module.exports.htmlLegacyProps = ["bgcolor", "border", "color"];
 
-module.exports.elements = [
-  "a",
-  "abbr",
-  "acronym",
-  "address",
-  "applet",
-  "area",
-  "article",
-  "aside",
-  "audio",
-  "b",
-  "base",
-  "basefont",
-  "bdi",
-  "bdo",
-  "bgsound",
-  "big",
-  "blink",
-  "blockquote",
-  "body",
-  "br",
-  "button",
-  "canvas",
-  "caption",
-  "center",
-  "cite",
-  "code",
-  "col",
-  "colgroup",
-  "command",
-  "content",
-  "data",
-  "datalist",
-  "dd",
-  "del",
-  "details",
-  "dfn",
-  "dialog",
-  "dir",
-  "div",
-  "dl",
-  "dt",
-  "element",
-  "em",
-  "embed",
-  "fieldset",
-  "figcaption",
-  "figure",
-  "font",
-  "footer",
-  "form",
-  "frame",
-  "frameset",
-  "h1",
-  "head",
-  "header",
-  "hgroup",
-  "hr",
-  "html",
-  "i",
-  "iframe",
-  "image",
-  "img",
-  "input",
-  "ins",
-  "isindex",
-  "kbd",
-  "keygen",
-  "label",
-  "legend",
-  "li",
-  "link",
-  "listing",
-  "main",
-  "map",
-  "mark",
-  "marquee",
-  "menu",
-  "menuitem",
-  "meta",
-  "meter",
-  "multicol",
-  "nav",
-  "nextid",
-  "nobr",
-  "noembed",
-  "noframes",
-  "noscript",
-  "object",
-  "ol",
-  "optgroup",
-  "option",
-  "output",
-  "p",
-  "param",
-  "picture",
-  "plaintext",
-  "pre",
-  "progress",
-  "q",
-  "rp",
-  "rt",
-  "rtc",
-  "ruby",
-  "s",
-  "samp",
-  "script",
-  "section",
-  "select",
-  "shadow",
-  "slot",
-  "small",
-  "source",
-  "spacer",
-  "span",
-  "strike",
-  "strong",
-  "style",
-  "sub",
-  "summary",
-  "sup",
-  "table",
-  "tbody",
-  "td",
-  "template",
-  "textarea",
-  "tfoot",
-  "th",
-  "thead",
-  "time",
-  "title",
-  "tr",
-  "track",
-  "tt",
-  "u",
-  "ul",
-  "var",
-  "video",
-  "wbr",
-  "xmp"
-];
+module.exports.legacyHTMLPropsToElementsMap = {
+  bgcolor: [
+    "body",
+    "col",
+    "colgroup",
+    "marquee",
+    "table",
+    "tbody",
+    "tfoot",
+    "td",
+    "th",
+    "tr"
+  ],
+  border: ["img", "object", "table"],
+  color: ["basefont", "font", "hr"]
+};
 
-module.exports.elementsObsolete = [
+module.exports.htmlObsoleteElements = [
   "acronym",
   "applet",
   "basefont",
@@ -380,7 +240,7 @@ module.exports.elementsObsolete = [
   "xmp"
 ];
 
-module.exports.elementsDeprecated = [
+module.exports.htmlDeprecatedElements = [
   "content",
   "frame",
   "frameset",
@@ -390,7 +250,7 @@ module.exports.elementsDeprecated = [
   "shadow"
 ];
 
-module.exports.elementsNonStandard = [
+module.exports.htmlNonStandardElements = [
   "bgsound",
   "image",
   "multicol",
@@ -398,4 +258,4 @@ module.exports.elementsNonStandard = [
   "noembed"
 ];
 
-module.exports.elementsExperimental = ["dialog", "hgroup"];
+module.exports.htmlExperimentalElements = ["dialog", "hgroup"];

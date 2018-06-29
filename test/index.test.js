@@ -38,28 +38,51 @@ describe("no duplicated props returned", () => {
   });
 });
 
+describe("Bad options input", () => {
+  test("getAllProps throws for int", () => {
+    expect(() => getAllProps(66)).toThrow("Invalid options");
+  });
+  test("getAllProps throws for string", () => {
+    expect(() => getAllProps("foo")).toThrow("Invalid options");
+  });
+  test("getAllProps throws for bool", () => {
+    expect(() => getAllProps(true)).toThrow("Invalid options");
+  });
+  test("getEventProps ignores args", () => {
+    expect(getEventProps(66)).toBe(getEventProps());
+  });
+  test("getElementProps throws for int", () => {
+    expect(() => getElementProps("img", 66)).toThrow("Invalid options");
+  });
+  test("getElementProps throws for string", () => {
+    expect(() => getElementProps("img", "foo")).toThrow("Invalid options");
+  });
+  test("getElementProps throws for bool", () => {
+    expect(() => getElementProps("img", true)).toThrow("Invalid options");
+  });
+  test("getGlobalProps throws for int", () => {
+    expect(() => getGlobalProps(66)).toThrow("Invalid options");
+  });
+  test("getGlobalProps throws for string", () => {
+    expect(() => getGlobalProps("foo")).toThrow("Invalid options");
+  });
+  test("getGlobalProps throws for bool", () => {
+    expect(() => getGlobalProps(true)).toThrow("Invalid options");
+  });
+});
+
 describe("getAllProps", () => {
-  describe("behavior on invalid input", () => {
-    test("int", () => {
-      expect(getAllProps(66)).toBe(undefined);
-    });
-    test("string", () => {
-      expect(getAllProps("foo")).toBe(undefined);
-    });
-    test("bool", () => {
-      expect(getAllProps(true)).toBe(undefined);
-    });
+  test("no duplicated props returned", () => {
+    expect(getAllProps().length).toEqual(uniq(getAllProps()).length);
   });
   test("{} returns default", () => {
     expect(getAllProps()).toEqual(getAllProps({}));
   });
   test("no legacy props in default call", () => {
-    expect(getAllProps().includes("color")).toBe(false);
     expect(getAllProps().includes("bgcolor")).toBe(false);
     expect(getAllProps().includes("border")).toBe(false);
   });
   test("no legacy props with {legacy: false}", () => {
-    expect(getAllProps({ legacy: false }).includes("color")).toBe(false);
     expect(getAllProps({ legacy: false }).includes("bgcolor")).toBe(false);
     expect(getAllProps({ legacy: false }).includes("border")).toBe(false);
   });
@@ -71,11 +94,6 @@ describe("getAllProps", () => {
 });
 
 describe("getEventProps", () => {
-  describe("invalid input", () => {
-    test("int", () => {
-      expect(getEventProps(66)).toBe(getEventProps());
-    });
-  });
   test("{} returns default", () => {
     expect(getEventProps()).toEqual(getEventProps({}));
   });
@@ -87,22 +105,11 @@ describe("getEventProps", () => {
 });
 
 describe("getGlobalProps", () => {
-  test("getGlobalProps with onlyReact is default", () =>
-    expect(getGlobalProps()).toEqual(getGlobalProps({ onlyReact: true })));
+  test("onlyReact works as expected", () =>
+    expect(getGlobalProps({ onlyReact: true }).includes("class")).toBeFalsy());
 });
 
 describe("getElementProps", () => {
-  describe("invalid input", () => {
-    test("int", () => {
-      expect(getElementProps("img", 66)).toBe(undefined);
-    });
-    test("string", () => {
-      expect(getElementProps("img", "foo")).toBe(undefined);
-    });
-    test("bool", () => {
-      expect(getElementProps("img", true)).toBe(undefined);
-    });
-  });
   test("{} returns default", () => {
     expect(getElementProps("img")).toEqual(getElementProps("img", {}));
   });
@@ -148,7 +155,7 @@ describe("react extras", () => {
   });
 });
 
-describe("issue 4, height width ", () => {
+describe("issue #4, height width ", () => {
   ["canvas", "embed", "iframe", "img", "input", "object", "video"].forEach(
     tag => {
       test(`return height as non legacy on ${tag}`, () => {
@@ -162,10 +169,16 @@ describe("issue 4, height width ", () => {
 });
 
 describe("return both names #3", () => {
-  test("return both names by default, getElement", () => {
+  test("return both names by default, getElementProps(label)", () => {
     expect(
       getElementProps("label").includes("for") &&
         getElementProps("label").includes("htmlFor")
+    ).toBe(true);
+  });
+  test("return both names by default, getElementProps(div)", () => {
+    expect(
+      getElementProps("div").includes("class") &&
+        getElementProps("div").includes("className")
     ).toBe(true);
   });
   test("onlyReact true omits classic names", () => {
@@ -180,8 +193,8 @@ describe("return both names #3", () => {
   });
   test("return both names by default, getGlobal", () => {
     expect(
-      getElementProps("div").includes("class") &&
-        getElementProps("div").includes("className")
+      getGlobalProps().includes("class") &&
+        getGlobalProps().includes("className")
     ).toBe(true);
   });
 });
@@ -303,4 +316,19 @@ describe("Include svg elements and props #6", () => {
 
   test("getGlobalProps returns svg global props", () =>
     expect(getGlobalProps().includes("typeof")).toBe(true));
+});
+
+describe("Bad element arg to getElementProps throws", () => {
+  test("nonsense string", () => {
+    expect(() => getElementProps("dfdfa")).toThrow("valid HTML or SVG element");
+  });
+  test("wrong case", () => {
+    expect(() => getElementProps("IMG")).toThrow("valid HTML or SVG element");
+  });
+  test("wrong type", () => {
+    expect(() => getElementProps(33)).toThrow("non-string");
+  });
+  test("undefined", () => {
+    expect(() => getElementProps()).toThrow("argument must not be undefined");
+  });
 });

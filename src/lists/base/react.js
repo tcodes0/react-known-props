@@ -1,4 +1,4 @@
-module.exports.mapHtmlPropToReactProp = {
+module.exports.htmlPropToReactPropMap = {
   allowtransparency: "allowTransparency",
   charset: "charSet",
   class: "className",
@@ -42,7 +42,7 @@ module.exports.mapHtmlPropToReactProp = {
   "http-equiv": "httpEquiv"
 };
 
-module.exports.propsEvents = [
+module.exports.reactEventprops = [
   "onBlur",
   "onChange",
   "onClick",
@@ -123,28 +123,3 @@ module.exports.propsEvents = [
   "onTransitionEnd",
   "onToggle"
 ];
-
-module.exports.propsGlobalReact = [
-  "dangerouslySetInnerHTML",
-  "suppressContentEditableWarning",
-  "suppressHydrationWarning",
-  "classID",
-  "keyParams",
-  "autoSave"
-];
-
-module.exports.mapPropsToElementsReactExtras = {
-  defaultChecked: ["input"],
-  autoCorrect: ["input"],
-  defaultValue: ["input", "textarea"],
-  value: ["textarea", "input"],
-  allowFullScreen: ["frame"],
-  cellPadding: ["table"],
-  cellSpacing: ["table"],
-  controlsList: ["audio", "video"],
-  frameBorder: ["frame"],
-  inputMode: ["input"],
-  marginHeight: ["iframe"],
-  marginWidth: ["iframe"],
-  mediaGroup: ["audio", "video"]
-};

@@ -1,9 +1,0 @@
-{
-  "parserOptions": {
-    "sourceType": "module"
-  },
-  "extends": ["plugin:prettier/recommended"],
-  "env": {
-    "es6": true
-  }
-}

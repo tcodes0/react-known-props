@@ -1,14 +1,14 @@
-const { getReactGlobalProps } = require("./utils/getReactGlobalProps");
-const { propsAria } = require("./lists/aria");
-const { propsGlobalSvg } = require("./lists/svg");
-const { arrayToMap } = require("./utils/arrayToMap");
+const { reactGlobalProps } = require("./lists/reactGlobalProps");
+const { ariaProps } = require("./lists/base/aria");
+const { svgGlobalProps } = require("./lists/base/svg");
+const { parseOptionsObject } = require("./utils/parseOptionsObject");
 
-const svgHtmlGlobals = Object.assign(
-  arrayToMap(getReactGlobalProps()),
-  arrayToMap(propsGlobalSvg)
+const arrayToMap = arr =>
+  arr.reduce((acc, p) => Object.assign(acc, { [p]: p }), {});
+
+const globals = Object.keys(
+  Object.assign(arrayToMap(reactGlobalProps), arrayToMap(svgGlobalProps))
 );
 
-module.exports.getGlobalProps = () => [
-  ...propsAria,
-  ...Object.keys(svgHtmlGlobals)
-];
+module.exports.getGlobalProps = options =>
+  parseOptionsObject(options, [...ariaProps, ...globals]);

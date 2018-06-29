@@ -1,7 +1,7 @@
 {
   "name": "react-known-props",
   "version": "2.1.0",
-  "description": "Props from React and html, renamed when appropriate (class => className)",
+  "description": "About 700 props React recognizes",
   "license": "BSD-3-Clause",
   "main": "dist/index.js",
   "homepage": "https://github.com/thomazella/react-known-props#readme",
@@ -26,8 +26,10 @@
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
+    "benchmark": "yarn build 1>/dev/null && node benchmark/index.js",
     "test:quiet": "jest --useStderr 2>&1 | grep '✕' || echo ",
     "build": "babel src -d dist",
+    "build:lists": "node src/build/index.js",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
@@ -39,19 +41,24 @@
     "react",
     "props",
     "attributes",
-    "events",
-    "legacy",
-    "html"
+    "elements",
+    "svg",
+    "all"
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "benchmark": "^2.1.4",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^23.1.0",
-    "lodash": "^4.17.10",
-    "prettier": "^1.13.4"
+    "prettier": "^1.13.4",
+    "lodash": "^4.17.10"
   }
 }
