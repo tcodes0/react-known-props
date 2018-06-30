@@ -40,34 +40,46 @@ describe("no duplicated props returned", () => {
 
 describe("Bad options input", () => {
   test("getAllProps throws for int", () => {
-    expect(() => getAllProps(66)).toThrow("Invalid options");
+    expect(() => getAllProps(66)).toThrow("Expected an object with options");
   });
   test("getAllProps throws for string", () => {
-    expect(() => getAllProps("foo")).toThrow("Invalid options");
+    expect(() => getAllProps("foo")).toThrow("Expected an object with options");
   });
   test("getAllProps throws for bool", () => {
-    expect(() => getAllProps(true)).toThrow("Invalid options");
+    expect(() => getAllProps(true)).toThrow("Expected an object with options");
   });
-  test("getEventProps ignores args", () => {
-    expect(getEventProps(66)).toBe(getEventProps());
+  test("getEventProps prints a warning", () => {
+    console.warn = jest.fn(); //eslint-disable-line no-console
+    getEventProps(66);
+    expect(console.warn).toHaveBeenCalled(); //eslint-disable-line no-console
   });
   test("getElementProps throws for int", () => {
-    expect(() => getElementProps("img", 66)).toThrow("Invalid options");
+    expect(() => getElementProps("img", 66)).toThrow(
+      "Expected an object with options"
+    );
   });
   test("getElementProps throws for string", () => {
-    expect(() => getElementProps("img", "foo")).toThrow("Invalid options");
+    expect(() => getElementProps("img", "foo")).toThrow(
+      "Expected an object with options"
+    );
   });
   test("getElementProps throws for bool", () => {
-    expect(() => getElementProps("img", true)).toThrow("Invalid options");
+    expect(() => getElementProps("img", true)).toThrow(
+      "Expected an object with options"
+    );
   });
   test("getGlobalProps throws for int", () => {
-    expect(() => getGlobalProps(66)).toThrow("Invalid options");
+    expect(() => getGlobalProps(66)).toThrow("Expected an object with options");
   });
   test("getGlobalProps throws for string", () => {
-    expect(() => getGlobalProps("foo")).toThrow("Invalid options");
+    expect(() => getGlobalProps("foo")).toThrow(
+      "Expected an object with options"
+    );
   });
   test("getGlobalProps throws for bool", () => {
-    expect(() => getGlobalProps(true)).toThrow("Invalid options");
+    expect(() => getGlobalProps(true)).toThrow(
+      "Expected an object with options"
+    );
   });
 });
 
@@ -318,17 +330,21 @@ describe("Include svg elements and props #6", () => {
     expect(getGlobalProps().includes("typeof")).toBe(true));
 });
 
-describe("Bad element arg to getElementProps throws", () => {
-  test("nonsense string", () => {
-    expect(() => getElementProps("dfdfa")).toThrow("valid HTML or SVG element");
+describe("getElementProps bad element arg", () => {
+  [
+    { name: "nonsense string", value: "dufhud" },
+    { name: "wrong case", value: "IMG" },
+    { name: "wrong type", value: 54 },
+    { name: "undefined", value: undefined }
+  ].forEach(t => {
+    test(`warning invalid: ${t.name}`, () => {
+      console.warn = jest.fn(); //eslint-disable-line no-console
+      getElementProps(t.value);
+      expect(console.warn).toHaveBeenCalled(); //eslint-disable-line no-console
+    });
   });
-  test("wrong case", () => {
-    expect(() => getElementProps("IMG")).toThrow("valid HTML or SVG element");
-  });
-  test("wrong type", () => {
-    expect(() => getElementProps(33)).toThrow("non-string");
-  });
-  test("undefined", () => {
-    expect(() => getElementProps()).toThrow("argument must not be undefined");
+
+  test("return globals nonetheless", () => {
+    expect(getElementProps("IMG")).toEqual(getGlobalProps());
   });
 });

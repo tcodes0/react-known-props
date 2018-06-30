@@ -3,6 +3,7 @@ const { parseOptionsObject } = require("./utils/parseOptionsObject");
 const { reactGlobalProps } = require("./lists/reactGlobalProps");
 const { svgGlobalProps } = require("./lists/base/svg");
 const { htmlElements } = require("./lists/base/html");
+const { getGlobalProps } = require("./getGlobalProps");
 const {
   reactHtmlElementsToPropsMap
 } = require("./lists/reactHtmlElementsToPropsMap");
@@ -47,9 +48,12 @@ const elementProps = element => {
 
 module.exports.getElementProps = (element, options) => {
   if (!element || typeof element !== "string") {
-    throw new Error(
-      "[react-known-props] getElementProps(element, options): element argument must not be undefined or non-string."
+    //eslint-disable-next-line no-console
+    console.warn(
+      `[react-known-props] getElementProps: Expected element argument type 'string' but got '${typeof element}'.`
     );
+
+    return getGlobalProps();
   }
 
   let props;
@@ -57,9 +61,12 @@ module.exports.getElementProps = (element, options) => {
   try {
     props = elementProps(element);
   } catch (error) {
-    throw new Error(
-      `[react-known-props] getElementProps(element, options): Please ensure '${element}' is a valid HTML or SVG element.\n`
+    //eslint-disable-next-line no-console
+    console.warn(
+      `[react-known-props] getElementProps: Unrecognized HTML or SVG element: '${element}'.\n`
     );
+
+    return getGlobalProps();
   }
 
   return parseOptionsObject(options, [...props, ...ariaProps], element);

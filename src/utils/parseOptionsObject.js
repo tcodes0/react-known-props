@@ -21,7 +21,7 @@ module.exports.parseOptionsObject = (optionObj, props, element) => {
   if (optionObj !== undefined && typeof optionObj !== "object") {
     //eslint-disable-next-line no-console
     throw new Error(
-      `[react-known-props] Invalid options object: ${optionObj.toString()}`
+      `[react-known-props] Expected an object with options but got: '${typeof optionObj}' ${optionObj.toString()}`
     );
   }
 

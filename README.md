@@ -6,7 +6,7 @@ About 700 props React recognizes.
 - ARIA props (includes `role`).
 - React event props.
 - React specific props.
-- Options to control output.
+- Options you can set.
 
 ## Install
 
@@ -34,9 +34,9 @@ const { getAllProps, getElementProps, getEventProps, getGlobalProps } = require(
 
 **All functions return the props as strings in an array.**
 
-**Element name are case-sensitive always.**
+**Element names are case-sensitive and always lowercase.**
 
-**See options object below.**
+**See options below.**
 
 
 ### getAllProps
@@ -52,7 +52,7 @@ getAllProps({legacy: true})
 getAllProps().length
 
 //returns
-674
+675
 ```
 ### getElementProps
 
@@ -127,7 +127,7 @@ getGlobalProps()
 ]
 ```
 
-### Options object
+### Options
 - **legacy**: boolean.
 - **onlyReact**: boolean.
 
@@ -153,7 +153,7 @@ getAllProps()
 
 _Default: false._
 
-Whether to return only the React name of a prop, or the HTML name and the React name.
+Whether to return only the React prop, or the HTML prop and the React prop.
 In React, some HTML props are renamed to camelCase (e.g. `class` -> `className`) and using the HTML lowercase name will show a warning.
 The same happens with SVG.
 Since the warning can be educational this option is off by default.
@@ -166,7 +166,7 @@ getElementProps("label")
 // same as above
 getElementProps("label", {onlyReact: false})
 
-// no duplication, only React names are returned (itemID, tabIndex, autoCapitalize, className, htmlFor, etc...)
+// no duplication, only React props are returned (itemID, tabIndex, autoCapitalize, className, htmlFor, etc...)
 getGlobalProps({onlyReact: true})
 ```
 

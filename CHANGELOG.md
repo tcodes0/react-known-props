@@ -1,12 +1,20 @@
-# 2.2.0 - Performance refactor.
+## 2.3.0 - Throw less often.
 
-## Before refactor
+- getElementProps will return global props for HTML and SVG and warn to console if it sees an unkown element.
+- getEventProps will warn if it receives any arguments at all.
+- Improved warnings.
+
+### 2.2.1 - Fixed missing h2-h6 HTML tags
+
+## 2.2.0 - Performance refactor.
+
+### Before refactor
 - getAllProps() x 31 thousand ops/sec
 - getElementProps('label') x 35 thousand ops/sec
 - getGlobalProps() x 1,6 million ops/sec
 - getEventProps() x 926 million ops/sec
 
-## After refactor
+### After refactor
 - getAllProps() x 326 thousand ops/sec
 - getElementProps('label') x 914 thousand ops/sec
 - getGlobalProps() x 1,6 million ops/sec
