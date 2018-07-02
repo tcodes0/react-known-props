@@ -1,3 +1,5 @@
+### 2.3.1 - Add value and defaultValue to select 
+
 ## 2.3.0 - Throw less often.
 
 - getElementProps will return global props for HTML and SVG and warn to console if it sees an unkown element.
