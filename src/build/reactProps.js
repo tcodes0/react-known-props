@@ -10,8 +10,8 @@ module.exports.reactGlobalProps = [
 module.exports.reactExtraPropsMap = {
   defaultChecked: ["input"],
   autoCorrect: ["input"],
-  defaultValue: ["input", "textarea"],
-  value: ["textarea", "input"],
+  defaultValue: ["input", "textarea", "select"],
+  value: ["input", "textarea", "select"],
   allowFullScreen: ["frame"],
   cellPadding: ["table"],
   cellSpacing: ["table"],

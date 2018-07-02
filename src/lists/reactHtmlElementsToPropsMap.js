@@ -286,7 +286,9 @@ module.exports.reactHtmlElementsToPropsMap = {
     "multiple",
     "name",
     "required",
-    "size"
+    "size",
+    "value",
+    "defaultValue"
   ],
   shadow: [],
   slot: [],
