@@ -1,13 +1,16 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 const { camelCase, lowerCase } = require("lodash");
-const { svgElements, svgPropsToElementsMap } = require("./svgProps");
-const { htmlGlobalProps } = require("./htmlProps");
-const { reactGlobalProps, reactExtraPropsMap } = require("./reactProps");
-const { reactHtmlPropsMap } = require("./reactHtmlPropsMap");
-const { reactSvgPropsMap } = require("./reactSvgPropsMap");
-const { htmlElements } = require("../lists/base/html");
-const { htmlPropToReactPropMap } = require("../lists/base/react");
+const { reactHtmlPropsMap, reactSvgPropsMap } = require("./maps");
+const { htmlElements } = require("../props/html");
+const { htmlPropToReactPropMap } = require("../props/react");
+const {
+  svgElements,
+  svgPropsToElementsMap,
+  htmlGlobalProps,
+  reactGlobalProps,
+  reactExtraPropsMap
+} = require("./props");
 
 class propList {
   constructor(name, fn) {
@@ -191,7 +194,7 @@ lists.push(
 );
 
 lists.forEach(list => {
-  const filePath = `./src/lists/${list.name}.js`;
+  const filePath = `./src/generated/${list.name}.js`;
   const buffer = `module.exports.${list.name} = ${JSON.stringify(
     list.data(),
     0,

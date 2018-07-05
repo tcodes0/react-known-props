@@ -1,5 +1,5 @@
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { allSvgHtmlReactProps } = require("./lists/allSvgHtmlReactProps");
+const { allSvgHtmlReactProps } = require("./generated/allSvgHtmlReactProps");
 const { getGlobalProps } = require("./getGlobalProps");
 const { getEventProps } = require("./getEventProps");
 

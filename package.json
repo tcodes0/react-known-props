@@ -27,7 +27,6 @@
     "lint": "eslint src",
     "test": "jest",
     "benchmark": "yarn build 1>/dev/null && node benchmark/index.js",
-    "test:quiet": "jest --useStderr 2>&1 | grep '✕' || echo ",
     "build": "babel src -d dist",
     "build:lists": "node src/build/index.js",
     "patch": "npm version patch && npm publish",

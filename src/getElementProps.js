@@ -1,15 +1,15 @@
-const { ariaProps } = require("./lists/base/aria");
+const { ariaProps } = require("./props/aria");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
-const { reactGlobalProps } = require("./lists/reactGlobalProps");
-const { svgGlobalProps } = require("./lists/base/svg");
-const { htmlElements } = require("./lists/base/html");
+const { reactGlobalProps } = require("./generated/reactGlobalProps");
+const { svgGlobalProps } = require("./props/svg");
+const { htmlElements } = require("./props/html");
 const { getGlobalProps } = require("./getGlobalProps");
 const {
   reactHtmlElementsToPropsMap
-} = require("./lists/reactHtmlElementsToPropsMap");
+} = require("./generated/reactHtmlElementsToPropsMap");
 const {
   reactSvgElementsToPropsMap
-} = require("./lists/reactSvgElementsToPropsMap");
+} = require("./generated/reactSvgElementsToPropsMap");
 
 // html and svg share these elements
 const commonElements = [

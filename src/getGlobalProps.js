@@ -1,6 +1,6 @@
-const { reactGlobalProps } = require("./lists/reactGlobalProps");
-const { ariaProps } = require("./lists/base/aria");
-const { svgGlobalProps } = require("./lists/base/svg");
+const { reactGlobalProps } = require("./generated/reactGlobalProps");
+const { ariaProps } = require("./props/aria");
+const { svgGlobalProps } = require("./props/svg");
 const { parseOptionsObject } = require("./utils/parseOptionsObject");
 
 const arrayToMap = arr =>
