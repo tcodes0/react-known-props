@@ -212,7 +212,9 @@ I'd use these packages:
 
 ### Contributing
 
-Just send PR's. Don't edit the lists `src/generated/*.js` directly, as they are generated from `src/build/index.js`. Lists on `src/build` and `src/build/base` are safe to edit. Run `yarn build:lists` before opening the PR.
+Fork, make changes, run the `build:lists` script and send a PR.
+`build:lists` takes the stuff in `src/build` and makes the files in `src/generated`.
+This is for performance reasons.
 
 All data pulled from MDN web docs, official React docs, the ARIA specification and SVG specification.
 MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
