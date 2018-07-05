@@ -1,9 +1,9 @@
-const { htmlPropToReactPropMap } = require("../lists/base/react");
-const { svgPropToReactPropMap } = require("../lists/svgPropToReactPropMap");
+const { htmlPropToReactPropMap } = require("../props/react");
+const { svgPropToReactPropMap } = require("../generated/svgPropToReactPropMap");
 const {
   htmlElementsToLegacyPropsMap,
   htmlSvgLegacyProps
-} = require("../lists/base/html");
+} = require("../props/html");
 
 const removeNonReactProps = arr =>
   arr.reduce(
