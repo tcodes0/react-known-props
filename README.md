@@ -1,4 +1,5 @@
-# React Known Props   [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=About%20700%20props%20React%20recognizes&url=https://github.com/thomazella/react-known-props&via=thomazella9&hashtags=developers,react,props,opensource)
+# React Known Props [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=About%20700%20props%20React%20recognizes&url=https://github.com/thomazella/react-known-props&via=thomazella9&hashtags=developers,react,props,opensource)
+
 <p>
   <a href="https://travis-ci.org/Thomazella/react-known-props"><img src="https://img.shields.io/travis/Thomazella/react-known-props/master.svg?style=flat-square" alt="Build Status" /></a>
   <a href="https://www.npmjs.com/package/react-known-props"><img src="https://img.shields.io/npm/v/react-known-props.svg?style=flat-square" alt="Latest version" /></a>
@@ -33,7 +34,7 @@ then use with
 
 ```js
 import {
-      getAllProps,
+  getAllProps,
   getElementProps,
   getEventProps,
   getGlobalProps
@@ -53,10 +54,10 @@ const {
 
 ### Functions provided
 
-- [getAllProps](#getAllProps)
-- [getElementProps](#getElementProps)
-- [getEventProps](#getEventProps)
-- [getGlobalProps](#getGlobalProps)
+- [getAllProps](#getallprops)
+- [getElementProps](#getelementprops)
+- [getEventProps](#geteventprops)
+- [getGlobalProps](#getglobalprops)
 
 **All functions return the props as strings in an array.**
 
@@ -162,7 +163,7 @@ getGlobalProps()
 ### Options
 
 - **[legacy](#legacy)**: boolean.
-- **[onlyReact](#onlyReact)**: boolean.
+- **[onlyReact](#onlyreact)**: boolean.
 
 #### legacy
 
