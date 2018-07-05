@@ -1,6 +1,6 @@
 # React Known Props   [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=About%20700%20props%20React%20recognizes&url=https://github.com/thomazella/react-known-props&via=thomazella9&hashtags=developers,react,props,opensource)
 <p>
-  <a href="https://travis-ci.org/thomazella/react-known-props"><img src="https://img.shields.io/travis/thomazella/react-known-props/master.svg?style=flat-square" alt="Build Status" /></a>
+  <a href="https://travis-ci.org/Thomazella/react-known-props"><img src="https://img.shields.io/travis/Thomazella/react-known-props/master.svg?style=flat-square" alt="Build Status" /></a>
   <a href="https://www.npmjs.com/package/react-known-props"><img src="https://img.shields.io/npm/v/react-known-props.svg?style=flat-square" alt="Latest version" /></a>
   <a href="https://github.com/prettier/prettier">
     <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
