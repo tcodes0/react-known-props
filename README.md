@@ -1,4 +1,11 @@
-# React Known Props
+# React Known Props   [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=About%20700%20props%20React%20recognizes&url=https://github.com/thomazella/react-known-props&via=thomazella9&hashtags=developers,react,props,opensource)
+<p>
+  <a href="https://travis-ci.org/thomazella/react-known-props"><img src="https://img.shields.io/travis/thomazella/react-known-props/master.svg?style=flat-square" alt="Build Status" /></a>
+  <a href="https://www.npmjs.com/package/react-known-props"><img src="https://img.shields.io/npm/v/react-known-props.svg?style=flat-square" alt="Latest version" /></a>
+  <a href="https://github.com/prettier/prettier">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  </a>
+</p>
 
 About 700 props React recognizes.
 
@@ -15,7 +22,9 @@ install with
 
 ```sh
 yarn add react-known-props
+```
 
+```sh
 npm i react-known-props
 ```
 
@@ -23,12 +32,14 @@ then use with
 
 ```js
 import {
-  getAllProps,
+      getAllProps,
   getElementProps,
   getEventProps,
   getGlobalProps
 } from "react-known-props";
+```
 
+```js
 const {
   getAllProps,
   getElementProps,
@@ -41,16 +52,16 @@ const {
 
 ### Functions provided
 
-- getAllProps
-- getElementProps
-- getEventProps
-- getGlobalProps
+- [getAllProps](#getAllProps)
+- [getElementProps](#getElementProps)
+- [getEventProps](#getEventProps)
+- [getGlobalProps](#getGlobalProps)
 
 **All functions return the props as strings in an array.**
 
 **Element names are case-sensitive and always lowercase.**
 
-**See options below.**
+**See options [below](#options).**
 
 ### getAllProps
 
@@ -149,8 +160,8 @@ getGlobalProps()
 
 ### Options
 
-- **legacy**: boolean.
-- **onlyReact**: boolean.
+- **[legacy](#legacy)**: boolean.
+- **[onlyReact](#onlyReact)**: boolean.
 
 #### legacy
 
