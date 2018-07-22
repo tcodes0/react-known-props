@@ -14,11 +14,15 @@ const removeNonReactProps = arr =>
     []
   );
 
+const exists = x => x != null;
+const isTruthy = x => x !== false && exists(x);
+const isObj = o => typeof o === "object";
+
 module.exports.parseOptionsObject = (optionObj, props, element) => {
   let out = undefined;
 
   // catch invalid arguments
-  if (optionObj !== undefined && typeof optionObj !== "object") {
+  if (exists(optionObj) && !isObj(optionObj)) {
     //eslint-disable-next-line no-console
     throw new Error(
       `[react-known-props] Expected an object with options but got: '${typeof optionObj}' ${optionObj.toString()}`
