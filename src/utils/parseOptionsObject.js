@@ -39,51 +39,28 @@ module.exports.parseOptionsObject = (options, totalProps, givenElement) => {
 
   const passProps = defaultFalseyArgs(identity, totalProps);
 
-  const filterBy = (conditionFn, fn, name, props) =>
-    truthy(conditionFn()) ? fn(props, name) : passProps(props);
-
   const checkOption = (obj, option) => {
-    // catch invalid arguments
-    if (existy(obj) && !isObj(obj)) {
+    if (existy(obj) && !isObj(obj))
       throw new Error(
         `[react-known-props] Expected an object with options but got: '${typeof obj}' ${obj.toString()}`
       );
-    }
 
     return obj && obj[option];
   };
 
-  let selected = undefined;
-  // let selected = { props: undefined, filterBy: filterBy };
+  const selected = {
+    props: undefined,
+    filterBy: function(condition, fn, name) {
+      this.props = truthy(condition)
+        ? fn(this.props, name)
+        : passProps(this.props);
+      return this;
+    }
+  };
 
-  // default, no options action
-  selected = filterBy(
-    () =>
-      checkOption(options, "legacy") === false &&
-      checkOption(options, "onlyReact") === false,
-    identity,
-    null,
-    selected
-  );
+  selected
+    .filterBy(checkOption(options, "legacy"), addLegacyProps, givenElement)
+    .filterBy(checkOption(options, "onlyReact"), removeHtmlSvgProps);
 
-  selected = filterBy(
-    () => options === undefined || Object.keys(options).length === 0,
-    identity,
-    null,
-    selected
-  );
-  selected = filterBy(
-    () => checkOption(options, "legacy"),
-    addLegacyProps,
-    givenElement,
-    selected
-  );
-  selected = filterBy(
-    () => checkOption(options, "onlyReact"),
-    removeHtmlSvgProps,
-    null,
-    selected
-  );
-
-  return selected;
+  return selected.props;
 };
