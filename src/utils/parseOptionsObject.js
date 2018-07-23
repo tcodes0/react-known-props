@@ -5,52 +5,62 @@ const {
   htmlSvgLegacyProps
 } = require("../props/html");
 
-const removeNonReactProps = arr =>
-  arr.reduce(
-    (acc, prop) =>
-      htmlPropToReactPropMap[prop] || svgPropToReactPropMap[prop]
-        ? acc
-        : [...acc, prop],
-    []
+const existy = x => x != null;
+const truthy = x => x !== false && existy(x);
+const isObj = o => typeof o === "object";
+const defaultFalseyArgs = (fn, ...defaults) => (...args) => {
+  const safeArgs = args.map((arg, i) => (existy(arg) ? arg : defaults[i]));
+  return fn.apply(null, safeArgs);
+};
+const addLegacyProps = defaultFalseyArgs(
+  (props, element) =>
+    existy(htmlElementsToLegacyPropsMap[element])
+      ? [...htmlElementsToLegacyPropsMap[element], ...props]
+      : [...htmlSvgLegacyProps, ...props],
+  [],
+  "div"
+);
+
+// validate that I got an object
+// validate that I got anything at all
+
+module.exports.parseOptionsObject = (options, totalProps, element) => {
+  const removeHtmlSvgProps = defaultFalseyArgs(
+    arr =>
+      arr.reduce(
+        (acc, prop) =>
+          existy(htmlPropToReactPropMap[prop]) ||
+          existy(svgPropToReactPropMap[prop])
+            ? acc
+            : [...acc, prop],
+        []
+      ),
+    totalProps
   );
 
-const exists = x => x != null;
-const isTruthy = x => x !== false && exists(x);
-const isObj = o => typeof o === "object";
-
-module.exports.parseOptionsObject = (optionObj, props, element) => {
   let out = undefined;
 
+  //abstract this
   // catch invalid arguments
-  if (exists(optionObj) && !isObj(optionObj)) {
-    //eslint-disable-next-line no-console
+  if (existy(options) && !isObj(options)) {
     throw new Error(
-      `[react-known-props] Expected an object with options but got: '${typeof optionObj}' ${optionObj.toString()}`
+      `[react-known-props] Expected an object with options but got: '${typeof options}' ${options.toString()}`
     );
   }
 
   // default, no options action
   if (
-    optionObj === undefined ||
-    Object.keys(optionObj).length === 0 ||
-    (optionObj.legacy === false && optionObj.onlyReact === false)
+    options === undefined ||
+    Object.keys(options).length === 0 ||
+    (options.legacy === false && options.onlyReact === false)
   ) {
-    return props;
+    return totalProps;
   }
 
-  if (optionObj.legacy === true) {
-    if (Object.keys(htmlElementsToLegacyPropsMap).indexOf(element) !== -1) {
-      out = [...htmlElementsToLegacyPropsMap[element], ...props];
-    } else {
-      out = [...htmlSvgLegacyProps, ...props];
-    }
-  }
-
-  if (optionObj.legacy === false) out = props;
-
-  if (optionObj.onlyReact === true)
-    out = out ? removeNonReactProps(out) : removeNonReactProps(props);
-  if (optionObj.onlyReact === false) out = out ? out : props;
+  if (options.legacy === true) out = addLegacyProps(totalProps, element);
+  if (options.legacy === false) out = totalProps;
+  if (options.onlyReact === true) out = removeHtmlSvgProps(out);
+  if (options.onlyReact === false) out = out ? out : totalProps;
 
   return out;
 };
