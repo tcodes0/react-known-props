@@ -1,3 +1,4 @@
+const { existy, truthy, isObj } = require("./baseFunctions");
 const { htmlPropToReactPropMap } = require("../props/react");
 const { svgPropToReactPropMap } = require("../generated/svgPropToReactPropMap");
 const {
@@ -5,62 +6,40 @@ const {
   htmlSvgLegacyProps
 } = require("../props/html");
 
-const existy = x => x != null;
-const truthy = x => x !== false && existy(x);
-const isObj = o => typeof o === "object";
-const identity = x => x;
-const defaultFalseyArgs = (fn, ...defaults) => (...args) => {
-  const safeArgs = args.map((arg, i) => (existy(arg) ? arg : defaults[i]));
-  return fn.apply(null, safeArgs);
+const removeNonReactProps = arr =>
+  arr.reduce(
+    (acc, prop) =>
+      existy(htmlPropToReactPropMap[prop]) ||
+      existy(svgPropToReactPropMap[prop])
+        ? acc
+        : [...acc, prop],
+    []
+  );
+
+const addLegacyProps = (props, element) =>
+  existy(htmlElementsToLegacyPropsMap[element])
+    ? [...htmlElementsToLegacyPropsMap[element], ...props]
+    : [...htmlSvgLegacyProps, ...props];
+
+const checkOption = (obj, option) => {
+  if (existy(obj) && !isObj(obj))
+    throw new Error(
+      `[react-known-props] Expected an object with options but got: '${typeof obj}' ${obj.toString()}`
+    );
+
+  return obj && obj[option];
 };
 
-module.exports.parseOptionsObject = (options, totalProps, givenElement) => {
-  const removeHtmlSvgProps = defaultFalseyArgs(
-    arr =>
-      arr.reduce(
-        (acc, prop) =>
-          existy(htmlPropToReactPropMap[prop]) ||
-          existy(svgPropToReactPropMap[prop])
-            ? acc
-            : [...acc, prop],
-        []
-      ),
-    totalProps
-  );
-
-  const addLegacyProps = defaultFalseyArgs(
-    (props, element) =>
-      existy(htmlElementsToLegacyPropsMap[element])
-        ? [...htmlElementsToLegacyPropsMap[element], ...props]
-        : [...htmlSvgLegacyProps, ...props],
-    totalProps,
-    "div"
-  );
-
-  const passProps = defaultFalseyArgs(identity, totalProps);
-
-  const checkOption = (obj, option) => {
-    if (existy(obj) && !isObj(obj))
-      throw new Error(
-        `[react-known-props] Expected an object with options but got: '${typeof obj}' ${obj.toString()}`
-      );
-
-    return obj && obj[option];
-  };
-
+module.exports.parseOptionsObject = (options, propsToFilter, element) => {
   const selected = {
-    props: undefined,
+    props: propsToFilter,
     filterBy: function(condition, fn, name) {
-      this.props = truthy(condition)
-        ? fn(this.props, name)
-        : passProps(this.props);
+      if (truthy(condition)) this.props = fn(this.props, name);
       return this;
     }
   };
 
-  selected
-    .filterBy(checkOption(options, "legacy"), addLegacyProps, givenElement)
-    .filterBy(checkOption(options, "onlyReact"), removeHtmlSvgProps);
-
-  return selected.props;
+  return selected
+    .filterBy(checkOption(options, "legacy"), addLegacyProps, element)
+    .filterBy(checkOption(options, "onlyReact"), removeNonReactProps).props;
 };
