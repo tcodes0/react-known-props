@@ -8,23 +8,13 @@ const {
 const existy = x => x != null;
 const truthy = x => x !== false && existy(x);
 const isObj = o => typeof o === "object";
+const identity = x => x;
 const defaultFalseyArgs = (fn, ...defaults) => (...args) => {
   const safeArgs = args.map((arg, i) => (existy(arg) ? arg : defaults[i]));
   return fn.apply(null, safeArgs);
 };
-const addLegacyProps = defaultFalseyArgs(
-  (props, element) =>
-    existy(htmlElementsToLegacyPropsMap[element])
-      ? [...htmlElementsToLegacyPropsMap[element], ...props]
-      : [...htmlSvgLegacyProps, ...props],
-  [],
-  "div"
-);
 
-// validate that I got an object
-// validate that I got anything at all
-
-module.exports.parseOptionsObject = (options, totalProps, element) => {
+module.exports.parseOptionsObject = (options, totalProps, givenElement) => {
   const removeHtmlSvgProps = defaultFalseyArgs(
     arr =>
       arr.reduce(
@@ -38,29 +28,62 @@ module.exports.parseOptionsObject = (options, totalProps, element) => {
     totalProps
   );
 
-  let out = undefined;
+  const addLegacyProps = defaultFalseyArgs(
+    (props, element) =>
+      existy(htmlElementsToLegacyPropsMap[element])
+        ? [...htmlElementsToLegacyPropsMap[element], ...props]
+        : [...htmlSvgLegacyProps, ...props],
+    totalProps,
+    "div"
+  );
 
-  //abstract this
-  // catch invalid arguments
-  if (existy(options) && !isObj(options)) {
-    throw new Error(
-      `[react-known-props] Expected an object with options but got: '${typeof options}' ${options.toString()}`
-    );
-  }
+  const passProps = defaultFalseyArgs(identity, totalProps);
+
+  const filterBy = (conditionFn, fn, name, props) =>
+    truthy(conditionFn()) ? fn(props, name) : passProps(props);
+
+  const checkOption = (obj, option) => {
+    // catch invalid arguments
+    if (existy(obj) && !isObj(obj)) {
+      throw new Error(
+        `[react-known-props] Expected an object with options but got: '${typeof obj}' ${obj.toString()}`
+      );
+    }
+
+    return obj && obj[option];
+  };
+
+  let selected = undefined;
+  // let selected = { props: undefined, filterBy: filterBy };
 
   // default, no options action
-  if (
-    options === undefined ||
-    Object.keys(options).length === 0 ||
-    (options.legacy === false && options.onlyReact === false)
-  ) {
-    return totalProps;
-  }
+  selected = filterBy(
+    () =>
+      checkOption(options, "legacy") === false &&
+      checkOption(options, "onlyReact") === false,
+    identity,
+    null,
+    selected
+  );
 
-  if (options.legacy === true) out = addLegacyProps(totalProps, element);
-  if (options.legacy === false) out = totalProps;
-  if (options.onlyReact === true) out = removeHtmlSvgProps(out);
-  if (options.onlyReact === false) out = out ? out : totalProps;
+  selected = filterBy(
+    () => options === undefined || Object.keys(options).length === 0,
+    identity,
+    null,
+    selected
+  );
+  selected = filterBy(
+    () => checkOption(options, "legacy"),
+    addLegacyProps,
+    givenElement,
+    selected
+  );
+  selected = filterBy(
+    () => checkOption(options, "onlyReact"),
+    removeHtmlSvgProps,
+    null,
+    selected
+  );
 
-  return out;
+  return selected;
 };
