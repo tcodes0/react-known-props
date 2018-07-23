@@ -30,7 +30,7 @@ const checkOption = (obj, option) => {
   return obj && obj[option];
 };
 
-module.exports.parseOptionsObject = (options, propsToFilter, element) => {
+module.exports.filter = (options, propsToFilter, element) => {
   const selected = {
     props: propsToFilter,
     filterBy: function(condition, fn, name) {

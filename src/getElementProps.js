@@ -1,5 +1,6 @@
 const { ariaProps } = require("./props/aria");
-const { parseOptionsObject } = require("./utils/parseOptionsObject");
+const { filter } = require("./utils/filter");
+const { existy } = require("./utils/baseFunctions");
 const { reactGlobalProps } = require("./generated/reactGlobalProps");
 const { svgGlobalProps } = require("./props/svg");
 const { htmlElements } = require("./props/html");
@@ -47,7 +48,7 @@ const elementProps = element => {
 };
 
 module.exports.getElementProps = (element, options) => {
-  if (!element || typeof element !== "string") {
+  if (!existy(element) || typeof element !== "string") {
     //eslint-disable-next-line no-console
     console.warn(
       `[react-known-props] getElementProps: Expected element argument type 'string' but got '${typeof element}'.`
@@ -69,5 +70,5 @@ module.exports.getElementProps = (element, options) => {
     return getGlobalProps();
   }
 
-  return parseOptionsObject(options, [...props, ...ariaProps], element);
+  return filter(options, [...props, ...ariaProps], element);
 };
