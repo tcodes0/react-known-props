@@ -16,10 +16,10 @@ const removeNonReactProps = arr =>
     []
   );
 
-const addLegacyProps = (props, element) =>
+const addLegacyProps = (propsArr, element) =>
   existy(htmlElementsToLegacyPropsMap[element])
-    ? [...htmlElementsToLegacyPropsMap[element], ...props]
-    : [...htmlSvgLegacyProps, ...props];
+    ? [...htmlElementsToLegacyPropsMap[element], ...propsArr]
+    : [...htmlSvgLegacyProps, ...propsArr];
 
 const option = (obj, option) => {
   if (existy(obj) && !isObj(obj))
@@ -29,6 +29,8 @@ const option = (obj, option) => {
 
   return obj && obj[option];
 };
+
+const sortProps = arr => arr.sort();
 
 module.exports.filter = (options, inputProps, element) => {
   const result = {
@@ -43,5 +45,6 @@ module.exports.filter = (options, inputProps, element) => {
   return result
     .filterBy(option(options, "legacy"), addLegacyProps, element)
     .filterBy(option(options, "onlyReact"), removeNonReactProps)
+    .filterBy(option(options, "sort"), sortProps)
     .props;
 };
