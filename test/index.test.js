@@ -348,3 +348,20 @@ describe("getElementProps bad element arg", () => {
     expect(getElementProps("IMG")).toEqual(getGlobalProps());
   });
 });
+
+describe("sort option", () => {
+  test("getAllProps {sort: true} works", () => {
+    expect(getAllProps({ sort: true })).toEqual(getAllProps().sort());
+  });
+  test("getGlobalProps {sort: true} works", () => {
+    expect(getGlobalProps({ sort: true })).toEqual(getGlobalProps().sort());
+  });
+  test("getEventProps {sort: true} works", () => {
+    expect(getEventProps({ sort: true })).toEqual(getEventProps().sort());
+  });
+  test("getElementProps div {sort: true} works", () => {
+    expect(getElementProps("div", { sort: true })).toEqual(
+      getElementProps("div").sort()
+    );
+  });
+});
