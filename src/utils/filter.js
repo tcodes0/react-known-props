@@ -21,7 +21,7 @@ const addLegacyProps = (props, element) =>
     ? [...htmlElementsToLegacyPropsMap[element], ...props]
     : [...htmlSvgLegacyProps, ...props];
 
-const checkOption = (obj, option) => {
+const option = (obj, option) => {
   if (existy(obj) && !isObj(obj))
     throw new Error(
       `[react-known-props] Expected an object with options but got: '${typeof obj}' ${obj.toString()}`
@@ -30,16 +30,18 @@ const checkOption = (obj, option) => {
   return obj && obj[option];
 };
 
-module.exports.filter = (options, propsToFilter, element) => {
-  const selected = {
-    props: propsToFilter,
+module.exports.filter = (options, inputProps, element) => {
+  const result = {
+    props: inputProps,
     filterBy: function(condition, fn, name) {
       if (truthy(condition)) this.props = fn(this.props, name);
       return this;
     }
   };
 
-  return selected
-    .filterBy(checkOption(options, "legacy"), addLegacyProps, element)
-    .filterBy(checkOption(options, "onlyReact"), removeNonReactProps).props;
+  // prettier-ignore
+  return result
+    .filterBy(option(options, "legacy"), addLegacyProps, element)
+    .filterBy(option(options, "onlyReact"), removeNonReactProps)
+    .props;
 };
