@@ -61,7 +61,10 @@ const {
 
 **All functions return the props as strings in an array.**
 
-**Element names are case-sensitive and always lowercase.**
+**Element names are case-sensitive**<br/>
+
+- HTML elements are all lowercase
+- SVG elements are lowercase and camelCase
 
 **See options [below](#options).**
 
@@ -75,10 +78,10 @@ Gets all possible props: Global props, element specific props, event props and A
 getAllProps();
 getAllProps({ legacy: true });
 
-//this
+// this
 getAllProps().length;
 
-//returns
+// returns
 675;
 ```
 
@@ -97,10 +100,10 @@ getElementProps("table", {legacy: true})
 getElementProps("audio", {onlyReact: true})
 getElementProps("polygon", {onlyReact: true})
 
-//this
+// this
 getElementProps("img")
 
-//returns
+// returns
 [ 'align',
       'alt',
       'crossOrigin',
@@ -116,14 +119,15 @@ getElementProps("img")
 ### getEventProps
 
 Gets React's event props only.
+The props are already sorted.
 
 ```js
 // arguments: none.
 
-//this
+// this
 getEventProps()
 
-//returns
+// returns
 [ 'onBlur',
       'onChange',
       'onClick',
@@ -144,19 +148,20 @@ Gets all HTML and SVG props valid on any element, plus all ARIA props including 
 getGlobalProps()
 getGlobalProps({onlyReact: true})
 
-//this
+// this
 getGlobalProps()
 
-//returns
-[ 'accessKey',
-      'accesskey',
-      'autoCapitalize',
-      'autocapitalize',
-      'className',
-      'class',
-      'contentEditable',
-      'contenteditable',
-      (...)
+// returns
+[
+  'accessKey',
+  'accesskey',
+  'autoCapitalize',
+  'autocapitalize',
+  'className',
+  'class',
+  'contentEditable',
+  'contenteditable',
+  (...)
 ]
 ```
 
@@ -164,6 +169,7 @@ getGlobalProps()
 
 - **[legacy](#legacy)**: boolean.
 - **[onlyReact](#onlyreact)**: boolean.
+- **[sort](#sort)**: boolean.
 
 #### legacy
 
@@ -204,6 +210,39 @@ getElementProps("label", { onlyReact: false });
 
 // no duplication, only React props are returned (itemID, tabIndex, autoCapitalize, className, htmlFor, etc...)
 getGlobalProps({ onlyReact: true });
+```
+
+#### sort
+
+_Default: false\*._
+
+Sort the props alphabetically before returning them.
+It uses `Array.prototype.sort`.<br/>
+\*[getEventProps](#geteventprops) is sorted by default.
+
+```js
+// examples:
+
+// not sorted
+getAllProps();
+
+// returns
+[
+  (...)
+  'aria-valuetext',
+  'role',
+  'accessKey',
+  'accesskey',
+  'autoCapitalize',
+  'autocapitalize',
+  'className',
+  'class',
+  (...)
+]
+
+// sorted!
+getAllProps({ sort: true });
+getGlobalProps({ sort: true });
 ```
 
 _Incompatible SVG props not included._
