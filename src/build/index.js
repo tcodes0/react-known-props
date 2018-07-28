@@ -147,7 +147,7 @@ lists.push(
       );
 
     //only keep camelCase props, convert to lowercase without spaces.
-    const camelToLower = Object.keys(noLower)
+    const camelAsLower = Object.keys(noLower)
       .filter(prop => /[a-z][A-Z]/.test(prop))
       .filter(prop => !camelcaseNoConvert.includes(prop))
       .reduce(
@@ -155,15 +155,15 @@ lists.push(
         {}
       );
 
-    //only keep dashCase props, convert to camelCase.
-    const dashToCamel = Object.keys(noLower)
+    //only keep kebab-case props, convert to camelCase.
+    const kebabAsCamel = Object.keys(noLower)
       .filter(prop => /[-]/.test(prop))
       .reduce(
         (acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }),
         {}
       );
 
-    return Object.assign(dashToCamel, camelToLower, edgeCases);
+    return Object.assign(kebabAsCamel, camelAsLower, edgeCases);
   })
 );
 
