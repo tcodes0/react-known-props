@@ -223,10 +223,8 @@ It uses `Array.prototype.sort`.<br/>
 ```js
 // examples:
 
-// not sorted
 getAllProps();
-
-// returns
+// not sorted
 [
   (...)
   'aria-valuetext',
@@ -240,7 +238,7 @@ getAllProps();
   (...)
 ]
 
-// sorted!
+// sorted
 getAllProps({ sort: true });
 getGlobalProps({ sort: true });
 ```
@@ -265,7 +263,7 @@ I'd use these packages:
 ### Contributing
 
 Fork, make changes, run the `build:lists` script and send a PR.
-`build:lists` takes the stuff in `src/build` and makes the files in `src/generated`.
+`build:lists` takes the stuff in `src/generator` and makes the files in `src/generated`.
 This is for performance reasons.
 
 All data pulled from MDN web docs, official React docs, the ARIA specification and SVG specification.
