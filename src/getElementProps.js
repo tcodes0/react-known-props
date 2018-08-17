@@ -26,23 +26,20 @@ const commonElements = [
   "video"
 ];
 
-const isSvg = tag => htmlElements.indexOf(tag) === -1;
-
-const duplicateRemover = (prop, index, array) => prop !== array[index + 1];
+const duplicateRemover = propsArr =>
+  propsArr.sort().filter((prop, index, array) => prop !== array[index + 1]);
 
 const elementProps = element => {
-  if (commonElements.indexOf(element) > -1) {
-    return [
+  if (commonElements.indexOf(element) !== -1) {
+    return duplicateRemover([
       ...svgGlobalProps,
       ...reactGlobalProps,
       ...reactHtmlElementsToPropsMap[element],
       ...reactSvgElementsToPropsMap[element]
-    ]
-      .sort()
-      .filter(duplicateRemover);
+    ]);
   }
 
-  return isSvg(element)
+  return htmlElements.indexOf(element) === -1
     ? [...reactSvgElementsToPropsMap[element], ...svgGlobalProps]
     : [...reactHtmlElementsToPropsMap[element], ...reactGlobalProps];
 };
