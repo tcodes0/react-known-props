@@ -28,7 +28,7 @@
     "test": "jest",
     "benchmark": "yarn build 1>/dev/null && node benchmark/index.js",
     "build": "babel src -d dist",
-    "build:lists": "node src/build/index.js",
+    "build:lists": "node src/generator/index.js",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",

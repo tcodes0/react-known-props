@@ -348,3 +348,51 @@ describe("getElementProps bad element arg", () => {
     expect(getElementProps("IMG")).toEqual(getGlobalProps());
   });
 });
+
+describe("sort option", () => {
+  test("getElementProps div {sort: false} is not sorted", () => {
+    expect(getElementProps("div", { sort: false })).not.toEqual(
+      getElementProps("div").sort()
+    );
+  });
+  test("getElementProps feFlood {sort: false} is not sorted", () => {
+    expect(getElementProps("feFlood", { sort: false })).not.toEqual(
+      getElementProps("feFlood").sort()
+    );
+  });
+  test("getElementProps {sort: false} is default", () => {
+    expect(getElementProps("feFlood", { sort: false })).toEqual(
+      getElementProps("feFlood")
+    );
+  });
+  test("getElementProps div {sort: true} works", () => {
+    expect(getElementProps("div", { sort: true })).toEqual(
+      getElementProps("div").sort()
+    );
+  });
+  test("getElementProps feFlood {sort: true} works", () => {
+    expect(getElementProps("feFlood", { sort: true })).toEqual(
+      getElementProps("feFlood").sort()
+    );
+  });
+  test("getAllProps {sort: true} works", () => {
+    expect(getAllProps({ sort: true })).toEqual(getAllProps().sort());
+  });
+  test("getAllProps {sort: false} is default", () => {
+    expect(getAllProps()).toEqual(getAllProps({ sort: false }));
+  });
+  test("getAllProps {sort: false} is not sorted", () => {
+    expect(getAllProps({ sort: false })).not.toEqual(getAllProps().sort());
+  });
+  test("getGlobalProps {sort: true} works", () => {
+    expect(getGlobalProps({ sort: true })).toEqual(getGlobalProps().sort());
+  });
+  test("getGlobalProps {sort: false} is default", () => {
+    expect(getGlobalProps({ sort: false })).toEqual(getGlobalProps());
+  });
+  test("getGlobalProps {sort: false} is not sorted", () => {
+    expect(getGlobalProps({ sort: false })).not.toEqual(
+      getGlobalProps().sort()
+    );
+  });
+});
