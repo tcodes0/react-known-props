@@ -6,8 +6,12 @@
   <a href="https://github.com/prettier/prettier">
     <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
   </a>
+  <a href="https://www.npmjs.com/package/react-known-props">
+    <img alt="downloads/month" src="https://img.shields.io/npm/dt/react-known-props.svg?style=flat-square">
+  </a>
 </p>
 <br/>
+
 
 About 700 props React recognizes.
 
