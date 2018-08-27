@@ -221,7 +221,7 @@ _Default: false\*._
 
 Sort the props alphabetically before returning them.
 It uses `Array.prototype.sort`.<br/>
-Not suported on \*[getEventProps](#geteventprops).
+\*Not supported on [getEventProps](#geteventprops).
 Please sort it manually.
 
 ```js
@@ -271,6 +271,6 @@ Fork, make changes, run the `build:lists` script and send a PR.
 This is for performance reasons.
 
 All data pulled from MDN web docs, official React docs, the ARIA specification and SVG specification.
-MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waititing to be added by someone willing to look into every element page.
+MDN can be a deep website to dig for info, I'm sure there are more props (specially legacy) waiting to be added by someone willing to look into every element page.
 
 ⚛️ React is awesome 💫
