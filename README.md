@@ -119,7 +119,6 @@ getElementProps("img")
 ### getEventProps
 
 Gets React's event props only.
-The props are already sorted.
 
 ```js
 // arguments: none.
@@ -218,7 +217,8 @@ _Default: false\*._
 
 Sort the props alphabetically before returning them.
 It uses `Array.prototype.sort`.<br/>
-\*[getEventProps](#geteventprops) is sorted by default.
+Not suported on \*[getEventProps](#geteventprops).
+Please sort it manually.
 
 ```js
 // examples:
