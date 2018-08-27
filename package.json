@@ -1,6 +1,6 @@
 {
   "name": "react-known-props",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "About 700 props React recognizes",
   "license": "BSD-3-Clause",
   "main": "dist/index.js",
