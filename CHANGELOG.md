@@ -1,4 +1,10 @@
-### 2.3.1 - Add value and defaultValue to select 
+### 2.4.2 - Upgrade jest to fix vulnerabilities
+
+### 2.4.1 - Bumped by mistake, same as 2.4.0. Not published to NPM.
+
+## 2.4.0 - Stable
+
+### 2.3.1 - Add value and defaultValue to select
 
 ## 2.3.0 - Throw less often.
 
