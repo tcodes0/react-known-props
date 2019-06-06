@@ -56,7 +56,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^23.1.0",
-    "prettier": "^1.13.4",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "prettier": "^1.13.4"
   }
 }
