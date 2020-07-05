@@ -22,6 +22,9 @@ About 700 props React recognizes.
 - React specific props.
 - Options you can set.
 
+HTML attributes and React Properties are mixed together, the rationale is that if react accepts the prop, we include it.
+see [#25](https://github.com/Thomazella/react-known-props/issues/25) for more info
+
 ## Install
 
 install with
