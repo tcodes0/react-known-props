@@ -9,7 +9,7 @@ const {
   svgPropsToElementsMap,
   htmlGlobalProps,
   reactGlobalProps,
-  reactExtraPropsMap
+  reactExtraPropsMap,
 } = require("./props");
 
 class propList {
@@ -34,7 +34,7 @@ lists.push(
         ? [...acc, htmlPropToReactPropMap[prop], prop]
         : [...acc, prop];
     }, []),
-    ...reactGlobalProps
+    ...reactGlobalProps,
   ])
 );
 
@@ -43,7 +43,7 @@ lists.push(
     htmlElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(reactHtmlPropsMap, el)
+          [el]: getElementPropsFromMap(reactHtmlPropsMap, el),
         }),
       {}
     )
@@ -52,7 +52,7 @@ lists.push(
 
 lists.push(
   new propList("svgPropToReactPropMap", () => {
-    const lowerCaseSpaceless = input => lowerCase(input).replace(/ /g, "");
+    const lowerCaseSpaceless = (input) => lowerCase(input).replace(/ /g, "");
 
     const camelcaseNoConvert = [
       "externalResourcesRequired",
@@ -118,7 +118,7 @@ lists.push(
       "lengthAdjust",
       "textLength",
       "startOffset",
-      "viewTarget"
+      "viewTarget",
     ];
 
     const edgeCases = {
@@ -134,12 +134,12 @@ lists.push(
       "nav-up": "navup",
       "nav-up-left": "navupleft",
       "nav-up-right": "navupright",
-      "horiz-origin-y": "horizoriginy"
+      "horiz-origin-y": "horizoriginy",
     };
 
     //remove lowercase props, they are passed as-is to React
     const noLower = Object.keys(svgPropsToElementsMap)
-      .filter(prop => !/^[a-z0-9]+$/.test(prop))
+      .filter((prop) => !/^[a-z0-9]+$/.test(prop))
       .reduce(
         (acc, prop) =>
           Object.assign(acc, { [prop]: svgPropsToElementsMap[prop] }),
@@ -148,8 +148,8 @@ lists.push(
 
     //only keep camelCase props, convert to lowercase without spaces.
     const camelAsLower = Object.keys(noLower)
-      .filter(prop => /[a-z][A-Z]/.test(prop))
-      .filter(prop => !camelcaseNoConvert.includes(prop))
+      .filter((prop) => /[a-z][A-Z]/.test(prop))
+      .filter((prop) => !camelcaseNoConvert.includes(prop))
       .reduce(
         (acc, prop) => Object.assign(acc, { [prop]: lowerCaseSpaceless(prop) }),
         {}
@@ -157,7 +157,7 @@ lists.push(
 
     //only keep kebab-case props, convert to camelCase.
     const kebabAsCamel = Object.keys(noLower)
-      .filter(prop => /[-]/.test(prop))
+      .filter((prop) => /[-]/.test(prop))
       .reduce(
         (acc, prop) => Object.assign(acc, { [prop]: camelCase(prop) }),
         {}
@@ -172,7 +172,7 @@ lists.push(
     svgElements.reduce(
       (acc, el) =>
         Object.assign(acc, {
-          [el]: getElementPropsFromMap(reactSvgPropsMap, el)
+          [el]: getElementPropsFromMap(reactSvgPropsMap, el),
         }),
       {}
     )
@@ -193,7 +193,7 @@ lists.push(
   })
 );
 
-lists.forEach(list => {
+lists.forEach((list) => {
   const filePath = `./src/generated/${list.name}.js`;
   const buffer = `module.exports.${list.name} = ${JSON.stringify(
     list.data(),

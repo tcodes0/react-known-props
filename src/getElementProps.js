@@ -6,10 +6,10 @@ const { svgGlobalProps } = require("./props/svg");
 const { htmlElements } = require("./props/html");
 const { getGlobalProps } = require("./getGlobalProps");
 const {
-  reactHtmlElementsToPropsMap
+  reactHtmlElementsToPropsMap,
 } = require("./generated/reactHtmlElementsToPropsMap");
 const {
-  reactSvgElementsToPropsMap
+  reactSvgElementsToPropsMap,
 } = require("./generated/reactSvgElementsToPropsMap");
 
 // html and svg share these elements
@@ -23,19 +23,19 @@ const commonElements = [
   "script",
   "style",
   "title",
-  "video"
+  "video",
 ];
 
-const duplicateRemover = propsArr =>
+const duplicateRemover = (propsArr) =>
   propsArr.sort().filter((prop, index, array) => prop !== array[index + 1]);
 
-const elementProps = element => {
+const elementProps = (element) => {
   if (commonElements.indexOf(element) !== -1) {
     return duplicateRemover([
       ...svgGlobalProps,
       ...reactGlobalProps,
       ...reactHtmlElementsToPropsMap[element],
-      ...reactSvgElementsToPropsMap[element]
+      ...reactSvgElementsToPropsMap[element],
     ]);
   }
 

@@ -22,7 +22,7 @@ module.exports.htmlGlobalProps = [
   "style",
   "tabindex",
   "title",
-  "translate"
+  "translate",
 ];
 
 module.exports.htmlPropsToElementsMap = {
@@ -43,7 +43,7 @@ module.exports.htmlPropsToElementsMap = {
     "tfoot",
     "th",
     "thead",
-    "tr"
+    "tr",
   ],
   alt: ["applet", "area", "img", "input"],
   async: ["script"],
@@ -77,7 +77,7 @@ module.exports.htmlPropsToElementsMap = {
     "optgroup",
     "option",
     "select",
-    "textarea"
+    "textarea",
   ],
   download: ["a", "area"],
   enctype: ["form"],
@@ -93,7 +93,7 @@ module.exports.htmlPropsToElementsMap = {
     "output",
     "progress",
     "select",
-    "textarea"
+    "textarea",
   ],
   formaction: ["input", "button"],
   headers: ["td", "th"],
@@ -134,7 +134,7 @@ module.exports.htmlPropsToElementsMap = {
     "textarea",
     "map",
     "meta",
-    "param"
+    "param",
   ],
   novalidate: ["form"],
   open: ["details"],
@@ -168,7 +168,7 @@ module.exports.htmlPropsToElementsMap = {
     "script",
     "source",
     "track",
-    "video"
+    "video",
   ],
   srcdoc: ["iframe"],
   srclang: ["track"],
@@ -186,12 +186,12 @@ module.exports.htmlPropsToElementsMap = {
     "script",
     "source",
     "style",
-    "menu"
+    "menu",
   ],
   usemap: ["img", "input", "object"],
   value: ["button", "option", "input", "li", "meter", "progress", "param"],
   width: ["canvas", "embed", "iframe", "img", "input", "object", "video"],
-  wrap: ["textarea"]
+  wrap: ["textarea"],
 };
 
 module.exports.htmlLegacyProps = ["bgcolor", "border", "color"];
@@ -207,10 +207,10 @@ module.exports.legacyHTMLPropsToElementsMap = {
     "tfoot",
     "td",
     "th",
-    "tr"
+    "tr",
   ],
   border: ["img", "object", "table"],
-  color: ["basefont", "font", "hr"]
+  color: ["basefont", "font", "hr"],
 };
 
 module.exports.htmlObsoleteElements = [
@@ -237,7 +237,7 @@ module.exports.htmlObsoleteElements = [
   "spacer",
   "strike",
   "tt",
-  "xmp"
+  "xmp",
 ];
 
 module.exports.htmlDeprecatedElements = [
@@ -247,7 +247,7 @@ module.exports.htmlDeprecatedElements = [
   "isindex",
   "keygen",
   "menuitem",
-  "shadow"
+  "shadow",
 ];
 
 module.exports.htmlNonStandardElements = [
@@ -255,7 +255,7 @@ module.exports.htmlNonStandardElements = [
   "image",
   "multicol",
   "nobr",
-  "noembed"
+  "noembed",
 ];
 
 module.exports.htmlExperimentalElements = ["dialog", "hgroup"];
@@ -311,7 +311,7 @@ const common1 = [
   "textPath",
   "tref",
   "tspan",
-  "use"
+  "use",
 ];
 
 module.exports.svgElements = [
@@ -411,7 +411,7 @@ module.exports.svgElements = [
   "use",
   "video",
   "view",
-  "vkern"
+  "vkern",
 ];
 
 module.exports.svgPropsToElementsMap = {
@@ -476,7 +476,7 @@ module.exports.svgPropsToElementsMap = {
     "tspan",
     "use",
     "video",
-    "view"
+    "view",
   ],
   fill: [
     "a",
@@ -535,7 +535,7 @@ module.exports.svgPropsToElementsMap = {
     "tref",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "fill-opacity": common1,
   "fill-rule": common1,
@@ -561,7 +561,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   focusable: [
     "a",
@@ -582,7 +582,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "font-family": [
     "a",
@@ -636,7 +636,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "font-size": [
     "a",
@@ -690,7 +690,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "font-size-adjust": common1,
   "font-stretch": [
@@ -745,7 +745,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "font-style": [
     "a",
@@ -799,7 +799,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "font-variant": [
     "a",
@@ -853,7 +853,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "font-weight": [
     "a",
@@ -907,7 +907,7 @@ module.exports.svgPropsToElementsMap = {
     "textPath",
     "tref",
     "tspan",
-    "use"
+    "use",
   ],
   "glyph-orientation-horizontal": common1,
   "glyph-orientation-vertical": common1,
@@ -930,7 +930,7 @@ module.exports.svgPropsToElementsMap = {
     "script",
     "set",
     "textPath",
-    "use"
+    "use",
   ],
   hreflang: ["a"],
   "image-rendering": common1,
@@ -960,7 +960,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-down-left": [
     "a",
@@ -981,7 +981,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-down-right": [
     "a",
@@ -1002,7 +1002,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-left": [
     "a",
@@ -1023,7 +1023,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-next": [
     "a",
@@ -1044,7 +1044,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-prev": [
     "a",
@@ -1065,7 +1065,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-right": [
     "a",
@@ -1086,7 +1086,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-up": [
     "a",
@@ -1107,7 +1107,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-up-left": [
     "a",
@@ -1128,7 +1128,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "nav-up-right": [
     "a",
@@ -1149,7 +1149,7 @@ module.exports.svgPropsToElementsMap = {
     "textArea",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   opacity: common1,
   overflow: common1,
@@ -1196,7 +1196,7 @@ module.exports.svgPropsToElementsMap = {
     "tspan",
     "unknown",
     "use",
-    "video"
+    "video",
   ],
   requiredFeatures: [
     "a",
@@ -1236,7 +1236,7 @@ module.exports.svgPropsToElementsMap = {
     "tref",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   requiredFonts: [
     "a",
@@ -1267,7 +1267,7 @@ module.exports.svgPropsToElementsMap = {
     "title",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   requiredFormats: [
     "a",
@@ -1298,7 +1298,7 @@ module.exports.svgPropsToElementsMap = {
     "title",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   "shape-rendering": common1,
   "stop-color": common1,
@@ -1374,7 +1374,7 @@ module.exports.svgPropsToElementsMap = {
     "tspan",
     "unknown",
     "use",
-    "video"
+    "video",
   ],
   systemLanguage: [
     "a",
@@ -1418,7 +1418,7 @@ module.exports.svgPropsToElementsMap = {
     "tspan",
     "unknown",
     "use",
-    "video"
+    "video",
   ],
   target: ["a", "listener"],
   "text-anchor": common1,
@@ -1446,7 +1446,7 @@ module.exports.svgPropsToElementsMap = {
     "text",
     "textArea",
     "use",
-    "video"
+    "video",
   ],
   type: [
     "a",
@@ -1463,7 +1463,7 @@ module.exports.svgPropsToElementsMap = {
     "meshgradient",
     "script",
     "style",
-    "video"
+    "video",
   ],
   "unicode-bidi": common1,
   visibility: common1,
@@ -1476,7 +1476,7 @@ module.exports.svgPropsToElementsMap = {
     "glyphRef",
     "text",
     "tref",
-    "tspan"
+    "tspan",
   ],
   dy: [
     "altGlyph",
@@ -1485,7 +1485,7 @@ module.exports.svgPropsToElementsMap = {
     "glyphRef",
     "text",
     "tref",
-    "tspan"
+    "tspan",
   ],
   format: ["altGlyph", "glyphRef"],
   glyphRef: ["altGlyph", "glyphRef"],
@@ -1528,7 +1528,7 @@ module.exports.svgPropsToElementsMap = {
     "tref",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   y: [
     "altGlyph",
@@ -1568,7 +1568,7 @@ module.exports.svgPropsToElementsMap = {
     "tref",
     "tspan",
     "use",
-    "video"
+    "video",
   ],
   accumulate: ["animate", "animateColor", "animateMotion", "animateTransform"],
   additive: ["animate", "animateColor", "animateMotion", "animateTransform"],
@@ -1583,7 +1583,7 @@ module.exports.svgPropsToElementsMap = {
     "audio",
     "discard",
     "set",
-    "video"
+    "video",
   ],
   by: ["animate", "animateColor", "animateMotion", "animateTransform"],
   calcMode: ["animate", "animateColor", "animateMotion", "animateTransform"],
@@ -1595,7 +1595,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   end: [
     "animate",
@@ -1605,7 +1605,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   from: ["animate", "animateColor", "animateMotion", "animateTransform"],
   keySplines: ["animate", "animateColor", "animateMotion", "animateTransform"],
@@ -1618,7 +1618,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   min: [
     "animate",
@@ -1628,7 +1628,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   repeatCount: [
     "animate",
@@ -1638,7 +1638,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   repeatDur: [
     "animate",
@@ -1648,7 +1648,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   restart: [
     "animate",
@@ -1658,7 +1658,7 @@ module.exports.svgPropsToElementsMap = {
     "animation",
     "audio",
     "set",
-    "video"
+    "video",
   ],
   to: ["animate", "animateColor", "animateMotion", "animateTransform", "set"],
   values: [
@@ -1666,7 +1666,7 @@ module.exports.svgPropsToElementsMap = {
     "animateColor",
     "animateMotion",
     "animateTransform",
-    "feColorMatrix"
+    "feColorMatrix",
   ],
   keyPoints: ["animateMotion"],
   origin: ["animateMotion"],
@@ -1699,7 +1699,7 @@ module.exports.svgPropsToElementsMap = {
     "svg",
     "textArea",
     "use",
-    "video"
+    "video",
   ],
   initialVisibility: ["animation", "video"],
   preserveAspectRatio: [
@@ -1712,7 +1712,7 @@ module.exports.svgPropsToElementsMap = {
     "svg",
     "symbol",
     "video",
-    "view"
+    "view",
   ],
   syncBehavior: ["animation", "audio", "video"],
   syncMaster: ["animation", "audio", "video"],
@@ -1745,7 +1745,7 @@ module.exports.svgPropsToElementsMap = {
     "svg",
     "textArea",
     "use",
-    "video"
+    "video",
   ],
   cx: ["circle", "ellipse", "radialGradient"],
   cy: ["circle", "ellipse", "radialGradient"],
@@ -1756,7 +1756,7 @@ module.exports.svgPropsToElementsMap = {
     "path",
     "polygon",
     "polyline",
-    "rect"
+    "rect",
   ],
   r: ["circle", "radialGradient"],
   clipPathUnits: ["clipPath"],
@@ -1779,7 +1779,7 @@ module.exports.svgPropsToElementsMap = {
     "feMorphology",
     "feOffset",
     "feSpecularLighting",
-    "feTile"
+    "feTile",
   ],
   in2: ["feBlend", "feComposite", "feDisplacementMap"],
   mode: ["feBlend"],
@@ -1800,7 +1800,7 @@ module.exports.svgPropsToElementsMap = {
     "feOffset",
     "feSpecularLighting",
     "feTile",
-    "feTurbulence"
+    "feTurbulence",
   ],
   k1: ["feComposite"],
   k2: ["feComposite"],
@@ -1814,7 +1814,7 @@ module.exports.svgPropsToElementsMap = {
   kernelUnitLength: [
     "feConvolveMatrix",
     "feDiffuseLighting",
-    "feSpecularLighting"
+    "feSpecularLighting",
   ],
   order: ["feConvolveMatrix"],
   preserveAlpha: ["feConvolveMatrix"],
@@ -1953,7 +1953,7 @@ module.exports.svgPropsToElementsMap = {
   startOffset: ["textPath"],
   overlay: ["video"],
   transformBehavior: ["video"],
-  viewTarget: ["view"]
+  viewTarget: ["view"],
 };
 module.exports.reactGlobalProps = [
   "dangerouslySetInnerHTML",
@@ -1961,7 +1961,7 @@ module.exports.reactGlobalProps = [
   "suppressHydrationWarning",
   "classID",
   "keyParams",
-  "autoSave"
+  "autoSave",
 ];
 
 module.exports.reactExtraPropsMap = {
@@ -1977,5 +1977,5 @@ module.exports.reactExtraPropsMap = {
   inputMode: ["input"],
   marginHeight: ["iframe"],
   marginWidth: ["iframe"],
-  mediaGroup: ["audio", "video"]
+  mediaGroup: ["audio", "video"],
 };

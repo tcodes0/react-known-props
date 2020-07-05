@@ -1,6 +1,6 @@
 const { reactEventprops } = require("./props/react");
 
-module.exports.getEventProps = arg => {
+module.exports.getEventProps = (arg) => {
   if (arg)
     //eslint-disable-next-line no-console
     console.warn(

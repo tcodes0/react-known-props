@@ -3,7 +3,7 @@ const { svgPropToReactPropMap } = require("../generated/svgPropToReactPropMap");
 const {
   htmlPropsToElementsMap,
   reactExtraPropsMap,
-  svgPropsToElementsMap
+  svgPropsToElementsMap,
 } = require("./props");
 
 const htmlPlusReactMap = Object.keys(htmlPropsToElementsMap).reduce(
@@ -11,10 +11,10 @@ const htmlPlusReactMap = Object.keys(htmlPropsToElementsMap).reduce(
     return htmlPropToReactPropMap[prop]
       ? Object.assign(acc, {
           [htmlPropToReactPropMap[prop]]: htmlPropsToElementsMap[prop],
-          [prop]: htmlPropsToElementsMap[prop]
+          [prop]: htmlPropsToElementsMap[prop],
         })
       : Object.assign(acc, {
-          [prop]: htmlPropsToElementsMap[prop]
+          [prop]: htmlPropsToElementsMap[prop],
         });
   },
   {}

@@ -9,7 +9,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "rel",
     "shape",
     "formTarget",
-    "target"
+    "target",
   ],
   abbr: [],
   acronym: [],
@@ -27,7 +27,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "rel",
     "shape",
     "formTarget",
-    "target"
+    "target",
   ],
   article: [],
   aside: [],
@@ -43,7 +43,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "preload",
     "src",
     "controlsList",
-    "mediaGroup"
+    "mediaGroup",
   ],
   b: [],
   base: ["href", "formTarget", "target"],
@@ -64,7 +64,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "formAction",
     "formaction",
     "name",
-    "type"
+    "type",
   ],
   canvas: ["height", "width"],
   caption: ["align"],
@@ -109,7 +109,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "formNoValidate",
     "novalidate",
     "formTarget",
-    "target"
+    "target",
   ],
   frame: ["allowFullScreen", "frameBorder"],
   frameset: [],
@@ -135,7 +135,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "srcdoc",
     "width",
     "marginHeight",
-    "marginWidth"
+    "marginWidth",
   ],
   image: [],
   img: [
@@ -152,7 +152,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "srcset",
     "useMap",
     "usemap",
-    "width"
+    "width",
   ],
   input: [
     "accept",
@@ -193,7 +193,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "defaultChecked",
     "autoCorrect",
     "defaultValue",
-    "inputMode"
+    "inputMode",
   ],
   ins: ["cite", "dateTime", "datetime"],
   isindex: [],
@@ -206,7 +206,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "form",
     "keyType",
     "keytype",
-    "name"
+    "name",
   ],
   label: ["htmlFor", "for", "form"],
   legend: [],
@@ -220,7 +220,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "integrity",
     "media",
     "rel",
-    "sizes"
+    "sizes",
   ],
   listing: [],
   main: [],
@@ -246,7 +246,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "type",
     "useMap",
     "usemap",
-    "width"
+    "width",
   ],
   ol: ["reversed", "start"],
   optgroup: ["disabled"],
@@ -275,7 +275,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "integrity",
     "language",
     "src",
-    "type"
+    "type",
   ],
   section: [],
   select: [
@@ -288,7 +288,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "required",
     "size",
     "value",
-    "defaultValue"
+    "defaultValue",
   ],
   shadow: [],
   slot: [],
@@ -327,7 +327,7 @@ module.exports.reactHtmlElementsToPropsMap = {
     "rows",
     "value",
     "wrap",
-    "defaultValue"
+    "defaultValue",
   ],
   tfoot: ["align"],
   th: ["align", "colSpan", "colspan", "headers", "rowSpan", "rowspan", "scope"],
@@ -355,8 +355,8 @@ module.exports.reactHtmlElementsToPropsMap = {
     "src",
     "width",
     "controlsList",
-    "mediaGroup"
+    "mediaGroup",
   ],
   wbr: [],
-  xmp: []
+  xmp: [],
 };

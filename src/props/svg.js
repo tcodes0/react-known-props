@@ -10,5 +10,5 @@ module.exports.svgGlobalProps = [
   "resource",
   "rev",
   "tabindex",
-  "typeof"
+  "typeof",
 ];

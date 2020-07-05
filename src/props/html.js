@@ -16,7 +16,7 @@ module.exports.htmlElementsToLegacyPropsMap = {
   border: ["img", "object", "table"],
   basefont: ["color"],
   font: ["color"],
-  hr: ["color"]
+  hr: ["color"],
 };
 
 module.exports.htmlSvgLegacyProps = ["bgcolor", "border"];
@@ -165,5 +165,5 @@ module.exports.htmlElements = [
   "var",
   "video",
   "wbr",
-  "xmp"
+  "xmp",
 ];

@@ -39,5 +39,5 @@ module.exports.reactGlobalProps = [
   "suppressHydrationWarning",
   "classID",
   "keyParams",
-  "autoSave"
+  "autoSave",
 ];

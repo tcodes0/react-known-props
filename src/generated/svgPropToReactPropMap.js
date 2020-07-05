@@ -101,5 +101,5 @@ module.exports.svgPropToReactPropMap = {
   timelineBegin: "timelinebegin",
   transformBehavior: "transformbehavior",
   hreflang: "hrefLang",
-  crossorigin: "crossOrigin"
+  crossorigin: "crossOrigin",
 };

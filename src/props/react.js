@@ -39,7 +39,7 @@ module.exports.htmlPropToReactPropMap = {
   novalidate: "formNoValidate",
   target: "formTarget",
   "accept-charset": "acceptCharset",
-  "http-equiv": "httpEquiv"
+  "http-equiv": "httpEquiv",
 };
 
 module.exports.reactEventprops = [
@@ -121,5 +121,5 @@ module.exports.reactEventprops = [
   "onAnimationEnd",
   "onAnimationIteration",
   "onTransitionEnd",
-  "onToggle"
+  "onToggle",
 ];

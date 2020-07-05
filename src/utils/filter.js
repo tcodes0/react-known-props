@@ -4,10 +4,10 @@ const { htmlPropToReactPropMap } = require("../props/react");
 const { svgPropToReactPropMap } = require("../generated/svgPropToReactPropMap");
 const {
   htmlElementsToLegacyPropsMap,
-  htmlSvgLegacyProps
+  htmlSvgLegacyProps,
 } = require("../props/html");
 
-const removeNonReactProps = arr =>
+const removeNonReactProps = (arr) =>
   fastReduce(
     (acc, prop) =>
       existy(htmlPropToReactPropMap[prop]) ||
@@ -35,10 +35,10 @@ const option = (obj, option) => {
 module.exports.filter = (options, inputProps, element) => {
   const result = {
     props: inputProps,
-    filterBy: function(condition, fn, name) {
+    filterBy: function (condition, fn, name) {
       if (truthy(condition)) this.props = fn(this.props, name);
       return this;
-    }
+    },
   };
 
   // prettier-ignore

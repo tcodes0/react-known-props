@@ -143,7 +143,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "wordSpacing",
     "word-spacing",
     "writingMode",
-    "writing-mode"
+    "writing-mode",
   ],
   altGlyph: [
     "alignmentBaseline",
@@ -262,7 +262,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "glyphRef",
     "rotate",
     "x",
-    "y"
+    "y",
   ],
   animate: [
     "alignmentBaseline",
@@ -397,7 +397,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "repeatDur",
     "restart",
     "to",
-    "values"
+    "values",
   ],
   animateColor: [
     "alignmentBaseline",
@@ -531,7 +531,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "repeatDur",
     "restart",
     "to",
-    "values"
+    "values",
   ],
   animateMotion: [
     "externalResourcesRequired",
@@ -564,7 +564,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "values",
     "keyPoints",
     "origin",
-    "path"
+    "path",
   ],
   animateTransform: [
     "externalResourcesRequired",
@@ -596,7 +596,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "repeatDur",
     "restart",
     "to",
-    "values"
+    "values",
   ],
   animation: [
     "externalResourcesRequired",
@@ -652,7 +652,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "syncMaster",
     "synctolerance",
     "syncTolerance",
-    "width"
+    "width",
   ],
   audio: [
     "externalResourcesRequired",
@@ -679,13 +679,13 @@ module.exports.reactSvgElementsToPropsMap = {
     "syncmaster",
     "syncMaster",
     "synctolerance",
-    "syncTolerance"
+    "syncTolerance",
   ],
   canvas: [
     "requiredExtensions",
     "style",
     "systemLanguage",
-    "preserveAspectRatio"
+    "preserveAspectRatio",
   ],
   circle: [
     "alignmentBaseline",
@@ -829,7 +829,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "cx",
     "cy",
     "pathLength",
-    "r"
+    "r",
   ],
   clipPath: [
     "alignmentBaseline",
@@ -943,7 +943,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "word-spacing",
     "writingMode",
     "writing-mode",
-    "clipPathUnits"
+    "clipPathUnits",
   ],
   "color-profile": ["local", "name", "renderingIntent", "rendering-intent"],
   cursor: [
@@ -953,7 +953,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredFeatures",
     "systemLanguage",
     "x",
-    "y"
+    "y",
   ],
   defs: [
     "alignmentBaseline",
@@ -1066,7 +1066,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "wordSpacing",
     "word-spacing",
     "writingMode",
-    "writing-mode"
+    "writing-mode",
   ],
   desc: [
     "requiredExtensions",
@@ -1076,7 +1076,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredformats",
     "requiredFormats",
     "style",
-    "systemLanguage"
+    "systemLanguage",
   ],
   discard: [
     "href",
@@ -1087,7 +1087,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredformats",
     "requiredFormats",
     "systemLanguage",
-    "begin"
+    "begin",
   ],
   ellipse: [
     "alignmentBaseline",
@@ -1232,7 +1232,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "cy",
     "pathLength",
     "rx",
-    "ry"
+    "ry",
   ],
   feBlend: [
     "alignmentBaseline",
@@ -1348,7 +1348,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "in",
     "in2",
     "mode",
-    "result"
+    "result",
   ],
   feColorMatrix: [
     "alignmentBaseline",
@@ -1464,7 +1464,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "height",
     "width",
     "in",
-    "result"
+    "result",
   ],
   feComponentTransfer: [
     "alignmentBaseline",
@@ -1578,7 +1578,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "height",
     "width",
     "in",
-    "result"
+    "result",
   ],
   feComposite: [
     "alignmentBaseline",
@@ -1698,7 +1698,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "k2",
     "k3",
     "k4",
-    "operator"
+    "operator",
   ],
   feConvolveMatrix: [
     "alignmentBaseline",
@@ -1821,7 +1821,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "order",
     "preserveAlpha",
     "targetX",
-    "targetY"
+    "targetY",
   ],
   feDiffuseLighting: [
     "alignmentBaseline",
@@ -1938,7 +1938,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "result",
     "kernelUnitLength",
     "diffuseConstant",
-    "surfaceScale"
+    "surfaceScale",
   ],
   feDisplacementMap: [
     "alignmentBaseline",
@@ -2056,7 +2056,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "result",
     "scale",
     "xChannelSelector",
-    "yChannelSelector"
+    "yChannelSelector",
   ],
   feDistantLight: ["azimuth", "elevation"],
   feDropShadow: [
@@ -2069,7 +2069,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "width",
     "in",
     "result",
-    "stdDeviation"
+    "stdDeviation",
   ],
   feFlood: [
     "alignmentBaseline",
@@ -2182,7 +2182,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "y",
     "height",
     "width",
-    "result"
+    "result",
   ],
   feFuncA: [
     "type",
@@ -2191,7 +2191,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "intercept",
     "offset",
     "slope",
-    "tableValues"
+    "tableValues",
   ],
   feFuncB: [
     "type",
@@ -2200,7 +2200,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "intercept",
     "offset",
     "slope",
-    "tableValues"
+    "tableValues",
   ],
   feFuncG: [
     "type",
@@ -2209,7 +2209,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "intercept",
     "offset",
     "slope",
-    "tableValues"
+    "tableValues",
   ],
   feFuncR: [
     "type",
@@ -2218,7 +2218,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "intercept",
     "offset",
     "slope",
-    "tableValues"
+    "tableValues",
   ],
   feGaussianBlur: [
     "alignmentBaseline",
@@ -2334,7 +2334,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "in",
     "result",
     "edgeMode",
-    "stdDeviation"
+    "stdDeviation",
   ],
   feImage: [
     "alignmentBaseline",
@@ -2452,7 +2452,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "width",
     "result",
     "crossOrigin",
-    "crossorigin"
+    "crossorigin",
   ],
   feMerge: [
     "alignmentBaseline",
@@ -2565,7 +2565,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "y",
     "height",
     "width",
-    "result"
+    "result",
   ],
   feMergeNode: ["in"],
   feMorphology: [
@@ -2682,7 +2682,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "in",
     "result",
     "operator",
-    "radius"
+    "radius",
   ],
   feOffset: [
     "alignmentBaseline",
@@ -2798,7 +2798,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "height",
     "width",
     "in",
-    "result"
+    "result",
   ],
   fePointLight: ["x", "y", "z"],
   feSpecularLighting: [
@@ -2917,7 +2917,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "kernelUnitLength",
     "surfaceScale",
     "specularConstant",
-    "specularExponent"
+    "specularExponent",
   ],
   feSpotLight: [
     "x",
@@ -2927,7 +2927,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "limitingConeAngle",
     "pointsAtX",
     "pointsAtY",
-    "pointsAtZ"
+    "pointsAtZ",
   ],
   feTile: [
     "alignmentBaseline",
@@ -3041,7 +3041,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "height",
     "width",
     "in",
-    "result"
+    "result",
   ],
   feTurbulence: [
     "alignmentBaseline",
@@ -3159,7 +3159,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "baseFrequency",
     "numOctaves",
     "seed",
-    "stitchTiles"
+    "stitchTiles",
   ],
   filter: [
     "alignmentBaseline",
@@ -3275,7 +3275,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "width",
     "filterRes",
     "filterUnits",
-    "primitiveUnits"
+    "primitiveUnits",
   ],
   font: [
     "alignmentBaseline",
@@ -3396,7 +3396,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "vertOriginX",
     "vert-origin-x",
     "vertOriginY",
-    "vert-origin-y"
+    "vert-origin-y",
   ],
   "font-face": [
     "externalResourcesRequired",
@@ -3454,7 +3454,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "v-mathematical",
     "widths",
     "xHeight",
-    "x-height"
+    "x-height",
   ],
   "font-face-format": ["string"],
   "font-face-name": ["name"],
@@ -3601,7 +3601,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "x",
     "y",
     "height",
-    "width"
+    "width",
   ],
   g: [
     "alignmentBaseline",
@@ -3741,7 +3741,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "wordSpacing",
     "word-spacing",
     "writingMode",
-    "writing-mode"
+    "writing-mode",
   ],
   glyph: [
     "alignmentBaseline",
@@ -3864,7 +3864,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "glyphName",
     "glyph-name",
     "orientation",
-    "unicode"
+    "unicode",
   ],
   glyphRef: [
     "alignmentBaseline",
@@ -3978,7 +3978,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "format",
     "glyphRef",
     "x",
-    "y"
+    "y",
   ],
   handler: ["externalResourcesRequired", "type"],
   hatch: [
@@ -3992,7 +3992,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "hatchContentUnits",
     "hatchunits",
     "hatchUnits",
-    "pitch"
+    "pitch",
   ],
   hatchpath: ["style", "offset", "d"],
   hkern: ["g1", "g2", "k", "u1", "u2"],
@@ -4144,7 +4144,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "preserveAspectRatio",
     "width",
     "crossOrigin",
-    "crossorigin"
+    "crossorigin",
   ],
   line: [
     "alignmentBaseline",
@@ -4289,7 +4289,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "x1",
     "x2",
     "y1",
-    "y2"
+    "y2",
   ],
   linearGradient: [
     "alignmentBaseline",
@@ -4406,7 +4406,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "y2",
     "gradientTransform",
     "gradientUnits",
-    "spreadMethod"
+    "spreadMethod",
   ],
   listener: [
     "target",
@@ -4416,7 +4416,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "handler",
     "observer",
     "phase",
-    "propagate"
+    "propagate",
   ],
   marker: [
     "alignmentBaseline",
@@ -4533,7 +4533,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "orient",
     "refX",
     "refY",
-    "viewBox"
+    "viewBox",
   ],
   mask: [
     "alignmentBaseline",
@@ -4651,7 +4651,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "height",
     "width",
     "maskContentUnits",
-    "maskUnits"
+    "maskUnits",
   ],
   mesh: ["href", "requiredExtensions", "systemLanguage"],
   meshgradient: [
@@ -4661,7 +4661,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "type",
     "x",
     "y",
-    "gradientUnits"
+    "gradientUnits",
   ],
   meshpatch: ["style"],
   meshrow: ["style"],
@@ -4672,7 +4672,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredFonts",
     "requiredformats",
     "requiredFormats",
-    "systemLanguage"
+    "systemLanguage",
   ],
   "missing-glyph": [
     "alignmentBaseline",
@@ -4789,7 +4789,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "vert-origin-x",
     "vertOriginY",
     "vert-origin-y",
-    "d"
+    "d",
   ],
   mpath: ["externalResourcesRequired", "href"],
   path: [
@@ -4932,7 +4932,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "writingMode",
     "writing-mode",
     "pathLength",
-    "d"
+    "d",
   ],
   pattern: [
     "alignmentBaseline",
@@ -5054,7 +5054,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "viewBox",
     "patternContentUnits",
     "patternTransform",
-    "patternUnits"
+    "patternUnits",
   ],
   polygon: [
     "alignmentBaseline",
@@ -5196,7 +5196,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "writingMode",
     "writing-mode",
     "pathLength",
-    "points"
+    "points",
   ],
   polyline: [
     "alignmentBaseline",
@@ -5338,7 +5338,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "writingMode",
     "writing-mode",
     "pathLength",
-    "points"
+    "points",
   ],
   prefetch: [
     "bandwidth",
@@ -5349,7 +5349,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "mediasize",
     "mediaSize",
     "mediatime",
-    "mediaTime"
+    "mediaTime",
   ],
   radialGradient: [
     "alignmentBaseline",
@@ -5468,7 +5468,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "spreadMethod",
     "fr",
     "fx",
-    "fy"
+    "fy",
   ],
   rect: [
     "alignmentBaseline",
@@ -5615,14 +5615,14 @@ module.exports.reactSvgElementsToPropsMap = {
     "width",
     "pathLength",
     "rx",
-    "ry"
+    "ry",
   ],
   script: [
     "externalResourcesRequired",
     "href",
     "type",
     "crossOrigin",
-    "crossorigin"
+    "crossorigin",
   ],
   set: [
     "externalResourcesRequired",
@@ -5645,7 +5645,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "repeatCount",
     "repeatDur",
     "restart",
-    "to"
+    "to",
   ],
   solidcolor: ["style"],
   stop: [
@@ -5756,7 +5756,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "writingMode",
     "writing-mode",
     "path",
-    "offset"
+    "offset",
   ],
   style: ["type", "media", "title"],
   svg: [
@@ -5914,7 +5914,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "timelinebegin",
     "timelineBegin",
     "version",
-    "zoomAndPan"
+    "zoomAndPan",
   ],
   switch: [
     "alignmentBaseline",
@@ -6054,7 +6054,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "wordSpacing",
     "word-spacing",
     "writingMode",
-    "writing-mode"
+    "writing-mode",
   ],
   symbol: [
     "alignmentBaseline",
@@ -6167,7 +6167,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "preserveAspectRatio",
     "refX",
     "refY",
-    "viewBox"
+    "viewBox",
   ],
   tbreak: [
     "requiredExtensions",
@@ -6176,7 +6176,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredFonts",
     "requiredformats",
     "requiredFormats",
-    "systemLanguage"
+    "systemLanguage",
   ],
   text: [
     "alignmentBaseline",
@@ -6324,7 +6324,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "y",
     "editable",
     "lengthAdjust",
-    "textLength"
+    "textLength",
   ],
   textArea: [
     "focushighlight",
@@ -6362,7 +6362,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "y",
     "height",
     "width",
-    "editable"
+    "editable",
   ],
   textPath: [
     "alignmentBaseline",
@@ -6482,7 +6482,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "method",
     "side",
     "spacing",
-    "startOffset"
+    "startOffset",
   ],
   title: [
     "requiredExtensions",
@@ -6492,7 +6492,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "requiredformats",
     "requiredFormats",
     "style",
-    "systemLanguage"
+    "systemLanguage",
   ],
   tref: [
     "alignmentBaseline",
@@ -6611,7 +6611,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "x",
     "y",
     "lengthAdjust",
-    "textLength"
+    "textLength",
   ],
   tspan: [
     "alignmentBaseline",
@@ -6757,7 +6757,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "x",
     "y",
     "lengthAdjust",
-    "textLength"
+    "textLength",
   ],
   unknown: ["requiredExtensions", "style", "systemLanguage"],
   use: [
@@ -6903,7 +6903,7 @@ module.exports.reactSvgElementsToPropsMap = {
     "x",
     "y",
     "height",
-    "width"
+    "width",
   ],
   video: [
     "externalResourcesRequired",
@@ -6964,14 +6964,14 @@ module.exports.reactSvgElementsToPropsMap = {
     "width",
     "overlay",
     "transformbehavior",
-    "transformBehavior"
+    "transformBehavior",
   ],
   view: [
     "externalResourcesRequired",
     "preserveAspectRatio",
     "viewBox",
     "zoomAndPan",
-    "viewTarget"
+    "viewTarget",
   ],
-  vkern: ["g1", "g2", "k", "u1", "u2"]
+  vkern: ["g1", "g2", "k", "u1", "u2"],
 };

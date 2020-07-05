@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "jest",
     "benchmark": "yarn build 1>/dev/null && node benchmark/index.js",
     "build": "babel src -d dist",

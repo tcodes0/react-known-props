@@ -47,5 +47,5 @@ module.exports.ariaProps = [
   "aria-valuemin",
   "aria-valuenow",
   "aria-valuetext",
-  "role"
+  "role",
 ];

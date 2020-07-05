@@ -496,5 +496,5 @@ module.exports.allSvgHtmlReactProps = [
   "inputMode",
   "marginHeight",
   "marginWidth",
-  "mediaGroup"
+  "mediaGroup",
 ];

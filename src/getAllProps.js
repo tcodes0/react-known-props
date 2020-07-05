@@ -3,9 +3,9 @@ const { allSvgHtmlReactProps } = require("./generated/allSvgHtmlReactProps");
 const { getGlobalProps } = require("./getGlobalProps");
 const { getEventProps } = require("./getEventProps");
 
-module.exports.getAllProps = options =>
+module.exports.getAllProps = (options) =>
   filter(options, [
     ...getGlobalProps(),
     ...getEventProps(),
-    ...allSvgHtmlReactProps
+    ...allSvgHtmlReactProps,
   ]);
