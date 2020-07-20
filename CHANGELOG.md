@@ -1,3 +1,5 @@
+### 2.4.5 - Upgrade deps to fix vulnerabilities
+
 ### 2.4.4 - Upgrade deps to fix vulnerabilities
 
 ### 2.4.3 - Upgrade all deps to fix vulnerabilities
